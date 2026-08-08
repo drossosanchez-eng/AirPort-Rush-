@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Airport Rush</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #08111f;
+    font-family: Arial, sans-serif;
+}
+
+#game {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        to bottom,
+        #101d35 0%,
+        #172a46 45%,
+        #27445c 100%
+    );
+}
+
+/* =========================
+   MENÚ PRINCIPAL
+========================= */
+
+#menu {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #ffd95a;
+    text-shadow: 0 5px 0 #9b7010;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #d9e5f5;
+    margin-bottom: 55px;
+    letter-spacing: 4px;
+}
+
+.play-button {
+    border: none;
+    background: #ff5c5c;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 18px 55px;
+    border-radius: 18px;
+    box-shadow: 0 7px 0 #a72d2d;
+    cursor: pointer;
+}
+
+.play-button:active {
+    transform: translateY(5px);
+    box-shadow: 0 2px 0 #a72d2d;
+}
+
+.instructions {
+    margin-top: 35px;
+    color: #aebdd0;
+    font-size: 15px;
+}
+
+/* =========================
+   JUEGO
+========================= */
+
+#gameScreen {
+    position: absolute;
+    inset: 0;
+    display: none;
+}
+
+#hud {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 5;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.hud-box {
+    background: rgba(0,0,0,0.35);
+    padding: 10px 15px;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+}
+
+/* =========================
+   PISTA
+========================= */
+
+#airport {
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    top: 0;
+    bottom: 0;
+    background: #303944;
+    border-left: 5px solid #202831;
+    border-right: 5px solid #202831;
+}
+
+.lane {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #d7dce2 0px,
+        #d7dce2 50px,
+        transparent 50px,
+        transparent 100px
+    );
+}
+
+.lane.one {
+    left: 33.33%;
+}
+
+.lane.two {
+    left: 66.66%;
+}
+
+/* =========================
+   PERSONAJE
+========================= */
+
+#player {
+    position: absolute;
+    width: 62px;
+    height: 82px;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+}
+
+/* cabeza */
+.head {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    left: 10px;
+    top: 0;
+    background: #f2b58c;
+    border-radius: 45% 45% 42% 42%;
+    border: 3px solid #542f26;
+}
+
+/* pelo */
+.hair {
+    position: absolute;
+    width: 42px;
+    height: 18px;
+    left: 10px;
+    top: 0;
+    background: #34251e;
+    border-radius: 50% 50% 25% 25%;
+    z-index: 2;
+}
+
+/* ojos */
+.eye {
+    position: absolute;
+    width: 5px;
+    height: 7px;
+    background: #202020;
+    border-radius: 50%;
+    top: 19px;
+    z-index: 3;
+}
+
+.eye.left {
+    left: 20px;
+}
+
+.eye.right {
+    right: 20px;
+}
+
+/* cuerpo */
+.body {
+    position: absolute;
+    width: 48px;
+    height: 43px;
+    left: 7px;
+    top: 37px;
+    background: #3478d4;
+    border-radius: 12px 12px 8px 8px;
+    border: 3px solid #1c4175;
+}
+
+/* mochila */
+.backpack {
+    position: absolute;
+    width: 15px;
+    height: 30px;
+    left: 0;
+    top: 44px;
+    background: #e85c4a;
+    border-radius: 6px;
+}
+
+/* piernas */
+.leg {
+    position: absolute;
+    width: 12px;
+    height: 25px;
+    background: #202c3b;
+    top: 75px;
+    border-radius: 5px;
+}
+
+.leg.left {
+    left: 15px;
+}
+
+.leg.right {
+    right: 15px;
+}
+
+/* =========================
+   MALETA
+========================= */
+
+.suitcase {
+    position: absolute;
+    width: 42px;
+    height: 52px;
+    background: #ffbd32;
+    border: 4px solid #8c6414;
+    border-radius: 8px;
+    z-index: 3;
+}
+
+.suitcase::before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 8px;
+    left: 10px;
+    top: -11px;
+    border: 4px solid #8c6414;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+}
+
+/* =========================
+   BOTÓN DE MOVIMIENTO
+========================= */
+
+#controls {
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    z-index: 10;
+}
+
+.control {
+    width: 70px;
+    height: 70px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    border: 2px solid rgba(255,255,255,0.4);
+}
+
+/* =========================
+   GAME OVER
+========================= */
+
+#gameOver {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(4,10,20,0.85);
+    color: white;
+    z-index: 20;
+    text-align: center;
+}
+
+#gameOver h2 {
+    font-size: 46px;
+    color: #ff6464;
+    margin-bottom: 15px;
+}
+
+#finalScore {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.restart-button {
+    border: none;
+    background: #ffd34f;
+    color: #382800;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 15px 40px;
+    border-radius: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="game">
+
+    <!-- MENÚ -->
+    <div id="menu">
+
+        <div class="logo">
+            AIRPORT RUSH
+        </div>
+
+        <div class="subtitle">
+            RUN • DODGE • ESCAPE
+        </div>
+
+        <button class="play-button" onclick="startGame()">
+            JUGAR
+        </button>
+
+        <div class="instructions">
+            Esquiva las maletas y consigue el máximo récord
+        </div>
+
+    </div>
+
+
+    <!-- JUEGO -->
+    <div id="gameScreen">
+
+        <div id="hud">
+
+            <div class="hud-box">
+                🏆 <span id="score">0</span>
+            </div>
+
+            <div class="hud-box">
+                🪙 <span id="coins">0</span>
+            </div>
+
+        </div>
+
+
+        <div id="airport">
+
+            <div class="lane one"></div>
+            <div class="lane two"></div>
+
+        </div>
+
+
+        <!-- PERSONAJE -->
+        <div id="player">
+
+            <div class="hair"></div>
+
+            <div class="head">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+            </div>
+
+            <div class="backpack"></div>
+
+            <div class="body"></div>
+
+            <div class="leg left"></div>
+            <div class="leg right"></div>
+
+        </div>
+
+
+        <!-- CONTROLES -->
+        <div id="controls">
+
+            <button class="control" id="leftButton">
+                ◀
+            </button>
+
+            <button class="control" id="rightButton">
+                ▶
+            </button>
+
+        </div>
+
+
+        <!-- GAME OVER -->
+        <div id="gameOver">
+
+            <h2>¡FIN!</h2>
+
+            <div id="finalScore">
+                Puntuación: 0
+            </div>
+
+            <button class="restart-button" onclick="restartGame()">
+                VOLVER A JUGAR
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   VARIABLES
+========================================= */
+
+let player;
+let gameScreen;
+let menu;
+let scoreElement;
+let coinsElement;
+let gameOverScreen;
+let finalScoreElement;
+
+let playerLane = 1;
+
+let score = 0;
+let coins = 0;
+
+let gameRunning = false;
+
+let obstacleTimer;
+
+
+/* =========================================
+   INICIO
+========================================= */
+
+window.onload = function() {
+
+    player = document.getElementById("player");
+    gameScreen = document.getElementById("gameScreen");
+    menu = document.getElementById("menu");
+
+    scoreElement = document.getElementById("score");
+    coinsElement = document.getElementById("coins");
+
+    gameOverScreen = document.getElementById("gameOver");
+    finalScoreElement = document.getElementById("finalScore");
+
+};
+
+
+/* =========================================
+   COMENZAR
+========================================= */
+
+function startGame() {
+
+    menu.style.display = "none";
+
+    gameScreen.style.display = "block";
+
+    gameOverScreen.style.display = "none";
+
+    score = 0;
+    coins = 0;
+
+    playerLane = 1;
+
+    updateHUD();
+
+    positionPlayer();
+
+    gameRunning = true;
+
+    startObstacles();
+
+}
+
+
+/* =========================================
+   POSICIÓN DEL JUGADOR
+========================================= */
+
+function positionPlayer() {
+
+    const airport = document.getElementById("airport");
+
+    const width = airport.clientWidth;
+
+    const laneWidth = width / 3;
+
+    const x =
+        airport.offsetLeft +
+        laneWidth * playerLane +
+        laneWidth / 2;
+
+    player.style.left = x + "px";
+
+}
+
+
+/* =========================================
+   MOVER IZQUIERDA
+========================================= */
+
+function moveLeft() {
+
+    if (!gameRunning) return;
+
+    if (playerLane > 0) {
+
+        playerLane--;
+
+        positionPlayer();
+
+    }
+
+}
+
+
+/* =========================================
+   MOVER DERECHA
+========================================= */
+
+function moveRight() {
+
+    if (!gameRunning) return;
+
+    if (playerLane < 2) {
+
+        playerLane++;
+
+        positionPlayer();
+
+    }
+
+}
+
+
+/* =========================================
+   CONTROLES
+========================================= */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "ArrowLeft") {
+        moveLeft();
+    }
+
+    if (event.key === "ArrowRight") {
+        moveRight();
+    }
+
+});
+
+
+document.getElementById("leftButton").addEventListener(
+    "touchstart",
+    function(event) {
+
+        event.preventDefault();
+
+        moveLeft();
+
+    }
+);
+
+
+document.getElementById("rightButton").addEventListener(
+    "touchstart",
+    function(event) {
+
+        event.preventDefault();
+
+        moveRight();
+
+    }
+);
+
+
+/* =========================================
+   OBSTÁCULOS
+========================================= */
+
+function startObstacles() {
+
+    clearInterval(obstacleTimer);
+
+    obstacleTimer = setInterval(function() {
+
+        if (!gameRunning) return;
+
+        createObstacle();
+
+        score++;
+
+        updateHUD();
+
+    }, 1200);
+
+}
+
+
+/* =========================================
+   CREAR MALETA
+========================================= */
+
+function createObstacle() {
+
+    const airport = document.getElementById("airport");
+
+    const obstacle = document.createElement("div");
+
+    obstacle.className = "suitcase";
+
+    const lane = Math.floor(Math.random() * 3);
+
+    const laneWidth = airport.clientWidth / 3;
+
+    const x =
+        laneWidth * lane +
+        laneWidth / 2 -
+        21;
+
+    obstacle.style.left = x + "px";
+
+    obstacle.style.top = "-70px";
+
+    airport.appendChild(obstacle);
+
+    let y = -70;
+
+    const speed = 5;
+
+    function moveObstacle() {
+
+        if (!gameRunning) {
+
+            obstacle.remove();
+
+            return;
+
+        }
+
+        y += speed;
+
+        obstacle.style.top = y + "px";
+
+
+        /* COLISIÓN */
+
+        const playerRect = player.getBoundingClientRect();
+
+        const obstacleRect =
+            obstacle.getBoundingClientRect();
+
+
+        if (
+            playerRect.left < obstacleRect.right &&
+            playerRect.right > obstacleRect.left &&
+            playerRect.top < obstacleRect.bottom &&
+            playerRect.bottom > obstacleRect.top
+        ) {
+
+            endGame();
+
+            return;
+
+        }
+
+
+        if (y < window.innerHeight) {
+
+            requestAnimationFrame(moveObstacle);
+
+        } else {
+
+            obstacle.remove();
+
+        }
+
+    }
+
+    requestAnimationFrame(moveObstacle);
+
+}
+
+
+/* =========================================
+   HUD
+========================================= */
+
+function updateHUD() {
+
+    scoreElement.textContent = score;
+
+    coinsElement.textContent = coins;
+
+}
+
+
+/* =========================================
+   GAME OVER
+========================================= */
+
+function endGame() {
+
+    gameRunning = false;
+
+    clearInterval(obstacleTimer);
+
+    finalScoreElement.textContent =
+        "Puntuación: " + score;
+
+    gameOverScreen.style.display = "flex";
+
+}
+
+
+/* =========================================
+   REINICIAR
+========================================= */
+
+function restartGame() {
+
+    document
+        .querySelectorAll(".suitcase")
+        .forEach(function(element) {
+
+            element.remove();
+
+        });
+
+    gameOverScreen.style.display = "none";
+
+    startGame();
+
+}
+
+
+/* =========================================
+   ORIENTACIÓN
+========================================= */
+
+window.addEventListener(
+    "resize",
+    function() {
+
+        if (gameRunning) {
+
+            positionPlayer();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
