@@ -118,8 +118,6 @@ html,body{
     border-right:5px solid #202832;
 }
 
-/* CIELO */
-
 #sky{
     position:absolute;
     top:0;
@@ -132,8 +130,6 @@ html,body{
         #d5edf8
     );
 }
-
-/* CRISTALERA */
 
 .window{
     position:absolute;
@@ -149,8 +145,6 @@ html,body{
 .w3{left:60%;}
 .w4{left:80%;}
 
-/* suelo exterior */
-
 #outsideGround{
     position:absolute;
     top:32%;
@@ -159,8 +153,6 @@ html,body{
     height:5%;
     background:#777f85;
 }
-
-/* pista */
 
 #runway{
     position:absolute;
@@ -183,8 +175,6 @@ html,body{
 .r2{left:28%;}
 .r3{left:51%;}
 .r4{left:74%;}
-
-/* torre */
 
 #tower{
     position:absolute;
@@ -217,8 +207,6 @@ html,body{
     background:#303943;
 }
 
-/* aviones */
-
 .plane{
     position:absolute;
     z-index:1;
@@ -249,8 +237,6 @@ html,body{
     to{transform:translateX(-650px);}
 }
 
-/* cartel */
-
 #gate{
     position:absolute;
     top:28%;
@@ -278,11 +264,6 @@ html,body{
     bottom:0;
     background:#303944;
 }
-
-/*
-Los carriles están calculados exactamente
-igual que las posiciones de las maletas.
-*/
 
 .lane{
     position:absolute;
@@ -483,8 +464,6 @@ igual que las posiciones de las maletas.
     box-shadow:0 0 10px rgba(255,215,50,.7);
 }
 
-/* billete */
-
 .ticket{
     position:absolute;
     width:42px;
@@ -497,8 +476,6 @@ igual que las posiciones de las maletas.
     justify-content:center;
     align-items:center;
 }
-
-/* recompensa */
 
 .reward{
     position:absolute;
@@ -519,10 +496,12 @@ igual que las posiciones de las maletas.
         opacity:0;
         transform:translate(-50%,-20%) scale(.5);
     }
+
     25%{
         opacity:1;
         transform:translate(-50%,-50%) scale(1.15);
     }
+
     100%{
         opacity:0;
         transform:translate(-50%,-90%) scale(1);
@@ -540,7 +519,7 @@ igual que las posiciones de las maletas.
     right:0;
     display:flex;
     justify-content:center;
-    gap:25px;
+    gap:55px;
     z-index:30;
 }
 
@@ -554,6 +533,10 @@ igual que las posiciones de las maletas.
     font-size:30px;
     font-weight:bold;
     border:2px solid rgba(255,255,255,.4);
+}
+
+.control:active{
+    background:rgba(255,255,255,.4);
 }
 
 /* =========================
@@ -603,14 +586,9 @@ igual que las posiciones de las maletas.
 </style>
 </head>
 
-
 <body>
 
 <div id="game">
-
-<!-- =========================
-     MENU
-========================= -->
 
 <div id="menu">
 
@@ -636,10 +614,6 @@ Esquiva las maletas y recoge monedas.<br>
 
 </div>
 
-
-<!-- =========================
-     JUEGO
-========================= -->
 
 <div id="gameScreen">
 
@@ -698,8 +672,6 @@ GATE 12
 </div>
 
 
-<!-- PERSONAJE -->
-
 <div id="player" class="running">
 
 <div class="hair"></div>
@@ -721,8 +693,6 @@ GATE 12
 </div>
 
 
-<!-- CONTROLES -->
-
 <div id="controls">
 
 <button
@@ -743,8 +713,6 @@ id="rightButton"
 
 </div>
 
-
-<!-- GAME OVER -->
 
 <div id="gameOver">
 
@@ -776,10 +744,6 @@ VOLVER A JUGAR
 
 <script>
 
-/* =====================================================
-   VARIABLES
-===================================================== */
-
 let player;
 let gameRunning=false;
 
@@ -796,7 +760,6 @@ let obstacleInterval=1250;
 
 let obstacleTimer=null;
 let difficultyTimer=null;
-
 let scoreTimer=null;
 
 let highScore=
@@ -804,10 +767,6 @@ Number(
 localStorage.getItem("airport_high_score")||0
 );
 
-
-/* =====================================================
-   ELEMENTOS
-===================================================== */
 
 window.addEventListener(
 "load",
@@ -820,10 +779,6 @@ document.getElementById("player");
 );
 
 
-/* =====================================================
-   INICIAR
-===================================================== */
-
 function startGame(){
 
 document.getElementById("menu").style.display="none";
@@ -833,8 +788,6 @@ document.getElementById("gameScreen").style.display="block";
 document.getElementById("gameOver").style.display="none";
 
 
-/* limpiar */
-
 document
 .querySelectorAll(".suitcase,.coin,.ticket,.reward")
 .forEach(
@@ -842,49 +795,28 @@ el=>el.remove()
 );
 
 
-/* valores */
-
 score=0;
-
 coins=0;
-
 level=1;
-
 playerLane=1;
 
 obstacleSpeed=4.5;
-
 obstacleInterval=1250;
 
-
-/* HUD */
-
 updateHUD();
-
 updateLevel();
-
 positionPlayer();
-
 
 gameRunning=true;
 
 player.classList.add("running");
 
-
-/* iniciar */
-
 startObstacleSpawner();
-
 startDifficulty();
-
 startScore();
 
 }
 
-
-/* =====================================================
-   POSICIÓN DEL PERSONAJE
-===================================================== */
 
 function positionPlayer(){
 
@@ -894,27 +826,15 @@ document.getElementById("runArea");
 const laneWidth=
 area.clientWidth/3;
 
-
-/*
-
-Exactamente el centro de cada carril.
-
-*/
-
 const x=
 laneWidth*playerLane+
 laneWidth/2-
 31;
 
-
 player.style.left=x+"px";
 
 }
 
-
-/* =====================================================
-   MOVIMIENTO
-===================================================== */
 
 function moveLeft(){
 
@@ -946,29 +866,21 @@ positionPlayer();
 }
 
 
-/* teclado */
-
 document.addEventListener(
 "keydown",
 function(e){
 
 if(e.key==="ArrowLeft"){
-
 moveLeft();
-
 }
 
 if(e.key==="ArrowRight"){
-
 moveRight();
-
 }
 
 }
 );
 
-
-/* móvil */
 
 document
 .getElementById("leftButton")
@@ -998,9 +910,9 @@ moveRight();
 );
 
 
-/* =====================================================
+/* =========================
    OBSTÁCULOS
-===================================================== */
+========================= */
 
 function startObstacleSpawner(){
 
@@ -1015,19 +927,6 @@ obstacleInterval
 }
 
 
-/*
-
-REGLA FUNDAMENTAL:
-
-1 o 2 maletas.
-
-NUNCA 3.
-
-Por tanto siempre queda
-como mínimo un carril libre.
-
-*/
-
 function spawnObstaclePattern(){
 
 if(!gameRunning)return;
@@ -1036,26 +935,13 @@ if(!gameRunning)return;
 const area=
 document.getElementById("runArea");
 
-
 let count;
-
-
-/*
-
-Al principio predominan
-los obstáculos individuales.
-
-A medida que sube el nivel
-aparecen más grupos de 2.
-
-*/
 
 const chanceTwo=
 Math.min(
 0.55,
 0.18+(level-1)*0.06
 );
-
 
 if(Math.random()<chanceTwo){
 
@@ -1068,16 +954,12 @@ count=1;
 }
 
 
-/* mezclar carriles */
-
 let lanes=[0,1,2];
 
 lanes.sort(
 ()=>Math.random()-0.5
 );
 
-
-/* crear */
 
 for(
 let i=0;
@@ -1093,16 +975,8 @@ lanes[i]
 }
 
 
-/*
-
-El carril libre puede contener
-una recompensa.
-
-*/
-
 const freeLane=
 lanes[count];
-
 
 if(Math.random()<0.72){
 
@@ -1116,9 +990,9 @@ freeLane
 }
 
 
-/* =====================================================
-   CREAR MALETA
-===================================================== */
+/* =========================
+   MALETA
+========================= */
 
 function createObstacle(
 area,
@@ -1131,16 +1005,6 @@ document.createElement("div");
 obstacle.className="suitcase";
 
 
-/*
-
-IMPORTANTE:
-
-la posición se calcula
-exactamente igual que
-la posición del jugador.
-
-*/
-
 const laneWidth=
 area.clientWidth/3;
 
@@ -1149,25 +1013,14 @@ laneWidth*lane+
 laneWidth/2-
 21;
 
-
 obstacle.style.left=
 x+"px";
 
-
-/*
-
-Ahora aparecen MUCHO más arriba.
-
-El jugador las verá venir
-con tiempo suficiente.
-
-*/
 
 let y=-100;
 
 obstacle.style.top=
 y+"px";
-
 
 area.appendChild(obstacle);
 
@@ -1189,8 +1042,6 @@ obstacle.style.top=
 y+"px";
 
 
-/* colisión */
-
 const p=
 player.getBoundingClientRect();
 
@@ -1211,8 +1062,6 @@ return;
 
 }
 
-
-/* salir */
 
 if(
 y<
@@ -1239,9 +1088,9 @@ animate
 }
 
 
-/* =====================================================
-   COLECCIONABLE
-===================================================== */
+/* =========================
+   RECOMPENSAS
+========================= */
 
 function spawnCollectible(
 area,
@@ -1254,17 +1103,14 @@ Math.random()<0.18;
 const item=
 document.createElement("div");
 
-
 if(ticket){
 
 item.className="ticket";
-
 item.textContent="🎟️";
 
 }else{
 
 item.className="coin";
-
 item.textContent="€";
 
 }
@@ -1273,32 +1119,20 @@ item.textContent="€";
 const laneWidth=
 area.clientWidth/3;
 
-
 const size=
 ticket?42:30;
-
 
 const x=
 laneWidth*lane+
 laneWidth/2-
 size/2;
 
+item.style.left=x+"px";
 
-item.style.left=
-x+"px";
-
-
-/*
-
-También salen desde arriba.
-
-*/
 
 let y=-70;
 
-item.style.top=
-y+"px";
-
+item.style.top=y+"px";
 
 area.appendChild(item);
 
@@ -1314,10 +1148,9 @@ return;
 }
 
 
-y+=obstacleSpeed*0.88;
+y+=obstacleSpeed*.88;
 
-item.style.top=
-y+"px";
+item.style.top=y+"px";
 
 
 const p=
@@ -1369,10 +1202,6 @@ animate
 }
 
 
-/* =====================================================
-   RECOGER
-===================================================== */
-
 function collectItem(
 item,
 ticket
@@ -1384,22 +1213,16 @@ if(!gameRunning)return;
 if(ticket){
 
 coins+=5;
-
 score+=250;
 
-showReward(
-"🎟️ +5 MONEDAS"
-);
+showReward("🎟️ +5 MONEDAS");
 
 }else{
 
 coins++;
-
 score+=100;
 
-showReward(
-"🪙 +1"
-);
+showReward("🪙 +1");
 
 }
 
@@ -1410,10 +1233,6 @@ updateHUD();
 
 }
 
-
-/* =====================================================
-   RECOMPENSA
-===================================================== */
 
 function showReward(text){
 
@@ -1428,7 +1247,6 @@ document
 .getElementById("gameScreen")
 .appendChild(reward);
 
-
 setTimeout(
 function(){
 
@@ -1441,9 +1259,9 @@ reward.remove();
 }
 
 
-/* =====================================================
+/* =========================
    PUNTUACIÓN
-===================================================== */
+========================= */
 
 function startScore(){
 
@@ -1466,37 +1284,9 @@ updateHUD();
 }
 
 
-/* =====================================================
+/* =========================
    DIFICULTAD
-===================================================== */
-
-/*
-
-La dificultad cambia cada 25 segundos.
-
-El aumento es pequeño.
-
-Nivel 1:
-4.5
-
-Nivel 2:
-4.8
-
-Nivel 3:
-5.1
-
-Nivel 4:
-5.4
-
-Nivel 5:
-5.7
-
-...
-
-Esto hace que el cambio
-se note progresivamente.
-
-*/
+========================= */
 
 function startDifficulty(){
 
@@ -1508,11 +1298,15 @@ function(){
 
 if(!gameRunning)return;
 
-
 level++;
 
 
-/* velocidad */
+/*
+Cambio pequeño y progresivo.
+
+Cada 25 segundos:
++0.30 de velocidad
+*/
 
 obstacleSpeed=
 Math.min(
@@ -1522,7 +1316,10 @@ Math.min(
 );
 
 
-/* frecuencia */
+/*
+También aumenta ligeramente
+la frecuencia de aparición.
+*/
 
 obstacleInterval=
 Math.max(
@@ -1532,14 +1329,9 @@ Math.max(
 );
 
 
-/* actualizar */
-
 startObstacleSpawner();
 
 updateLevel();
-
-
-/* pequeña recompensa */
 
 score+=100;
 
@@ -1557,21 +1349,19 @@ updateHUD();
 }
 
 
-/* =====================================================
+/* =========================
    HUD
-===================================================== */
+========================= */
 
 function updateHUD(){
 
 document
 .getElementById("score")
-.textContent=
-score;
+.textContent=score;
 
 document
 .getElementById("coins")
-.textContent=
-coins;
+.textContent=coins;
 
 }
 
@@ -1583,7 +1373,7 @@ document
 .textContent=
 "NIVEL "+
 level+
-" • VELOCIDAD x"+
+" • x"+
 (
 obstacleSpeed/4.5
 ).toFixed(1);
@@ -1591,29 +1381,22 @@ obstacleSpeed/4.5
 }
 
 
-/* =====================================================
+/* =========================
    GAME OVER
-===================================================== */
+========================= */
 
 function endGame(){
 
 if(!gameRunning)return;
 
-
 gameRunning=false;
 
-
 clearInterval(obstacleTimer);
-
 clearInterval(difficultyTimer);
-
 clearInterval(scoreTimer);
-
 
 player.classList.remove("running");
 
-
-/* récord */
 
 if(score>highScore){
 
@@ -1627,8 +1410,6 @@ highScore
 }
 
 
-/* texto */
-
 document
 .getElementById("finalScore")
 .textContent=
@@ -1637,13 +1418,11 @@ score+
 " • Récord: "+
 highScore;
 
-
 document
 .getElementById("finalCoins")
 .textContent=
 "🪙 Monedas: "+
 coins;
-
 
 document
 .getElementById("gameOver")
@@ -1652,9 +1431,9 @@ document
 }
 
 
-/* =====================================================
+/* =========================
    REINICIAR
-===================================================== */
+========================= */
 
 function restartGame(){
 
@@ -1666,15 +1445,14 @@ document
 el=>el.remove()
 );
 
-
 startGame();
 
 }
 
 
-/* =====================================================
+/* =========================
    RESIZE
-===================================================== */
+========================= */
 
 window.addEventListener(
 "resize",
