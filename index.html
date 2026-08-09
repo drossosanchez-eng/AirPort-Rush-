@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
@@ -10,6 +11,10 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 <title>Airport Rush</title>
 
 <style>
+
+/* =====================================================
+   BASE
+===================================================== */
 
 *{
     box-sizing:border-box;
@@ -35,20 +40,28 @@ html,body{
     background:#263544;
 }
 
-/* ================= MENU ================= */
+
+/* =====================================================
+   MENU
+===================================================== */
 
 #menu{
     position:absolute;
     inset:0;
+
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
+
     text-align:center;
+
     color:white;
+
     z-index:50;
 
-    background:linear-gradient(
+    background:
+    linear-gradient(
         to bottom,
         #10243b 0%,
         #1c3a52 55%,
@@ -60,8 +73,12 @@ html,body{
     font-size:48px;
     font-weight:900;
     letter-spacing:3px;
+
     color:#ffd95a;
-    text-shadow:0 5px 0 #9b7010;
+
+    text-shadow:
+    0 5px 0 #9b7010;
+
     margin-bottom:8px;
 }
 
@@ -74,69 +91,256 @@ html,body{
 
 .play-button{
     border:none;
+
     background:#ff5c5c;
+
     color:white;
+
     font-size:28px;
     font-weight:bold;
+
     padding:18px 55px;
+
     border-radius:18px;
-    box-shadow:0 7px 0 #a72d2d;
+
+    box-shadow:
+    0 7px 0 #a72d2d;
 }
 
 .play-button:active{
     transform:translateY(5px);
-    box-shadow:0 2px 0 #a72d2d;
+
+    box-shadow:
+    0 2px 0 #a72d2d;
 }
 
 .instructions{
     margin-top:35px;
+
     color:#b9c8d8;
+
     font-size:14px;
+
     line-height:1.5;
 }
 
-/* ================= GAME ================= */
+
+/* =====================================================
+   GAME
+===================================================== */
 
 #gameScreen{
     position:absolute;
     inset:0;
+
     display:none;
 }
 
-/* ================= AIRPORT ================= */
+
+/* =====================================================
+   AEROPUERTO
+===================================================== */
 
 #airport{
     position:absolute;
+
     left:7%;
     right:7%;
+
     top:0;
     bottom:0;
+
     overflow:hidden;
+
     background:#303944;
-    border-left:5px solid #202832;
-    border-right:5px solid #202832;
+
+    border-left:
+    5px solid #202832;
+
+    border-right:
+    5px solid #202832;
+
+    transition:
+    background .8s ease;
 }
 
-#sky{
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    height:34%;
 
-    background:linear-gradient(
+/* =====================================================
+   6 AEROPUERTOS
+===================================================== */
+
+/*
+   Cada aeropuerto tiene una
+   combinación visual diferente.
+*/
+
+
+/* AEROPUERTO 1 */
+
+.airport1 #sky{
+    background:
+    linear-gradient(
         to bottom,
         #65b6eb,
         #d5edf8
     );
 }
 
+.airport1 #runway{
+    background:#30363d;
+}
+
+
+/* AEROPUERTO 2 */
+
+.airport2 #sky{
+    background:
+    linear-gradient(
+        to bottom,
+        #4d91c9,
+        #c6e2ef
+    );
+}
+
+.airport2 #runway{
+    background:#282d33;
+}
+
+.airport2 #gate{
+    background:#166534;
+}
+
+
+/* AEROPUERTO 3 - NOCHE */
+
+.airport3 #sky{
+    background:
+    linear-gradient(
+        to bottom,
+        #101b38,
+        #344b6c
+    );
+}
+
+.airport3 #runway{
+    background:#171b21;
+}
+
+.airport3 #outsideGround{
+    background:#454c54;
+}
+
+.airport3 #gate{
+    background:#7c3aed;
+}
+
+.airport3 .window{
+    background:
+    rgba(190,220,255,.35);
+}
+
+
+/* AEROPUERTO 4 - LLUVIA */
+
+.airport4 #sky{
+    background:
+    linear-gradient(
+        to bottom,
+        #596a78,
+        #aab7c0
+    );
+}
+
+.airport4 #runway{
+    background:#22282e;
+}
+
+.airport4 #outsideGround{
+    background:#60686d;
+}
+
+.airport4 #gate{
+    background:#b45309;
+}
+
+
+/* AEROPUERTO 5 - TROPICAL */
+
+.airport5 #sky{
+    background:
+    linear-gradient(
+        to bottom,
+        #28b9df,
+        #d3f4e9
+    );
+}
+
+.airport5 #runway{
+    background:#30383a;
+}
+
+.airport5 #outsideGround{
+    background:#55915b;
+}
+
+.airport5 #gate{
+    background:#047857;
+}
+
+
+/* AEROPUERTO 6 - MEGA TERMINAL */
+
+.airport6 #sky{
+    background:
+    linear-gradient(
+        to bottom,
+        #283d5c,
+        #91b2c9
+    );
+}
+
+.airport6 #runway{
+    background:#1e252c;
+}
+
+.airport6 #outsideGround{
+    background:#4b535b;
+}
+
+.airport6 #gate{
+    background:#dc2626;
+}
+
+
+/* =====================================================
+   CIELO
+===================================================== */
+
+#sky{
+    position:absolute;
+
+    top:0;
+    left:0;
+    right:0;
+
+    height:34%;
+
+    transition:
+    background .8s ease;
+}
+
 .window{
     position:absolute;
+
     top:0;
+
     height:38%;
+
     width:5px;
-    background:rgba(255,255,255,.65);
+
+    background:
+    rgba(255,255,255,.65);
+
     z-index:2;
 }
 
@@ -145,29 +349,51 @@ html,body{
 .w3{left:60%}
 .w4{left:80%}
 
+
+/* =====================================================
+   PISTA
+===================================================== */
+
 #outsideGround{
     position:absolute;
+
     top:32%;
+
     left:0;
     right:0;
+
     height:5%;
+
     background:#777f85;
+
+    transition:
+    background .8s ease;
 }
 
 #runway{
     position:absolute;
+
     top:36%;
+
     left:0;
     right:0;
+
     height:5%;
+
     background:#30363d;
+
+    transition:
+    background .8s ease;
 }
 
 .runwayLine{
     position:absolute;
+
     top:50%;
+
     width:65px;
     height:4px;
+
     background:#eee;
 }
 
@@ -176,103 +402,169 @@ html,body{
 .r3{left:51%}
 .r4{left:74%}
 
-/* ================= TORRE ================= */
+
+/* =====================================================
+   TORRE
+===================================================== */
 
 #tower{
     position:absolute;
+
     top:11%;
     right:7%;
+
     width:38px;
     height:95px;
+
     background:#66727d;
+
     z-index:1;
 }
 
 #tower:before{
     content:"";
+
     position:absolute;
+
     left:-8px;
     top:-20px;
+
     width:54px;
     height:27px;
+
     background:#46515b;
+
     border-radius:5px;
 }
 
 #tower:after{
     content:"";
+
     position:absolute;
+
     left:16px;
     top:-37px;
+
     width:5px;
     height:18px;
+
     background:#303943;
 }
 
-/* ================= AVIONES ================= */
+
+/* =====================================================
+   AVIONES
+===================================================== */
 
 .plane{
     position:absolute;
+
     z-index:1;
+
     font-size:48px;
+
     opacity:.9;
 }
 
 .plane1{
     top:12%;
     left:-80px;
-    animation:fly1 18s linear infinite;
+
+    animation:
+    fly1 18s linear infinite;
 }
 
 .plane2{
     top:22%;
     right:-80px;
+
     font-size:38px;
-    animation:fly2 25s linear infinite;
+
+    animation:
+    fly2 25s linear infinite;
 }
 
 @keyframes fly1{
-    from{transform:translateX(0);}
-    to{transform:translateX(650px);}
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(650px);
+    }
+
 }
 
 @keyframes fly2{
-    from{transform:translateX(0);}
-    to{transform:translateX(-650px);}
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-650px);
+    }
+
 }
 
-/* ================= GATE ================= */
+
+/* =====================================================
+   GATE
+===================================================== */
 
 #gate{
     position:absolute;
+
     top:28%;
     left:50%;
-    transform:translateX(-50%);
+
+    transform:
+    translateX(-50%);
+
     background:#075985;
+
     color:white;
+
     border:3px solid white;
+
     border-radius:6px;
+
     padding:6px 15px;
+
     font-size:14px;
+
     font-weight:bold;
+
     z-index:3;
+
+    transition:
+    background .8s ease;
 }
 
-/* ================= CARRILES ================= */
+
+/* =====================================================
+   CARRILES
+===================================================== */
 
 #runArea{
     position:absolute;
+
     top:40%;
+
     left:0;
     right:0;
     bottom:0;
+
     background:#303944;
 }
 
 .lane{
     position:absolute;
+
     top:0;
     bottom:0;
+
     width:3px;
 
     background:
@@ -285,224 +577,478 @@ html,body{
     );
 }
 
-.lane1{left:33.333%}
-.lane2{left:66.666%}
+.lane1{
+    left:33.333%;
+}
 
-/* ================= HUD ================= */
+.lane2{
+    left:66.666%;
+}
+
+
+/* =====================================================
+   HUD
+===================================================== */
 
 #hud{
     position:absolute;
+
     top:18px;
+
     left:18px;
     right:18px;
 
     display:flex;
+
     justify-content:space-between;
 
     z-index:20;
 
     color:white;
-    font-size:18px;
+
+    font-size:17px;
+
     font-weight:bold;
 }
 
 .hudBox{
-    background:rgba(0,0,0,.42);
+    background:
+    rgba(0,0,0,.42);
+
     padding:9px 13px;
+
     border-radius:12px;
 }
 
 #level{
     position:absolute;
+
     top:68px;
+
     left:50%;
-    transform:translateX(-50%);
+
+    transform:
+    translateX(-50%);
 
     z-index:20;
 
     color:#ffe36b;
-    background:rgba(0,0,0,.38);
+
+    background:
+    rgba(0,0,0,.38);
 
     padding:5px 11px;
+
     border-radius:10px;
 
     font-size:12px;
+
     font-weight:bold;
 }
 
-/* ================= PERSONAJE ================= */
+
+/* =====================================================
+   ESCUDO HUD
+===================================================== */
+
+#shield{
+    position:absolute;
+
+    top:105px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%);
+
+    z-index:20;
+
+    padding:6px 12px;
+
+    border-radius:12px;
+
+    background:
+    rgba(0,0,0,.40);
+
+    color:#aee8ff;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    opacity:.55;
+
+    transition:
+    all .25s ease;
+}
+
+#shield.active{
+
+    opacity:1;
+
+    color:white;
+
+    background:
+    rgba(30,130,220,.75);
+
+    box-shadow:
+    0 0 15px
+    rgba(80,190,255,.8);
+}
+
+
+/* =====================================================
+   PERSONAJE
+===================================================== */
 
 #player{
     position:absolute;
+
     width:62px;
     height:82px;
+
     bottom:92px;
+
     z-index:10;
-    transition:left .07s ease;
+
+    transition:
+    left .07s ease;
 }
 
 .head{
     position:absolute;
+
     width:42px;
     height:42px;
+
     left:10px;
     top:0;
+
     background:#f2b58c;
+
     border-radius:45%;
-    border:3px solid #542f26;
+
+    border:
+    3px solid #542f26;
 }
 
 .hair{
     position:absolute;
+
     width:42px;
     height:18px;
+
     left:10px;
     top:0;
+
     background:#34251e;
-    border-radius:50% 50% 25% 25%;
+
+    border-radius:
+    50% 50% 25% 25%;
+
     z-index:2;
 }
 
 .eye{
     position:absolute;
+
     width:5px;
     height:7px;
+
     background:#202020;
+
     border-radius:50%;
+
     top:19px;
+
     z-index:3;
 }
 
-.eye.left{left:20px}
-.eye.right{right:20px}
+.eye.left{
+    left:20px;
+}
+
+.eye.right{
+    right:20px;
+}
 
 .body{
     position:absolute;
+
     width:48px;
     height:43px;
+
     left:7px;
     top:37px;
+
     background:#3478d4;
-    border-radius:12px 12px 8px 8px;
-    border:3px solid #1c4175;
+
+    border-radius:
+    12px 12px 8px 8px;
+
+    border:
+    3px solid #1c4175;
 }
 
 .backpack{
     position:absolute;
+
     width:15px;
     height:30px;
+
     left:0;
     top:44px;
+
     background:#e85c4a;
+
     border-radius:6px;
 }
 
 .leg{
     position:absolute;
+
     width:12px;
     height:25px;
+
     background:#202c3b;
+
     top:75px;
+
     border-radius:5px;
 }
 
-.leg.left{left:15px}
-.leg.right{right:15px}
+.leg.left{
+    left:15px;
+}
+
+.leg.right{
+    right:15px;
+}
 
 .running .leg.left{
-    animation:run1 .18s infinite alternate;
+    animation:
+    run1 .18s infinite alternate;
 }
 
 .running .leg.right{
-    animation:run2 .18s infinite alternate;
+    animation:
+    run2 .18s infinite alternate;
 }
 
 @keyframes run1{
-    from{transform:rotate(20deg);}
-    to{transform:rotate(-20deg);}
+
+    from{
+        transform:rotate(20deg);
+    }
+
+    to{
+        transform:rotate(-20deg);
+    }
+
 }
 
 @keyframes run2{
-    from{transform:rotate(-20deg);}
-    to{transform:rotate(20deg);}
+
+    from{
+        transform:rotate(-20deg);
+    }
+
+    to{
+        transform:rotate(20deg);
+    }
+
 }
 
-/* ================= MALETAS ================= */
+
+/* =====================================================
+   ESCUDO VISUAL
+===================================================== */
+
+#player.shielded:after{
+
+    content:"";
+
+    position:absolute;
+
+    width:82px;
+    height:102px;
+
+    left:-10px;
+    top:-10px;
+
+    border:
+    4px solid #6ddcff;
+
+    border-radius:45%;
+
+    background:
+    rgba(80,190,255,.12);
+
+    box-shadow:
+    0 0 20px
+    rgba(80,190,255,.8);
+
+    z-index:-1;
+
+    animation:
+    shieldPulse 1s infinite alternate;
+}
+
+@keyframes shieldPulse{
+
+    from{
+        transform:scale(.97);
+    }
+
+    to{
+        transform:scale(1.04);
+    }
+
+}
+
+
+/* =====================================================
+   MALETAS
+===================================================== */
 
 .suitcase{
     position:absolute;
+
     width:42px;
     height:52px;
+
     background:#ffbd32;
-    border:4px solid #8c6414;
+
+    border:
+    4px solid #8c6414;
+
     border-radius:8px;
+
     z-index:8;
 }
 
 .suitcase:before{
     content:"";
+
     position:absolute;
+
     width:15px;
     height:8px;
+
     left:10px;
     top:-11px;
-    border:4px solid #8c6414;
+
+    border:
+    4px solid #8c6414;
+
     border-bottom:none;
-    border-radius:8px 8px 0 0;
+
+    border-radius:
+    8px 8px 0 0;
 }
 
-/* ================= RECOMPENSAS ================= */
+
+/* =====================================================
+   MONEDAS
+===================================================== */
 
 .coin{
     position:absolute;
+
     width:30px;
     height:30px;
+
     border-radius:50%;
+
     background:#ffd83d;
-    border:4px solid #b88708;
+
+    border:
+    4px solid #b88708;
+
     z-index:9;
 
     display:flex;
+
     justify-content:center;
     align-items:center;
 
     color:#8c6414;
+
     font-weight:bold;
 
-    box-shadow:0 0 10px rgba(255,215,50,.7);
+    box-shadow:
+    0 0 10px
+    rgba(255,215,50,.7);
+
+    animation:
+    coinPulse .7s infinite alternate;
 }
+
+@keyframes coinPulse{
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.08);
+    }
+
+}
+
+
+/* =====================================================
+   BILLETE ESPECIAL
+===================================================== */
 
 .ticket{
     position:absolute;
+
     width:42px;
     height:28px;
+
     background:#f5f5f5;
-    border:3px solid #2772a8;
+
+    border:
+    3px solid #2772a8;
+
     border-radius:5px;
+
     z-index:9;
 
     display:flex;
+
     justify-content:center;
     align-items:center;
 }
 
-/* ================= TEXTO RECOMPENSA ================= */
+
+/* =====================================================
+   TEXTO DE RECOMPENSA
+===================================================== */
 
 .reward{
     position:absolute;
+
     left:50%;
     top:45%;
-    transform:translate(-50%,-50%);
+
+    transform:
+    translate(-50%,-50%);
 
     z-index:40;
 
     color:#ffe25a;
+
     font-size:25px;
+
     font-weight:900;
 
-    text-shadow:0 3px 0 #6d5310;
+    text-shadow:
+    0 3px 0 #6d5310;
 
-    animation:reward .8s forwards;
+    animation:
+    reward .8s forwards;
 
     pointer-events:none;
 }
@@ -511,33 +1057,49 @@ html,body{
 
     0%{
         opacity:0;
-        transform:translate(-50%,-20%) scale(.5);
+
+        transform:
+        translate(-50%,-20%)
+        scale(.5);
     }
 
     25%{
         opacity:1;
-        transform:translate(-50%,-50%) scale(1.15);
+
+        transform:
+        translate(-50%,-50%)
+        scale(1.15);
     }
 
     100%{
         opacity:0;
-        transform:translate(-50%,-90%) scale(1);
+
+        transform:
+        translate(-50%,-90%)
+        scale(1);
     }
 
 }
 
-/* ================= CONTROLES ================= */
+
+/* =====================================================
+   CONTROLES
+===================================================== */
 
 #controls{
     position:absolute;
+
     bottom:25px;
+
     left:0;
     right:0;
 
     display:flex;
+
     justify-content:space-around;
 
-    padding:0 45px;
+    padding:
+    0 45px;
 
     z-index:30;
 }
@@ -547,36 +1109,52 @@ html,body{
     height:72px;
 
     border:none;
+
     border-radius:50%;
 
-    background:rgba(255,255,255,.20);
+    background:
+    rgba(255,255,255,.20);
 
     color:white;
 
     font-size:30px;
+
     font-weight:bold;
 
-    border:2px solid rgba(255,255,255,.45);
+    border:
+    2px solid
+    rgba(255,255,255,.45);
 }
 
 .control:active{
-    background:rgba(255,255,255,.42);
-    transform:scale(.95);
+
+    background:
+    rgba(255,255,255,.42);
+
+    transform:
+    scale(.95);
 }
 
-/* ================= GAME OVER ================= */
+
+/* =====================================================
+   GAME OVER
+===================================================== */
 
 #gameOver{
     position:absolute;
+
     inset:0;
 
     display:none;
 
     align-items:center;
+
     justify-content:center;
+
     flex-direction:column;
 
-    background:rgba(4,10,20,.86);
+    background:
+    rgba(4,10,20,.86);
 
     color:white;
 
@@ -586,28 +1164,40 @@ html,body{
 }
 
 #gameOver h2{
+
     font-size:43px;
+
     color:#ff6464;
+
     margin-bottom:15px;
 }
 
 #finalScore{
+
     font-size:22px;
+
     margin-bottom:10px;
 }
 
 #finalCoins{
+
     font-size:20px;
+
     color:#ffd83d;
+
     margin-bottom:30px;
 }
 
 .restart{
+
     border:none;
+
     background:#ffd34f;
+
     color:#382800;
 
     font-size:21px;
+
     font-weight:bold;
 
     padding:15px 35px;
@@ -619,11 +1209,15 @@ html,body{
 
 </head>
 
+
 <body>
 
 <div id="game">
 
-<!-- ================= MENU ================= -->
+
+<!-- =====================================================
+     MENU
+===================================================== -->
 
 <div id="menu">
 
@@ -644,15 +1238,20 @@ html,body{
 
     <div class="instructions">
         Esquiva las maletas y recoge monedas.<br>
-        ¡Intenta llegar lo más lejos posible!
+        Consigue 10 monedas para activar un escudo.
     </div>
 
 </div>
 
 
-<!-- ================= GAME ================= -->
+<!-- =====================================================
+     JUEGO
+===================================================== -->
 
 <div id="gameScreen">
+
+
+<!-- HUD -->
 
 <div id="hud">
 
@@ -661,99 +1260,125 @@ html,body{
     </div>
 
     <div class="hudBox">
-        🪙 <span id="coins">0</span>
+        🪙 <span id="coins">0</span>/10
     </div>
 
 </div>
+
 
 <div id="level">
     NIVEL 1 • x1.0
 </div>
 
 
-<div id="airport">
-
-    <div id="sky"></div>
-
-    <div class="window w1"></div>
-    <div class="window w2"></div>
-    <div class="window w3"></div>
-    <div class="window w4"></div>
-
-    <div id="outsideGround"></div>
-
-    <div id="runway">
-
-        <div class="runwayLine r1"></div>
-        <div class="runwayLine r2"></div>
-        <div class="runwayLine r3"></div>
-        <div class="runwayLine r4"></div>
-
-    </div>
-
-    <div id="tower"></div>
-
-    <div class="plane plane1">
-        ✈️
-    </div>
-
-    <div class="plane plane2">
-        ✈️
-    </div>
-
-    <div id="gate">
-        GATE 12
-    </div>
+<div id="shield">
+    🛡️ ESCUDO CARGANDO
+</div>
 
 
-    <div id="runArea">
+<!-- AEROPUERTO -->
 
-        <div class="lane lane1"></div>
-        <div class="lane lane2"></div>
-
-    </div>
-
-
-    <!-- PERSONAJE -->
-
-    <div id="player" class="running">
-
-        <div class="hair"></div>
-
-        <div class="head">
-            <div class="eye left"></div>
-            <div class="eye right"></div>
-        </div>
-
-        <div class="backpack"></div>
-
-        <div class="body"></div>
-
-        <div class="leg left"></div>
-        <div class="leg right"></div>
-
-    </div>
+<div
+id="airport"
+class="airport1"
+>
 
 
-    <!-- CONTROLES -->
+<div id="sky"></div>
 
-    <div id="controls">
 
-        <button
-            class="control"
-            id="leftButton"
-        >
-            ◀
-        </button>
+<div class="window w1"></div>
+<div class="window w2"></div>
+<div class="window w3"></div>
+<div class="window w4"></div>
 
-        <button
-            class="control"
-            id="rightButton"
-        >
-            ▶
-        </button>
+
+<div id="outsideGround"></div>
+
+
+<div id="runway">
+
+    <div class="runwayLine r1"></div>
+    <div class="runwayLine r2"></div>
+    <div class="runwayLine r3"></div>
+    <div class="runwayLine r4"></div>
+
+</div>
+
+
+<div id="tower"></div>
+
+
+<div class="plane plane1">
+    ✈️
+</div>
+
+<div class="plane plane2">
+    ✈️
+</div>
+
+
+<div id="gate">
+    GATE 12
+</div>
+
+
+<!-- ÁREA DE JUEGO -->
+
+<div id="runArea">
+
+    <div class="lane lane1"></div>
+    <div class="lane lane2"></div>
+
+</div>
+
+
+<!-- PERSONAJE -->
+
+<div
+id="player"
+class="running"
+>
+
+    <div class="hair"></div>
+
+    <div class="head">
+
+        <div class="eye left"></div>
+        <div class="eye right"></div>
 
     </div>
+
+    <div class="backpack"></div>
+
+    <div class="body"></div>
+
+    <div class="leg left"></div>
+    <div class="leg right"></div>
+
+</div>
+
+
+<!-- CONTROLES -->
+
+<div id="controls">
+
+    <button
+        class="control"
+        id="leftButton"
+    >
+        ◀
+    </button>
+
+    <button
+        class="control"
+        id="rightButton"
+    >
+        ▶
+    </button>
+
+</div>
+
 
 </div>
 
@@ -783,6 +1408,7 @@ html,body{
 
 </div>
 
+
 </div>
 
 </div>
@@ -807,7 +1433,7 @@ let coins=0;
 let level=1;
 
 
-/* VELOCIDAD INICIAL */
+/* VELOCIDAD */
 
 let obstacleSpeed=3.0;
 
@@ -843,23 +1469,24 @@ let gameTime=0;
 
 
 /* =====================================================
-   NUEVO SISTEMA DE RECOMPENSAS
+   ESCUDO
 ===================================================== */
 
+let shieldActive=false;
+
+
 /*
-   Solo puede existir UNA recompensa
-   al mismo tiempo.
+   Cada 10 monedas se activa.
 */
+
+const coinsForShield=10;
+
+
+/* =====================================================
+   RECOMPENSAS
+===================================================== */
 
 let rewardActive=false;
-
-
-/*
-   Carril reservado por la recompensa.
-
-   Mientras tenga un valor 0, 1 o 2,
-   ninguna maleta podrá aparecer ahí.
-*/
 
 let rewardLane=-1;
 
@@ -894,7 +1521,7 @@ window.addEventListener(
 
 
 /* =====================================================
-   START
+   COMENZAR
 ===================================================== */
 
 function startGame(){
@@ -914,6 +1541,10 @@ function startGame(){
     .style.display="none";
 
 
+    /*
+       LIMPIAR OBJETOS
+    */
+
     document
     .querySelectorAll(
         ".suitcase,.coin,.ticket,.reward"
@@ -922,6 +1553,10 @@ function startGame(){
         el=>el.remove()
     );
 
+
+    /*
+       VALORES
+    */
 
     score=0;
 
@@ -941,10 +1576,16 @@ function startGame(){
 
     obstacles=[];
 
+    shieldActive=false;
+
     rewardActive=false;
 
     rewardLane=-1;
 
+
+    /*
+       LIMPIAR TEMPORIZADORES
+    */
 
     clearTimeout(spawnTimer);
 
@@ -961,18 +1602,28 @@ function startGame(){
 
     updateLevel();
 
+    updateShield();
+
+    changeAirport();
+
+
     positionPlayer();
 
 
     gameRunning=true;
 
+
     player.classList.add(
         "running"
     );
 
+    player.classList.remove(
+        "shielded"
+    );
+
 
     /*
-       Primera maleta.
+       PRIMERA MALETA
     */
 
     spawnTimer=
@@ -988,6 +1639,10 @@ function startGame(){
 
     startCollectibles();
 
+
+    /*
+       CONTADOR DE TIEMPO
+    */
 
     gameTimeTimer=
     setInterval(
@@ -1007,44 +1662,7 @@ function startGame(){
 
 
 /* =====================================================
-   ACTIVAR RECOMPENSAS
-===================================================== */
-
-function startCollectibles(){
-
-    clearInterval(
-        collectibleTimer
-    );
-
-
-    collectibleTimer=
-    setInterval(
-        function(){
-
-            if(gameRunning){
-
-                /*
-                   Si ya hay una recompensa,
-                   no hacemos absolutamente nada.
-                */
-
-                if(!rewardActive){
-
-                    spawnCollectible();
-
-                }
-
-            }
-
-        },
-        1800
-    );
-
-}
-
-
-/* =====================================================
-   POSICIÓN DEL PERSONAJE
+   POSICIÓN
 ===================================================== */
 
 function positionPlayer(){
@@ -1164,7 +1782,7 @@ document
 
 
 /* =====================================================
-   CARRILES SEGUROS PARA MALETAS
+   CARRILES SEGUROS
 ===================================================== */
 
 function getSafeLanes(){
@@ -1179,11 +1797,8 @@ function getSafeLanes(){
     ){
 
         /*
-           MUY IMPORTANTE:
-
-           Si una recompensa está usando
-           este carril, queda bloqueado
-           para las maletas.
+           CARRIL RESERVADO
+           POR RECOMPENSA
         */
 
         if(
@@ -1198,6 +1813,10 @@ function getSafeLanes(){
 
         let blocked=false;
 
+
+        /*
+           COMPROBAR MALETAS
+        */
 
         for(
             const obstacle of obstacles
@@ -1241,7 +1860,7 @@ function getSafeLanes(){
 
 
 /* =====================================================
-   ELEGIR CARRIL PARA MALETA
+   ELEGIR CARRIL
 ===================================================== */
 
 function chooseLane(){
@@ -1318,10 +1937,7 @@ function spawnObstacle(){
 
 
     /*
-       Si no existe un carril seguro,
-       esperamos.
-
-       NO creamos otra inmediatamente.
+       SI NO HAY CARRIL SEGURO
     */
 
     if(lane===-1){
@@ -1356,6 +1972,11 @@ function spawnObstacle(){
     obstacle.style.left=
     x+"px";
 
+
+    /*
+       Las maletas aparecen
+       bastante arriba.
+    */
 
     let y=-110;
 
@@ -1403,6 +2024,10 @@ function spawnObstacle(){
         y+"px";
 
 
+        /*
+           COLISIÓN
+        */
+
         const p=
         player.getBoundingClientRect();
 
@@ -1418,12 +2043,46 @@ function spawnObstacle(){
             p.bottom>o.top
         ){
 
+            /*
+               SI TENEMOS ESCUDO:
+               NO MORIMOS.
+            */
+
+            if(shieldActive){
+
+                useShield();
+
+
+                /*
+                   Quitamos la maleta
+                   que nos golpeó.
+                */
+
+                removeObstacle(
+                    data
+                );
+
+
+                return;
+
+            }
+
+
+            /*
+               SIN ESCUDO:
+               GAME OVER.
+            */
+
             endGame();
 
             return;
 
         }
 
+
+        /*
+           SEGUIR MOVIENDO
+        */
 
         if(
             y<
@@ -1449,6 +2108,11 @@ function spawnObstacle(){
         animate
     );
 
+
+    /*
+       PROGRAMAR SOLO
+       UNA SIGUIENTE MALETA.
+    */
 
     scheduleNextObstacle();
 
@@ -1500,6 +2164,10 @@ function startDifficulty(){
     );
 
 
+    /*
+       CAMBIO CADA 25 SEGUNDOS.
+    */
+
     difficultyTimer=
     setInterval(
         function(){
@@ -1511,7 +2179,13 @@ function startDifficulty(){
 
 
             /*
-               Subida MUY progresiva.
+               VELOCIDAD MUY PROGRESIVA.
+
+               NIVEL 1 = 3.0
+               NIVEL 2 = 3.2
+               NIVEL 3 = 3.4
+               NIVEL 4 = 3.6
+               ...
             */
 
             obstacleSpeed=
@@ -1521,6 +2195,11 @@ function startDifficulty(){
                 (level-1)*0.20
             );
 
+
+            /*
+               MÁS FRECUENCIA
+               POCO A POCO.
+            */
 
             minSpawnDelay=
             Math.max(
@@ -1538,14 +2217,25 @@ function startDifficulty(){
             );
 
 
+            /*
+               CAMBIAR AEROPUERTO
+            */
+
+            changeAirport();
+
+
             updateLevel();
 
+
+            /*
+               BONUS DE NIVEL
+            */
 
             score+=100;
 
 
             showReward(
-                "🔥 NIVEL "+level
+                "✈️ NUEVO AEROPUERTO"
             );
 
 
@@ -1554,6 +2244,92 @@ function startDifficulty(){
         },
         25000
     );
+
+}
+
+
+/* =====================================================
+   CAMBIAR AEROPUERTO
+===================================================== */
+
+function changeAirport(){
+
+    const airport=
+    document.getElementById(
+        "airport"
+    );
+
+
+    /*
+       Limpiar modelos anteriores.
+    */
+
+    airport.classList.remove(
+        "airport1",
+        "airport2",
+        "airport3",
+        "airport4",
+        "airport5",
+        "airport6"
+    );
+
+
+    /*
+       Cada dos niveles
+       cambiamos de aeropuerto.
+
+       1-2 = aeropuerto 1
+       3-4 = aeropuerto 2
+       5-6 = aeropuerto 3
+       7-8 = aeropuerto 4
+       9-10 = aeropuerto 5
+       11+ = aeropuerto 6
+    */
+
+    let airportNumber=
+    Math.floor(
+        (level-1)/2
+    )+1;
+
+
+    airportNumber=
+    Math.min(
+        6,
+        airportNumber
+    );
+
+
+    airport.classList.add(
+        "airport"+
+        airportNumber
+    );
+
+
+    /*
+       Cambiamos también
+       el número de puerta.
+    */
+
+    const gate=
+    document.getElementById(
+        "gate"
+    );
+
+
+    const gates=[
+        "GATE 12",
+        "GATE 24",
+        "GATE 37",
+        "GATE 48",
+        "GATE 61",
+        "GATE 99"
+    ];
+
+
+    gate.textContent=
+    gates[
+        airportNumber-1
+    ];
 
 }
 
@@ -1588,7 +2364,47 @@ function startScore(){
 
 
 /* =====================================================
-   CREAR UNA RECOMPENSA
+   RECOMPENSAS
+===================================================== */
+
+function startCollectibles(){
+
+    clearInterval(
+        collectibleTimer
+    );
+
+
+    /*
+       Cada 1.8 segundos
+       intentamos poner
+       una recompensa.
+
+       Pero solo puede existir
+       UNA simultáneamente.
+    */
+
+    collectibleTimer=
+    setInterval(
+        function(){
+
+            if(
+                gameRunning &&
+                !rewardActive
+            ){
+
+                spawnCollectible();
+
+            }
+
+        },
+        1800
+    );
+
+}
+
+
+/* =====================================================
+   CREAR MONEDA
 ===================================================== */
 
 function spawnCollectible(){
@@ -1597,8 +2413,9 @@ function spawnCollectible(){
 
 
     /*
-       Los primeros 5 segundos
-       son de aprendizaje.
+       Durante los primeros
+       5 segundos no ponemos
+       recompensas.
     */
 
     if(gameTime<5){
@@ -1609,8 +2426,7 @@ function spawnCollectible(){
 
 
     /*
-       Solo una recompensa
-       puede existir.
+       Solo una recompensa.
     */
 
     if(rewardActive){
@@ -1621,8 +2437,7 @@ function spawnCollectible(){
 
 
     /*
-       Buscamos carriles que no
-       tengan maletas cerca.
+       CARRILES SEGUROS.
     */
 
     const safe=
@@ -1645,8 +2460,7 @@ function spawnCollectible(){
 
 
     /*
-       Elegimos un carril seguro
-       aleatoriamente.
+       Elegimos carril seguro.
     */
 
     const lane=
@@ -1659,11 +2473,7 @@ function spawnCollectible(){
 
 
     /*
-       RESERVAMOS EL CARRIL.
-
-       Desde este momento las
-       nuevas maletas no podrán
-       aparecer en él.
+       RESERVAR CARRIL.
     */
 
     rewardActive=true;
@@ -1688,15 +2498,19 @@ function spawnCollectible(){
 
     if(ticket){
 
-        item.className="ticket";
+        item.className=
+        "ticket";
 
-        item.textContent="🎟️";
+        item.textContent=
+        "🎟️";
 
     }else{
 
-        item.className="coin";
+        item.className=
+        "coin";
 
-        item.textContent="€";
+        item.textContent=
+        "€";
 
     }
 
@@ -1737,6 +2551,7 @@ function spawnCollectible(){
 
         rewardLane=-1;
 
+
         if(
             item.parentNode
         ){
@@ -1768,8 +2583,7 @@ function spawnCollectible(){
 
 
         /*
-           COMPROBAR SI EL JUGADOR
-           LA HA RECOGIDO.
+           COMPROBAR RECOGIDA
         */
 
         const p=
@@ -1792,18 +2606,13 @@ function spawnCollectible(){
                 ticket
             );
 
-
-            rewardActive=false;
-
-            rewardLane=-1;
-
             return;
 
         }
 
 
         /*
-           Sale de la pantalla.
+           SALIÓ DE PANTALLA.
         */
 
         if(
@@ -1832,7 +2641,7 @@ function spawnCollectible(){
 
 
 /* =====================================================
-   RECOGER RECOMPENSA
+   RECOGER MONEDA
 ===================================================== */
 
 function collectItem(
@@ -1843,17 +2652,21 @@ function collectItem(
     if(!gameRunning)return;
 
 
-    /*
-       Liberamos inmediatamente
-       el carril reservado.
-    */
-
     rewardActive=false;
 
     rewardLane=-1;
 
 
+    /*
+       MONEDA NORMAL
+    */
+
     if(ticket){
+
+        /*
+           El billete especial
+           vale 5 monedas.
+        */
 
         coins+=5;
 
@@ -1878,7 +2691,121 @@ function collectItem(
 
     item.remove();
 
+
+    /*
+       COMPROBAR ESCUDO.
+
+       Cada 10 monedas
+       activa automáticamente
+       un escudo.
+
+       Restamos esas 10
+       del contador.
+    */
+
+    if(
+        coins>=coinsForShield &&
+        !shieldActive
+    ){
+
+        coins-=coinsForShield;
+
+        activateShield();
+
+    }
+
+
     updateHUD();
+
+}
+
+
+/* =====================================================
+   ACTIVAR ESCUDO
+===================================================== */
+
+function activateShield(){
+
+    shieldActive=true;
+
+
+    player.classList.add(
+        "shielded"
+    );
+
+
+    updateShield();
+
+
+    showReward(
+        "🛡️ ¡ESCUDO!"
+    );
+
+}
+
+
+/* =====================================================
+   USAR ESCUDO
+===================================================== */
+
+function useShield(){
+
+    if(!shieldActive){
+
+        return;
+
+    }
+
+
+    shieldActive=false;
+
+
+    player.classList.remove(
+        "shielded"
+    );
+
+
+    updateShield();
+
+
+    showReward(
+        "💥 ¡ESCUDO ROTO!"
+    );
+
+}
+
+
+/* =====================================================
+   ACTUALIZAR ESCUDO
+===================================================== */
+
+function updateShield(){
+
+    const shield=
+    document.getElementById(
+        "shield"
+    );
+
+
+    if(shieldActive){
+
+        shield.textContent=
+        "🛡️ ESCUDO ACTIVO";
+
+        shield.classList.add(
+            "active"
+        );
+
+    }else{
+
+        shield.textContent=
+        "🛡️ 10 MONEDAS = ESCUDO";
+
+        shield.classList.remove(
+            "active"
+        );
+
+    }
 
 }
 
@@ -1944,6 +2871,10 @@ function updateHUD(){
 }
 
 
+/* =====================================================
+   NIVEL
+===================================================== */
+
 function updateLevel(){
 
     document
@@ -1999,6 +2930,10 @@ function endGame(){
 
     player.classList.remove(
         "running"
+    );
+
+    player.classList.remove(
+        "shielded"
     );
 
 
@@ -2090,6 +3025,8 @@ function restartGame(){
 
     rewardLane=-1;
 
+    shieldActive=false;
+
 
     startGame();
 
@@ -2116,4 +3053,5 @@ window.addEventListener(
 </script>
 
 </body>
+
 </html>
