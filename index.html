@@ -1440,16 +1440,9 @@ border-radius:15px;
 </style>
 </head>
 
-
 <body>
 
-
 <div id="game">
-
-
-<!-- =========================
-MENU
-========================= -->
 
 <div id="menu">
 
@@ -1480,10 +1473,6 @@ Consigue 25 monedas para activar un escudo.
 </div>
 
 
-<!-- =========================
-GAME
-========================= -->
-
 <div id="gameScreen">
 
 
@@ -1496,7 +1485,6 @@ GAME
 
 </div>
 
-
 <div class="hudBox">
 
 🪙
@@ -1508,16 +1496,12 @@ GAME
 
 
 <div id="level">
-
 NIVEL 1 • x1.0
-
 </div>
 
 
 <div id="shield">
-
 🛡️ 0/25
-
 </div>
 
 
@@ -1531,21 +1515,12 @@ class="airport1">
 <div class="window w3"></div>
 <div class="window w4"></div>
 
-
 <div class="rain"></div>
 
-
-<div class="palm palm1">
-🌴
-</div>
-
-<div class="palm palm2">
-🌴
-</div>
-
+<div class="palm palm1">🌴</div>
+<div class="palm palm2">🌴</div>
 
 <div id="outsideGround"></div>
-
 
 <div id="runway">
 
@@ -1556,18 +1531,10 @@ class="airport1">
 
 </div>
 
-
 <div id="tower"></div>
 
-
-<div class="plane plane1">
-✈️
-</div>
-
-<div class="plane plane2">
-✈️
-</div>
-
+<div class="plane plane1">✈️</div>
+<div class="plane plane2">✈️</div>
 
 <div id="gate">
 GATE 12
@@ -1575,7 +1542,6 @@ GATE 12
 
 
 <div id="runArea">
-
 
 <div class="lane lane1"></div>
 <div class="lane lane2"></div>
@@ -1601,7 +1567,6 @@ GATE 12
 
 </div>
 
-
 </div>
 
 
@@ -1615,7 +1580,6 @@ id="leftButton">
 
 </button>
 
-
 <button
 class="control"
 id="rightButton">
@@ -1626,13 +1590,8 @@ id="rightButton">
 
 </div>
 
-
 </div>
 
-
-<!-- =========================
-GAME OVER
-========================= -->
 
 <div id="gameOver">
 
@@ -1640,16 +1599,13 @@ GAME OVER
 💥 ¡HAS CHOCADO!
 </h2>
 
-
 <div id="finalScore">
 Puntuación: 0
 </div>
 
-
 <div id="finalCoins">
 🪙 Monedas: 0
 </div>
-
 
 <button
 class="continueButton"
@@ -1659,7 +1615,6 @@ onclick="watchAd()">
 📺 VER ANUNCIO Y CONTINUAR
 
 </button>
-
 
 <button
 class="restart"
@@ -1672,16 +1627,11 @@ onclick="restartGame()">
 </div>
 
 
-<!-- =========================
-ANUNCIO
-========================= -->
-
 <div id="adOverlay">
 
 <div class="adLabel">
 ANUNCIO SIMULADO
 </div>
-
 
 <div class="adBox">
 
@@ -1709,10 +1659,6 @@ El anuncio termina en...
 
 </div>
 
-
-<!-- =========================
-CONTINUAR
-========================= -->
 
 <div id="continueScreen">
 
@@ -1742,7 +1688,6 @@ onclick="continueGame()">
 
 <script>
 
-
 /* =====================================================
 VARIABLES
 ===================================================== */
@@ -1763,65 +1708,30 @@ let gameTime=0;
 
 
 /*
-Velocidad inicial.
-
-Ahora empieza más rápido que antes.
+Nueva velocidad inicial.
 */
 
-let obstacleSpeed=2.9;
+let obstacleSpeed=3.2;
 
 let spawnDelay=1350;
 
 
-/*
-Modo desafío.
-*/
-
 let hardMode=false;
 
-
-/*
-Objetos.
-*/
-
 let obstacles=[];
-
-
-/*
-Historial de carriles.
-*/
 
 let lastLane=-1;
 
 let previousLane=-1;
 
-
-/*
-Monedas.
-*/
-
 let rewardActive=false;
 
 let rewardObject=null;
 
-
-/*
-Escudo.
-*/
-
 let shieldActive=false;
-
-
-/*
-Continuación.
-*/
 
 let continueUsed=false;
 
-
-/*
-Récord.
-*/
 
 let highScore=
 Number(
@@ -1830,10 +1740,6 @@ localStorage.getItem(
 )||0
 );
 
-
-/*
-Timers.
-*/
 
 let spawnTimer=null;
 
@@ -1876,28 +1782,19 @@ clearAllTimers();
 removeObjects();
 
 
-document
-.getElementById("menu")
+document.getElementById("menu")
 .style.display="none";
 
-
-document
-.getElementById("gameScreen")
+document.getElementById("gameScreen")
 .style.display="block";
 
-
-document
-.getElementById("gameOver")
+document.getElementById("gameOver")
 .style.display="none";
 
-
-document
-.getElementById("adOverlay")
+document.getElementById("adOverlay")
 .style.display="none";
 
-
-document
-.getElementById("continueScreen")
+document.getElementById("continueScreen")
 .style.display="none";
 
 
@@ -1909,30 +1806,29 @@ level=1;
 
 gameTime=0;
 
-
 playerLane=1;
 
 
-obstacleSpeed=2.9;
+/*
+Nivel 1 = 3.2
+*/
+
+obstacleSpeed=3.2;
 
 spawnDelay=1350;
 
 
 hardMode=false;
 
-
 obstacles=[];
-
 
 lastLane=-1;
 
 previousLane=-1;
 
-
 rewardActive=false;
 
 rewardObject=null;
-
 
 shieldActive=false;
 
@@ -1950,13 +1846,9 @@ changeAirport();
 positionPlayer();
 
 
-player.classList.add(
-"running"
-);
+player.classList.add("running");
 
-player.classList.remove(
-"shielded"
-);
+player.classList.remove("shielded");
 
 
 updateContinueButton();
@@ -1964,10 +1856,6 @@ updateContinueButton();
 
 gameRunning=true;
 
-
-/*
-Primer obstáculo.
-*/
 
 spawnTimer=
 setTimeout(
@@ -2007,20 +1895,15 @@ POSICIÓN
 function positionPlayer(){
 
 const area=
-document.getElementById(
-"runArea"
-);
-
+document.getElementById("runArea");
 
 const laneWidth=
 area.clientWidth/3;
-
 
 const x=
 laneWidth*playerLane+
 laneWidth/2-
 31;
-
 
 player.style.left=
 x+"px";
@@ -2071,15 +1954,11 @@ document.addEventListener(
 function(e){
 
 if(e.key==="ArrowLeft"){
-
 moveLeft();
-
 }
 
 if(e.key==="ArrowRight"){
-
 moveRight();
-
 }
 
 }
@@ -2139,9 +2018,7 @@ const obstacle of obstacles
 if(
 obstacle.lane!==lane
 ){
-
 continue;
-
 }
 
 
@@ -2184,9 +2061,7 @@ available
 if(
 available.length===0
 ){
-
 return -1;
-
 }
 
 
@@ -2240,7 +2115,7 @@ return lane;
 
 
 /* =====================================================
-PATRÓN DE MALETAS
+PATRÓN
 ===================================================== */
 
 function createObstaclePattern(){
@@ -2252,16 +2127,12 @@ getAvailableLanes();
 if(
 available.length===0
 ){
-
 return [];
-
 }
 
 
 /*
 NIVELES 1-5
-
-Una maleta.
 */
 
 if(!hardMode){
@@ -2279,19 +2150,15 @@ return lane===-1
 
 
 /*
-NIVEL 6+
+MODO DESAFÍO.
 
-Aquí empieza el verdadero desafío.
-
-La probabilidad de dos maletas
-es alta y aumenta con el nivel.
+Más dobles que antes.
 */
-
 
 const doubleChance=
 Math.min(
-0.82,
-0.58+
+0.90,
+0.68+
 (level-6)*0.035
 );
 
@@ -2300,10 +2167,6 @@ const shouldDouble=
 Math.random()<
 doubleChance;
 
-
-/*
-Una sola si no toca doble.
-*/
 
 if(
 !shouldDouble ||
@@ -2324,8 +2187,7 @@ return lane===-1
 
 /*
 DOS MALETAS.
-
-Siempre dejamos un carril libre.
+Siempre queda un carril libre.
 */
 
 let candidates=
@@ -2343,10 +2205,6 @@ candidates.slice(
 2
 );
 
-
-/*
-Evitar patrón excesivamente repetitivo.
-*/
 
 if(
 pair.includes(lastLane) &&
@@ -2373,7 +2231,6 @@ pair[1]=alternative;
 
 
 previousLane=lastLane;
-
 
 lastLane=
 pair[
@@ -2428,25 +2285,17 @@ scheduleObstacle();
 CREAR MALETA
 ===================================================== */
 
-function createSuitcase(
-lane
-){
+function createSuitcase(lane){
 
 const area=
-document.getElementById(
-"runArea"
-);
-
+document.getElementById("runArea");
 
 const laneWidth=
 area.clientWidth/3;
 
 
 const suitcase=
-document.createElement(
-"div"
-);
-
+document.createElement("div");
 
 suitcase.className=
 "suitcase";
@@ -2461,7 +2310,6 @@ laneWidth/2-
 
 
 let y=-105;
-
 
 suitcase.style.top=
 y+"px";
@@ -2510,7 +2358,7 @@ Math.random()*260-130;
 
 const delay=
 Math.max(
-470,
+420,
 spawnDelay+
 variation
 );
@@ -2554,7 +2402,6 @@ obstacle.y+"px";
 
 const playerRect=
 player.getBoundingClientRect();
-
 
 const obstacleRect=
 obstacle.element
@@ -2677,16 +2524,20 @@ level++;
 
 
 /*
-NIVELES 1-5.
+NIVELES 1-5
 
-Subida progresiva.
+3.2
+3.5
+3.8
+4.1
+4.4
 */
 
 if(level<=5){
 
 obstacleSpeed=
-2.9+
-(level-1)*0.32;
+3.2+
+(level-1)*0.3;
 
 
 spawnDelay=
@@ -2697,10 +2548,13 @@ spawnDelay=
 
 
 /*
-MODO DESAFÍO.
+MODO DESAFÍO
 
-A partir del nivel 6
-la dificultad aumenta mucho más.
+5.0
+5.4
+5.8
+6.2
+6.6
 */
 
 if(level>=6){
@@ -2708,38 +2562,21 @@ if(level>=6){
 hardMode=true;
 
 
-/*
-Velocidad fuerte.
-
-Nivel 6 = 4.5 aprox.
-Nivel 7 = 4.9
-Nivel 8 = 5.3
-etc.
-*/
-
 obstacleSpeed=
 Math.min(
 7.2,
-4.18+
-(level-6)*0.38
+5.0+
+(level-6)*0.4
 );
 
-
-/*
-Oleadas cada vez más juntas.
-*/
 
 spawnDelay=
 Math.max(
-470,
+440,
 1050-
-(level-6)*60
+(level-6)*65
 );
 
-
-/*
-Al entrar en nivel 6.
-*/
 
 if(level===6){
 
@@ -2752,18 +2589,11 @@ showChallengeMessage(
 }
 
 
-/*
-Cambio visual.
-*/
-
 changeAirport();
-
 
 updateLevel();
 
-
 score+=100;
-
 
 updateHUD();
 
@@ -2787,19 +2617,15 @@ document.createElement(
 "div"
 );
 
-
 message.className=
 "challengeMessage";
-
 
 message.textContent=
 text;
 
 
 document
-.getElementById(
-"gameScreen"
-)
+.getElementById("gameScreen")
 .appendChild(
 message
 );
@@ -2828,7 +2654,6 @@ setInterval(
 function(){
 
 if(!gameRunning)return;
-
 
 score++;
 
@@ -2869,7 +2694,7 @@ spawnCoin();
 
 
 /* =====================================================
-CARRIL DE MONEDA
+CARRIL MONEDA
 ===================================================== */
 
 function chooseCoinLane(){
@@ -2881,16 +2706,9 @@ getAvailableLanes();
 if(
 available.length===0
 ){
-
 return -1;
-
 }
 
-
-/*
-Preferimos un carril diferente
-al jugador.
-*/
 
 let preferred=
 available.filter(
@@ -2903,8 +2721,7 @@ if(
 preferred.length===0
 ){
 
-preferred=
-available;
+preferred=available;
 
 }
 
@@ -2936,24 +2753,17 @@ if(lane===-1)return;
 
 
 const area=
-document.getElementById(
-"runArea"
-);
-
+document.getElementById("runArea");
 
 const laneWidth=
 area.clientWidth/3;
 
 
 const coin=
-document.createElement(
-"div"
-);
-
+document.createElement("div");
 
 coin.className=
 "coin";
-
 
 coin.textContent=
 "€";
@@ -2967,13 +2777,7 @@ laneWidth/2-
 )+"px";
 
 
-/*
-La moneda sale de arriba
-igual que las maletas.
-*/
-
 let y=-60;
-
 
 coin.style.top=
 y+"px";
@@ -3001,16 +2805,8 @@ return;
 
 
 /*
-IMPORTANTE:
-
-EXACTAMENTE LA MISMA VELOCIDAD
+MISMA VELOCIDAD
 QUE LAS MALETAS.
-
-Antes era:
-obstacleSpeed * .75
-
-Ahora es:
-obstacleSpeed
 */
 
 y+=
@@ -3023,7 +2819,6 @@ y+"px";
 
 const playerRect=
 player.getBoundingClientRect();
-
 
 const coinRect=
 coin.getBoundingClientRect();
@@ -3049,11 +2844,6 @@ return;
 
 }
 
-
-/*
-La moneda nunca se queda
-atrás de una maleta por velocidad.
-*/
 
 if(
 y<
@@ -3102,13 +2892,6 @@ rewardActive=false;
 coin.remove();
 
 
-/*
-Si hay escudo:
-
-la moneda NO cuenta
-para otro escudo.
-*/
-
 if(shieldActive){
 
 score+=50;
@@ -3124,11 +2907,6 @@ return;
 }
 
 
-/*
-Sin escudo:
-cuenta normalmente.
-*/
-
 coins++;
 
 score+=75;
@@ -3138,10 +2916,6 @@ showReward(
 "🪙 +1"
 );
 
-
-/*
-25 monedas.
-*/
 
 if(
 coins>=25 &&
@@ -3191,14 +2965,11 @@ function activateShield(){
 
 shieldActive=true;
 
-
 player.classList.add(
 "shielded"
 );
 
-
 updateShield();
-
 
 showReward(
 "🛡️ ¡ESCUDO!"
@@ -3217,10 +2988,8 @@ shieldActive=false;
 
 
 /*
-MUY IMPORTANTE:
-
-al romperse el escudo
-el contador vuelve a cero.
+Al romperse:
+0/25.
 */
 
 coins=0;
@@ -3229,7 +2998,6 @@ coins=0;
 player.classList.remove(
 "shielded"
 );
-
 
 updateShield();
 
@@ -3260,7 +3028,6 @@ if(shieldActive){
 shield.textContent=
 "🛡️ ESCUDO ACTIVO";
 
-
 shield.classList.add(
 "active"
 );
@@ -3271,7 +3038,6 @@ shield.textContent=
 "🛡️ "+
 coins+
 "/25";
-
 
 shield.classList.remove(
 "active"
@@ -3344,9 +3110,7 @@ const names=[
 
 
 document
-.getElementById(
-"gate"
-)
+.getElementById("gate")
 .textContent=
 gates[
 airportNumber-1
@@ -3382,19 +3146,15 @@ document.createElement(
 "div"
 );
 
-
 message.className=
 "airportMessage";
-
 
 message.textContent=
 text;
 
 
 document
-.getElementById(
-"gameScreen"
-)
+.getElementById("gameScreen")
 .appendChild(
 message
 );
@@ -3425,19 +3185,15 @@ document.createElement(
 "div"
 );
 
-
 reward.className=
 "reward";
-
 
 reward.textContent=
 text;
 
 
 document
-.getElementById(
-"gameScreen"
-)
+.getElementById("gameScreen")
 .appendChild(
 reward
 );
@@ -3462,17 +3218,13 @@ HUD
 function updateHUD(){
 
 document
-.getElementById(
-"score"
-)
+.getElementById("score")
 .textContent=
 score;
 
 
 document
-.getElementById(
-"coins"
-)
+.getElementById("coins")
 .textContent=
 coins;
 
@@ -3482,16 +3234,14 @@ coins;
 function updateLevel(){
 
 document
-.getElementById(
-"level"
-)
+.getElementById("level")
 .textContent=
 "NIVEL "+
 level+
 " • x"+
 (
 obstacleSpeed/
-2.9
+3.2
 ).toFixed(1);
 
 }
@@ -3512,7 +3262,6 @@ gameRunning=false;
 clearTimeout(
 spawnTimer
 );
-
 
 clearInterval(
 difficultyTimer
@@ -3546,7 +3295,6 @@ score>highScore
 
 highScore=score;
 
-
 localStorage.setItem(
 "airport_high_score",
 highScore
@@ -3556,9 +3304,7 @@ highScore
 
 
 document
-.getElementById(
-"finalScore"
-)
+.getElementById("finalScore")
 .textContent=
 "Puntuación: "+
 score+
@@ -3567,9 +3313,7 @@ highScore;
 
 
 document
-.getElementById(
-"finalCoins"
-)
+.getElementById("finalCoins")
 .textContent=
 "🪙 Monedas: "+
 coins;
@@ -3579,9 +3323,7 @@ updateContinueButton();
 
 
 document
-.getElementById(
-"gameOver"
-)
+.getElementById("gameOver")
 .style.display=
 "flex";
 
@@ -3589,7 +3331,7 @@ document
 
 
 /* =====================================================
-CONTINUAR
+BOTÓN CONTINUAR
 ===================================================== */
 
 function updateContinueButton(){
@@ -3606,11 +3348,9 @@ if(continueUsed){
 button.textContent=
 "📺 CONTINUACIÓN USADA";
 
-
 button.classList.add(
 "disabled"
 );
-
 
 button.disabled=true;
 
@@ -3619,11 +3359,9 @@ button.disabled=true;
 button.textContent=
 "📺 VER ANUNCIO Y CONTINUAR";
 
-
 button.classList.remove(
 "disabled"
 );
-
 
 button.disabled=false;
 
@@ -3643,33 +3381,24 @@ if(continueUsed)return;
 
 continueUsed=true;
 
-
 updateContinueButton();
 
 
 document
-.getElementById(
-"gameOver"
-)
-.style.display=
-"none";
+.getElementById("gameOver")
+.style.display="none";
 
 
 document
-.getElementById(
-"adOverlay"
-)
-.style.display=
-"flex";
+.getElementById("adOverlay")
+.style.display="flex";
 
 
 let seconds=5;
 
 
 document
-.getElementById(
-"adCountdown"
-)
+.getElementById("adCountdown")
 .textContent=
 seconds;
 
@@ -3687,9 +3416,7 @@ seconds--;
 
 
 document
-.getElementById(
-"adCountdown"
-)
+.getElementById("adCountdown")
 .textContent=
 seconds;
 
@@ -3702,17 +3429,13 @@ adTimer
 
 
 document
-.getElementById(
-"adOverlay"
-)
+.getElementById("adOverlay")
 .style.display=
 "none";
 
 
 document
-.getElementById(
-"continueScreen"
-)
+.getElementById("continueScreen")
 .style.display=
 "flex";
 
@@ -3726,23 +3449,19 @@ document
 
 
 /* =====================================================
-CONTINUAR PARTIDA
+CONTINUAR
 ===================================================== */
 
 function continueGame(){
 
 document
-.getElementById(
-"continueScreen"
-)
+.getElementById("continueScreen")
 .style.display=
 "none";
 
 
 document
-.querySelectorAll(
-".suitcase"
-)
+.querySelectorAll(".suitcase")
 .forEach(
 element=>
 element.remove()
@@ -3750,9 +3469,7 @@ element.remove()
 
 
 document
-.querySelectorAll(
-".coin"
-)
+.querySelectorAll(".coin")
 .forEach(
 element=>
 element.remove()
@@ -3761,17 +3478,10 @@ element.remove()
 
 obstacles=[];
 
-
 rewardActive=false;
 
 rewardObject=null;
 
-
-/*
-El nivel, aeropuerto,
-puntuación y dificultad
-se mantienen.
-*/
 
 playerLane=1;
 
@@ -3801,16 +3511,10 @@ coinTimer
 
 gameRunning=true;
 
-
 player.classList.add(
 "running"
 );
 
-
-/*
-Un poco de margen después
-del anuncio.
-*/
 
 spawnTimer=
 setTimeout(
@@ -3860,27 +3564,18 @@ removeObjects();
 
 
 document
-.getElementById(
-"gameOver"
-)
-.style.display=
-"none";
+.getElementById("gameOver")
+.style.display="none";
 
 
 document
-.getElementById(
-"adOverlay"
-)
-.style.display=
-"none";
+.getElementById("adOverlay")
+.style.display="none";
 
 
 document
-.getElementById(
-"continueScreen"
-)
-.style.display=
-"none";
+.getElementById("continueScreen")
+.style.display="none";
 
 
 startGame();
@@ -3889,7 +3584,7 @@ startGame();
 
 
 /* =====================================================
-LIMPIAR TIMERS
+LIMPIAR
 ===================================================== */
 
 function clearAllTimers(){
@@ -3922,7 +3617,7 @@ adTimer
 
 
 /* =====================================================
-LIMPIAR OBJETOS
+OBJETOS
 ===================================================== */
 
 function removeObjects(){
@@ -3938,7 +3633,6 @@ element.remove()
 
 
 obstacles=[];
-
 
 rewardActive=false;
 
