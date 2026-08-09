@@ -1015,7 +1015,7 @@ scale(1);
 
 
 /* =========================
-MODO DESAFIO
+MODO DESAFÍO
 ========================= */
 
 .challengeMessage{
@@ -1475,21 +1475,16 @@ Consigue 25 monedas para activar un escudo.
 
 <div id="gameScreen">
 
-
 <div id="hud">
 
 <div class="hudBox">
-
 🏆
 <span id="score">0</span>
-
 </div>
 
 <div class="hudBox">
-
 🪙
 <span id="coins">0</span>/25
-
 </div>
 
 </div>
@@ -1505,10 +1500,7 @@ NIVEL 1 • x1.0
 </div>
 
 
-<div
-id="airport"
-class="airport1">
-
+<div id="airport" class="airport1">
 
 <div class="window w1"></div>
 <div class="window w2"></div>
@@ -1572,20 +1564,12 @@ GATE 12
 
 <div id="controls">
 
-<button
-class="control"
-id="leftButton">
-
+<button class="control" id="leftButton">
 ◀
-
 </button>
 
-<button
-class="control"
-id="rightButton">
-
+<button class="control" id="rightButton">
 ▶
-
 </button>
 
 </div>
@@ -1680,7 +1664,6 @@ onclick="continueGame()">
 
 </div>
 
-
 </div>
 
 </div>
@@ -1708,30 +1691,68 @@ let gameTime=0;
 
 
 /*
-Nueva velocidad inicial.
+NUEVA CURVA DE VELOCIDAD
+
+Nivel 1 = 3.6
+Nivel 2 = 4.0
+Nivel 3 = 4.4
+Nivel 4 = 4.8
+Nivel 5 = 5.2
+
+Nivel 6 = 5.8
+Nivel 7 = 6.3
+Nivel 8 = 6.8
+Nivel 9 = 7.3
+Nivel 10 = 7.8
+
+Máximo = 8.5
 */
 
-let obstacleSpeed=3.2;
+let obstacleSpeed=3.6;
 
-let spawnDelay=1350;
+let spawnDelay=1250;
 
+
+/*
+Modo desafío.
+*/
 
 let hardMode=false;
 
+
+/*
+Objetos.
+*/
+
 let obstacles=[];
 
-let lastLane=-1;
 
-let previousLane=-1;
+/*
+Variables de recompensa.
+*/
 
 let rewardActive=false;
 
 let rewardObject=null;
 
+
+/*
+Escudo.
+*/
+
 let shieldActive=false;
+
+
+/*
+Continuación.
+*/
 
 let continueUsed=false;
 
+
+/*
+Récord.
+*/
 
 let highScore=
 Number(
@@ -1740,6 +1761,10 @@ localStorage.getItem(
 )||0
 );
 
+
+/*
+Timers.
+*/
 
 let spawnTimer=null;
 
@@ -1782,19 +1807,28 @@ clearAllTimers();
 removeObjects();
 
 
-document.getElementById("menu")
+document
+.getElementById("menu")
 .style.display="none";
 
-document.getElementById("gameScreen")
+
+document
+.getElementById("gameScreen")
 .style.display="block";
 
-document.getElementById("gameOver")
+
+document
+.getElementById("gameOver")
 .style.display="none";
 
-document.getElementById("adOverlay")
+
+document
+.getElementById("adOverlay")
 .style.display="none";
 
-document.getElementById("continueScreen")
+
+document
+.getElementById("continueScreen")
 .style.display="none";
 
 
@@ -1806,29 +1840,29 @@ level=1;
 
 gameTime=0;
 
+
 playerLane=1;
 
 
 /*
-Nivel 1 = 3.2
+Velocidad inicial.
 */
 
-obstacleSpeed=3.2;
+obstacleSpeed=3.6;
 
-spawnDelay=1350;
+spawnDelay=1250;
 
 
 hardMode=false;
 
+
 obstacles=[];
 
-lastLane=-1;
-
-previousLane=-1;
 
 rewardActive=false;
 
 rewardObject=null;
+
 
 shieldActive=false;
 
@@ -1846,9 +1880,13 @@ changeAirport();
 positionPlayer();
 
 
-player.classList.add("running");
+player.classList.add(
+"running"
+);
 
-player.classList.remove("shielded");
+player.classList.remove(
+"shielded"
+);
 
 
 updateContinueButton();
@@ -1857,10 +1895,14 @@ updateContinueButton();
 gameRunning=true;
 
 
+/*
+Primer obstáculo.
+*/
+
 spawnTimer=
 setTimeout(
 spawnObstacle,
-1100
+950
 );
 
 
@@ -1895,15 +1937,20 @@ POSICIÓN
 function positionPlayer(){
 
 const area=
-document.getElementById("runArea");
+document.getElementById(
+"runArea"
+);
+
 
 const laneWidth=
 area.clientWidth/3;
+
 
 const x=
 laneWidth*playerLane+
 laneWidth/2-
 31;
+
 
 player.style.left=
 x+"px";
@@ -1954,11 +2001,15 @@ document.addEventListener(
 function(e){
 
 if(e.key==="ArrowLeft"){
+
 moveLeft();
+
 }
 
 if(e.key==="ArrowRight"){
+
 moveRight();
+
 }
 
 }
@@ -1994,7 +2045,7 @@ moveRight();
 
 
 /* =====================================================
-CARRILES DISPONIBLES
+CARRILES LIBRES
 ===================================================== */
 
 function getAvailableLanes(){
@@ -2018,7 +2069,9 @@ const obstacle of obstacles
 if(
 obstacle.lane!==lane
 ){
+
 continue;
+
 }
 
 
@@ -2051,74 +2104,10 @@ return available;
 
 
 /* =====================================================
-CARRIL ÚNICO
+PATRÓN NORMAL
 ===================================================== */
 
-function chooseSingleLane(
-available
-){
-
-if(
-available.length===0
-){
-return -1;
-}
-
-
-let preferred=
-available.filter(
-lane=>
-lane!==lastLane &&
-lane!==previousLane
-);
-
-
-if(
-preferred.length===0
-){
-
-preferred=
-available.filter(
-lane=>
-lane!==lastLane
-);
-
-}
-
-
-if(
-preferred.length===0
-){
-
-preferred=available;
-
-}
-
-
-const lane=
-preferred[
-Math.floor(
-Math.random()*
-preferred.length
-)
-];
-
-
-previousLane=lastLane;
-
-lastLane=lane;
-
-
-return lane;
-
-}
-
-
-/* =====================================================
-PATRÓN
-===================================================== */
-
-function createObstaclePattern(){
+function createNormalPattern(){
 
 const available=
 getAvailableLanes();
@@ -2127,121 +2116,148 @@ getAvailableLanes();
 if(
 available.length===0
 ){
+
 return [];
+
 }
 
 
 /*
-NIVELES 1-5
-*/
+En niveles normales solo
+una maleta.
 
-if(!hardMode){
+Esto mantiene el aprendizaje.
+*/
 
 const lane=
-chooseSingleLane(
-available
-);
-
-return lane===-1
-?[]
-:[lane];
-
-}
-
-
-/*
-MODO DESAFÍO.
-
-Más dobles que antes.
-*/
-
-const doubleChance=
-Math.min(
-0.90,
-0.68+
-(level-6)*0.035
-);
-
-
-const shouldDouble=
-Math.random()<
-doubleChance;
-
-
-if(
-!shouldDouble ||
-available.length<2
-){
-
-const lane=
-chooseSingleLane(
-available
-);
-
-return lane===-1
-?[]
-:[lane];
-
-}
-
-
-/*
-DOS MALETAS.
-Siempre queda un carril libre.
-*/
-
-let candidates=
-[...available];
-
-
-candidates.sort(
-()=>Math.random()-.5
-);
-
-
-let pair=
-candidates.slice(
-0,
-2
-);
-
-
-if(
-pair.includes(lastLane) &&
-pair.includes(previousLane)
-){
-
-const alternative=
-candidates.find(
-lane=>
-lane!==lastLane &&
-lane!==previousLane
-);
-
-
-if(
-alternative!==undefined
-){
-
-pair[1]=alternative;
-
-}
-
-}
-
-
-previousLane=lastLane;
-
-lastLane=
-pair[
+available[
 Math.floor(
 Math.random()*
-pair.length
+available.length
 )
 ];
 
 
-return pair;
+return [lane];
+
+}
+
+
+/* =====================================================
+PATRÓN DESAFÍO
+===================================================== */
+
+function createChallengePattern(){
+
+const available=
+getAvailableLanes();
+
+
+if(
+available.length===0
+){
+
+return [];
+
+}
+
+
+/*
+IMPORTANTE:
+
+Ya NO usamos lastLane
+ni previousLane.
+
+Cada oleada se genera
+independientemente.
+
+Esto elimina las secuencias
+predecibles.
+*/
+
+
+/*
+Probabilidad de dos maletas.
+
+Nivel 6 empieza en 70%.
+
+Sube gradualmente.
+*/
+
+const doubleChance=
+Math.min(
+0.92,
+0.70+
+(level-6)*0.035
+);
+
+
+const double=
+Math.random()<
+doubleChance;
+
+
+/*
+Una sola maleta.
+*/
+
+if(
+!double ||
+available.length<2
+){
+
+const randomIndex=
+Math.floor(
+Math.random()*
+available.length
+);
+
+
+return [
+available[randomIndex]
+];
+
+}
+
+
+/*
+Dos maletas.
+
+Elegimos dos posiciones
+completamente aleatorias
+de las disponibles.
+
+Por definición queda
+como mínimo un carril libre.
+*/
+
+const shuffled=
+[...available].sort(
+()=>Math.random()-.5
+);
+
+
+return [
+shuffled[0],
+shuffled[1]
+];
+
+}
+
+
+/* =====================================================
+PATRÓN GENERAL
+===================================================== */
+
+function createObstaclePattern(){
+
+if(hardMode){
+
+return createChallengePattern();
+
+}
+
+return createNormalPattern();
 
 }
 
@@ -2285,17 +2301,25 @@ scheduleObstacle();
 CREAR MALETA
 ===================================================== */
 
-function createSuitcase(lane){
+function createSuitcase(
+lane
+){
 
 const area=
-document.getElementById("runArea");
+document.getElementById(
+"runArea"
+);
+
 
 const laneWidth=
 area.clientWidth/3;
 
 
 const suitcase=
-document.createElement("div");
+document.createElement(
+"div"
+);
+
 
 suitcase.className=
 "suitcase";
@@ -2310,6 +2334,7 @@ laneWidth/2-
 
 
 let y=-105;
+
 
 suitcase.style.top=
 y+"px";
@@ -2352,13 +2377,21 @@ function scheduleObstacle(){
 if(!gameRunning)return;
 
 
+/*
+Menos tiempo entre maletas.
+
+La variación sigue siendo aleatoria
+para que tampoco exista un ritmo
+mecánico.
+*/
+
 const variation=
-Math.random()*260-130;
+Math.random()*180-90;
 
 
 const delay=
 Math.max(
-420,
+350,
 spawnDelay+
 variation
 );
@@ -2402,6 +2435,7 @@ obstacle.y+"px";
 
 const playerRect=
 player.getBoundingClientRect();
+
 
 const obstacleRect=
 obstacle.element
@@ -2526,22 +2560,26 @@ level++;
 /*
 NIVELES 1-5
 
-3.2
-3.5
-3.8
-4.1
+3.6
+4.0
 4.4
+4.8
+5.2
 */
 
 if(level<=5){
 
 obstacleSpeed=
-3.2+
-(level-1)*0.3;
+3.6+
+(level-1)*0.4;
 
+
+/*
+Intervalo también baja.
+*/
 
 spawnDelay=
-1350-
+1250-
 (level-1)*80;
 
 }
@@ -2550,11 +2588,11 @@ spawnDelay=
 /*
 MODO DESAFÍO
 
-5.0
-5.4
 5.8
-6.2
-6.6
+6.3
+6.8
+7.3
+7.8
 */
 
 if(level>=6){
@@ -2564,19 +2602,23 @@ hardMode=true;
 
 obstacleSpeed=
 Math.min(
-7.2,
-5.0+
-(level-6)*0.4
+8.5,
+5.8+
+(level-6)*0.5
 );
 
 
 spawnDelay=
 Math.max(
-440,
-1050-
+350,
+950-
 (level-6)*65
 );
 
+
+/*
+Entrada al desafío.
+*/
 
 if(level===6){
 
@@ -2617,15 +2659,19 @@ document.createElement(
 "div"
 );
 
+
 message.className=
 "challengeMessage";
+
 
 message.textContent=
 text;
 
 
 document
-.getElementById("gameScreen")
+.getElementById(
+"gameScreen"
+)
 .appendChild(
 message
 );
@@ -2654,6 +2700,7 @@ setInterval(
 function(){
 
 if(!gameRunning)return;
+
 
 score++;
 
@@ -2687,7 +2734,7 @@ spawnCoin();
 }
 
 },
-2200
+2100
 );
 
 }
@@ -2706,30 +2753,16 @@ getAvailableLanes();
 if(
 available.length===0
 ){
+
 return -1;
-}
-
-
-let preferred=
-available.filter(
-lane=>
-lane!==playerLane
-);
-
-
-if(
-preferred.length===0
-){
-
-preferred=available;
 
 }
 
 
-return preferred[
+return available[
 Math.floor(
 Math.random()*
-preferred.length
+available.length
 )
 ];
 
@@ -2753,17 +2786,24 @@ if(lane===-1)return;
 
 
 const area=
-document.getElementById("runArea");
+document.getElementById(
+"runArea"
+);
+
 
 const laneWidth=
 area.clientWidth/3;
 
 
 const coin=
-document.createElement("div");
+document.createElement(
+"div"
+);
+
 
 coin.className=
 "coin";
+
 
 coin.textContent=
 "€";
@@ -2778,6 +2818,7 @@ laneWidth/2-
 
 
 let y=-60;
+
 
 coin.style.top=
 y+"px";
@@ -2805,7 +2846,7 @@ return;
 
 
 /*
-MISMA VELOCIDAD
+EXACTAMENTE LA MISMA VELOCIDAD
 QUE LAS MALETAS.
 */
 
@@ -2819,6 +2860,7 @@ y+"px";
 
 const playerRect=
 player.getBoundingClientRect();
+
 
 const coinRect=
 coin.getBoundingClientRect();
@@ -2892,6 +2934,12 @@ rewardActive=false;
 coin.remove();
 
 
+/*
+Con escudo activo,
+las monedas no acumulan
+el siguiente escudo.
+*/
+
 if(shieldActive){
 
 score+=50;
@@ -2916,6 +2964,10 @@ showReward(
 "🪙 +1"
 );
 
+
+/*
+25 monedas = escudo.
+*/
 
 if(
 coins>=25 &&
@@ -2965,11 +3017,14 @@ function activateShield(){
 
 shieldActive=true;
 
+
 player.classList.add(
 "shielded"
 );
 
+
 updateShield();
+
 
 showReward(
 "🛡️ ¡ESCUDO!"
@@ -2988,8 +3043,9 @@ shieldActive=false;
 
 
 /*
-Al romperse:
-0/25.
+Al romperse el escudo:
+
+VOLVEMOS A 0/25.
 */
 
 coins=0;
@@ -2998,6 +3054,7 @@ coins=0;
 player.classList.remove(
 "shielded"
 );
+
 
 updateShield();
 
@@ -3028,6 +3085,7 @@ if(shieldActive){
 shield.textContent=
 "🛡️ ESCUDO ACTIVO";
 
+
 shield.classList.add(
 "active"
 );
@@ -3038,6 +3096,7 @@ shield.textContent=
 "🛡️ "+
 coins+
 "/25";
+
 
 shield.classList.remove(
 "active"
@@ -3110,7 +3169,9 @@ const names=[
 
 
 document
-.getElementById("gate")
+.getElementById(
+"gate"
+)
 .textContent=
 gates[
 airportNumber-1
@@ -3146,15 +3207,19 @@ document.createElement(
 "div"
 );
 
+
 message.className=
 "airportMessage";
+
 
 message.textContent=
 text;
 
 
 document
-.getElementById("gameScreen")
+.getElementById(
+"gameScreen"
+)
 .appendChild(
 message
 );
@@ -3185,15 +3250,19 @@ document.createElement(
 "div"
 );
 
+
 reward.className=
 "reward";
+
 
 reward.textContent=
 text;
 
 
 document
-.getElementById("gameScreen")
+.getElementById(
+"gameScreen"
+)
 .appendChild(
 reward
 );
@@ -3218,13 +3287,17 @@ HUD
 function updateHUD(){
 
 document
-.getElementById("score")
+.getElementById(
+"score"
+)
 .textContent=
 score;
 
 
 document
-.getElementById("coins")
+.getElementById(
+"coins"
+)
 .textContent=
 coins;
 
@@ -3234,14 +3307,16 @@ coins;
 function updateLevel(){
 
 document
-.getElementById("level")
+.getElementById(
+"level"
+)
 .textContent=
 "NIVEL "+
 level+
 " • x"+
 (
 obstacleSpeed/
-3.2
+3.6
 ).toFixed(1);
 
 }
@@ -3295,6 +3370,7 @@ score>highScore
 
 highScore=score;
 
+
 localStorage.setItem(
 "airport_high_score",
 highScore
@@ -3304,7 +3380,9 @@ highScore
 
 
 document
-.getElementById("finalScore")
+.getElementById(
+"finalScore"
+)
 .textContent=
 "Puntuación: "+
 score+
@@ -3313,7 +3391,9 @@ highScore;
 
 
 document
-.getElementById("finalCoins")
+.getElementById(
+"finalCoins"
+)
 .textContent=
 "🪙 Monedas: "+
 coins;
@@ -3323,7 +3403,9 @@ updateContinueButton();
 
 
 document
-.getElementById("gameOver")
+.getElementById(
+"gameOver"
+)
 .style.display=
 "flex";
 
@@ -3331,7 +3413,7 @@ document
 
 
 /* =====================================================
-BOTÓN CONTINUAR
+CONTINUAR
 ===================================================== */
 
 function updateContinueButton(){
@@ -3348,9 +3430,11 @@ if(continueUsed){
 button.textContent=
 "📺 CONTINUACIÓN USADA";
 
+
 button.classList.add(
 "disabled"
 );
+
 
 button.disabled=true;
 
@@ -3359,9 +3443,11 @@ button.disabled=true;
 button.textContent=
 "📺 VER ANUNCIO Y CONTINUAR";
 
+
 button.classList.remove(
 "disabled"
 );
+
 
 button.disabled=false;
 
@@ -3381,24 +3467,33 @@ if(continueUsed)return;
 
 continueUsed=true;
 
+
 updateContinueButton();
 
 
 document
-.getElementById("gameOver")
-.style.display="none";
+.getElementById(
+"gameOver"
+)
+.style.display=
+"none";
 
 
 document
-.getElementById("adOverlay")
-.style.display="flex";
+.getElementById(
+"adOverlay"
+)
+.style.display=
+"flex";
 
 
 let seconds=5;
 
 
 document
-.getElementById("adCountdown")
+.getElementById(
+"adCountdown"
+)
 .textContent=
 seconds;
 
@@ -3416,7 +3511,9 @@ seconds--;
 
 
 document
-.getElementById("adCountdown")
+.getElementById(
+"adCountdown"
+)
 .textContent=
 seconds;
 
@@ -3429,13 +3526,17 @@ adTimer
 
 
 document
-.getElementById("adOverlay")
+.getElementById(
+"adOverlay"
+)
 .style.display=
 "none";
 
 
 document
-.getElementById("continueScreen")
+.getElementById(
+"continueScreen"
+)
 .style.display=
 "flex";
 
@@ -3449,19 +3550,23 @@ document
 
 
 /* =====================================================
-CONTINUAR
+CONTINUAR PARTIDA
 ===================================================== */
 
 function continueGame(){
 
 document
-.getElementById("continueScreen")
+.getElementById(
+"continueScreen"
+)
 .style.display=
 "none";
 
 
 document
-.querySelectorAll(".suitcase")
+.querySelectorAll(
+".suitcase"
+)
 .forEach(
 element=>
 element.remove()
@@ -3469,7 +3574,9 @@ element.remove()
 
 
 document
-.querySelectorAll(".coin")
+.querySelectorAll(
+".coin"
+)
 .forEach(
 element=>
 element.remove()
@@ -3477,6 +3584,7 @@ element.remove()
 
 
 obstacles=[];
+
 
 rewardActive=false;
 
@@ -3511,6 +3619,7 @@ coinTimer
 
 gameRunning=true;
 
+
 player.classList.add(
 "running"
 );
@@ -3519,7 +3628,7 @@ player.classList.add(
 spawnTimer=
 setTimeout(
 spawnObstacle,
-2600
+2000
 );
 
 
@@ -3564,18 +3673,27 @@ removeObjects();
 
 
 document
-.getElementById("gameOver")
-.style.display="none";
+.getElementById(
+"gameOver"
+)
+.style.display=
+"none";
 
 
 document
-.getElementById("adOverlay")
-.style.display="none";
+.getElementById(
+"adOverlay"
+)
+.style.display=
+"none";
 
 
 document
-.getElementById("continueScreen")
-.style.display="none";
+.getElementById(
+"continueScreen"
+)
+.style.display=
+"none";
 
 
 startGame();
@@ -3584,7 +3702,7 @@ startGame();
 
 
 /* =====================================================
-LIMPIAR
+LIMPIAR TIMERS
 ===================================================== */
 
 function clearAllTimers(){
@@ -3617,7 +3735,7 @@ adTimer
 
 
 /* =====================================================
-OBJETOS
+LIMPIAR OBJETOS
 ===================================================== */
 
 function removeObjects(){
@@ -3633,6 +3751,7 @@ element.remove()
 
 
 obstacles=[];
+
 
 rewardActive=false;
 
@@ -3655,8 +3774,7 @@ positionPlayer();
 
 }
 
-}
-);
+});
 
 </script>
 
