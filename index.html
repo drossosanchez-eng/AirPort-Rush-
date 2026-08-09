@@ -1,138 +1,221 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
 <title>Airport Rush</title>
 
 <style>
+
+/* =====================================================
+   BASE
+===================================================== */
+
 *{
- box-sizing:border-box;
- margin:0;
- padding:0;
- -webkit-tap-highlight-color:transparent;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
 }
 
 html,body{
- width:100%;
- height:100%;
- overflow:hidden;
- background:#07111f;
- font-family:Arial,sans-serif;
- touch-action:none;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#07111f;
+    font-family:Arial,sans-serif;
+    touch-action:none;
 }
 
 #game{
- width:100%;
- height:100%;
- position:relative;
- overflow:hidden;
+    width:100%;
+    height:100%;
+    position:relative;
+    overflow:hidden;
 }
 
-/* MENU */
+
+/* =====================================================
+   MENU
+===================================================== */
 
 #menu{
- position:absolute;
- inset:0;
- z-index:100;
- display:flex;
- flex-direction:column;
- align-items:center;
- justify-content:center;
- text-align:center;
- color:white;
- background:linear-gradient(to bottom,#0d2745,#175477,#263b4b);
+    position:absolute;
+    inset:0;
+    z-index:100;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+    color:white;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #0d2745,
+        #175477,
+        #263b4b
+    );
 }
 
 .logo{
- font-size:46px;
- font-weight:900;
- letter-spacing:3px;
- color:#ffd95a;
- text-shadow:0 5px 0 #936c0d;
+    font-size:46px;
+    font-weight:900;
+    letter-spacing:3px;
+    color:#ffd95a;
+    text-shadow:0 5px 0 #936c0d;
 }
 
 .subtitle{
- margin-top:8px;
- margin-bottom:55px;
- font-size:15px;
- letter-spacing:4px;
- color:#dbeafe;
+    margin-top:8px;
+    margin-bottom:55px;
+    font-size:15px;
+    letter-spacing:4px;
+    color:#dbeafe;
 }
 
 .play-button{
- border:0;
- background:#ff5c5c;
- color:white;
- font-size:27px;
- font-weight:bold;
- padding:18px 55px;
- border-radius:18px;
- box-shadow:0 7px 0 #a72d2d;
+    border:0;
+    background:#ff5c5c;
+    color:white;
+    font-size:27px;
+    font-weight:bold;
+    padding:18px 55px;
+    border-radius:18px;
+    box-shadow:0 7px 0 #a72d2d;
 }
 
 .play-button:active{
- transform:translateY(5px);
- box-shadow:0 2px 0 #a72d2d;
+    transform:translateY(5px);
+    box-shadow:0 2px 0 #a72d2d;
 }
 
 .instructions{
- margin-top:35px;
- color:#c5d4e2;
- font-size:14px;
- line-height:1.5;
+    margin-top:35px;
+    color:#c5d4e2;
+    font-size:14px;
+    line-height:1.5;
 }
 
-/* GAME */
+
+/* =====================================================
+   GAME
+===================================================== */
 
 #gameScreen{
- position:absolute;
- inset:0;
- display:none;
+    position:absolute;
+    inset:0;
+    display:none;
 }
 
-/* AIRPORT */
+
+/* =====================================================
+   AEROPUERTO
+===================================================== */
 
 #airport{
- position:absolute;
- inset:0 7% 0 7%;
- overflow:hidden;
- border-left:5px solid #202832;
- border-right:5px solid #202832;
- transition:background .8s ease;
+    position:absolute;
+    inset:0 7% 0 7%;
+    overflow:hidden;
+
+    border-left:5px solid #202832;
+    border-right:5px solid #202832;
+
+    transition:background .8s ease;
 }
 
 .airport1{
- background:linear-gradient(to bottom,#53b8ed 0%,#ccecf8 32%,#667078 32%,#303944 42%,#303944 100%);
+    background:
+    linear-gradient(
+        to bottom,
+        #53b8ed 0%,
+        #ccecf8 32%,
+        #667078 32%,
+        #303944 42%,
+        #303944 100%
+    );
 }
 
 .airport2{
- background:linear-gradient(to bottom,#1b8297 0%,#79d4d2 32%,#4e5e66 32%,#202b33 42%,#26343d 100%);
+    background:
+    linear-gradient(
+        to bottom,
+        #1b8297 0%,
+        #79d4d2 32%,
+        #4e5e66 32%,
+        #202b33 42%,
+        #26343d 100%
+    );
 }
 
 .airport3{
- background:linear-gradient(to bottom,#080d2b 0%,#202d5d 31%,#303b49 31%,#111821 42%,#171e27 100%);
+    background:
+    linear-gradient(
+        to bottom,
+        #080d2b 0%,
+        #202d5d 31%,
+        #303b49 31%,
+        #111821 42%,
+        #171e27 100%
+    );
 }
 
 .airport4{
- background:linear-gradient(to bottom,#414d57 0%,#87949d 30%,#59636a 30%,#252c31 42%,#252b30 100%);
+    background:
+    linear-gradient(
+        to bottom,
+        #414d57 0%,
+        #87949d 30%,
+        #59636a 30%,
+        #252c31 42%,
+        #252b30 100%
+    );
 }
 
 .airport5{
- background:linear-gradient(to bottom,#16b8d4 0%,#b5f1d5 30%,#4b925a 30%,#37483e 42%,#303b35 100%);
+    background:
+    linear-gradient(
+        to bottom,
+        #16b8d4 0%,
+        #b5f1d5 30%,
+        #4b925a 30%,
+        #37483e 42%,
+        #303b35 100%
+    );
 }
 
 .airport6{
- background:linear-gradient(to bottom,#161b38 0%,#3e4d80 30%,#4e5664 30%,#171d27 42%,#11161e 100%);
+    background:
+    linear-gradient(
+        to bottom,
+        #161b38 0%,
+        #3e4d80 30%,
+        #4e5664 30%,
+        #171d27 42%,
+        #11161e 100%
+    );
 }
 
+
+/* =====================================================
+   CRISTALES
+===================================================== */
+
 .window{
- position:absolute;
- top:0;
- width:5px;
- height:34%;
- background:rgba(255,255,255,.65);
- z-index:2;
+    position:absolute;
+    top:0;
+    width:5px;
+    height:34%;
+    background:rgba(255,255,255,.65);
+    z-index:2;
 }
 
 .w1{left:20%}
@@ -142,43 +225,48 @@ html,body{
 
 .airport3 .window,
 .airport6 .window{
- background:rgba(150,210,255,.35);
- box-shadow:0 0 15px rgba(100,190,255,.35);
+    background:rgba(150,210,255,.35);
+    box-shadow:0 0 15px rgba(100,190,255,.35);
 }
 
+
+/* =====================================================
+   PISTA
+===================================================== */
+
 #outsideGround{
- position:absolute;
- top:31%;
- left:0;
- right:0;
- height:5%;
- background:#707a80;
+    position:absolute;
+    top:31%;
+    left:0;
+    right:0;
+    height:5%;
+    background:#707a80;
 }
 
 #runway{
- position:absolute;
- top:36%;
- left:0;
- right:0;
- height:6%;
- background:#30363d;
+    position:absolute;
+    top:36%;
+    left:0;
+    right:0;
+    height:6%;
+    background:#30363d;
 }
 
 .airport3 #runway,
 .airport6 #runway{
- background:#151a21;
+    background:#151a21;
 }
 
 .airport5 #runway{
- background:#35413a;
+    background:#35413a;
 }
 
 .runwayLine{
- position:absolute;
- top:50%;
- width:65px;
- height:4px;
- background:#eee;
+    position:absolute;
+    top:50%;
+    width:65px;
+    height:4px;
+    background:#eee;
 }
 
 .r1{left:5%}
@@ -186,895 +274,1524 @@ html,body{
 .r3{left:51%}
 .r4{left:74%}
 
-/* TORRE */
+
+/* =====================================================
+   TORRE
+===================================================== */
 
 #tower{
- position:absolute;
- top:10%;
- right:7%;
- width:38px;
- height:95px;
- background:#66727d;
- z-index:2;
+    position:absolute;
+    top:10%;
+    right:7%;
+    width:38px;
+    height:95px;
+    background:#66727d;
+    z-index:2;
 }
 
 #tower:before{
- content:"";
- position:absolute;
- left:-8px;
- top:-20px;
- width:54px;
- height:27px;
- background:#46515b;
- border-radius:5px;
+    content:"";
+    position:absolute;
+    left:-8px;
+    top:-20px;
+    width:54px;
+    height:27px;
+    background:#46515b;
+    border-radius:5px;
 }
 
 #tower:after{
- content:"";
- position:absolute;
- left:16px;
- top:-37px;
- width:5px;
- height:18px;
- background:#303943;
+    content:"";
+    position:absolute;
+    left:16px;
+    top:-37px;
+    width:5px;
+    height:18px;
+    background:#303943;
 }
 
-.airport3 #tower{background:#30395a}
-.airport5 #tower{background:#4f7957}
-.airport6 #tower{background:#59678a}
+.airport3 #tower{
+    background:#30395a;
+}
 
-/* PALMERAS */
+.airport5 #tower{
+    background:#4f7957;
+}
+
+.airport6 #tower{
+    background:#59678a;
+}
+
+
+/* =====================================================
+   PALMERAS
+===================================================== */
 
 .palm{
- position:absolute;
- display:none;
- z-index:3;
- font-size:45px;
+    position:absolute;
+    display:none;
+    z-index:3;
+    font-size:45px;
 }
 
 .airport5 .palm{
- display:block;
+    display:block;
 }
 
 .palm1{
- left:4%;
- top:22%;
+    left:4%;
+    top:22%;
 }
 
 .palm2{
- right:18%;
- top:21%;
- font-size:38px;
+    right:18%;
+    top:21%;
+    font-size:38px;
 }
 
-/* AVIONES */
+
+/* =====================================================
+   AVIONES
+===================================================== */
 
 .plane{
- position:absolute;
- z-index:3;
- font-size:48px;
- opacity:.9;
+    position:absolute;
+    z-index:3;
+    font-size:48px;
+    opacity:.9;
 }
 
 .plane1{
- top:12%;
- left:-80px;
- animation:fly1 18s linear infinite;
+    top:12%;
+    left:-80px;
+    animation:fly1 18s linear infinite;
 }
 
 .plane2{
- top:21%;
- right:-80px;
- font-size:38px;
- animation:fly2 25s linear infinite;
+    top:21%;
+    right:-80px;
+    font-size:38px;
+    animation:fly2 25s linear infinite;
 }
 
 .airport3 .plane,
 .airport6 .plane{
- filter:drop-shadow(0 0 8px rgba(120,190,255,.8));
+    filter:drop-shadow(
+        0 0 8px rgba(120,190,255,.8)
+    );
 }
 
 @keyframes fly1{
- from{transform:translateX(0)}
- to{transform:translateX(650px)}
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(650px);
+    }
 }
 
 @keyframes fly2{
- from{transform:translateX(0)}
- to{transform:translateX(-650px)}
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-650px);
+    }
 }
 
-/* LLUVIA */
+
+/* =====================================================
+   LLUVIA
+===================================================== */
 
 .rain{
- position:absolute;
- inset:0;
- z-index:4;
- pointer-events:none;
- display:none;
- background:repeating-linear-gradient(
-  105deg,
-  transparent 0,
-  transparent 16px,
-  rgba(210,235,255,.18) 17px,
-  rgba(210,235,255,.18) 18px,
-  transparent 19px,
-  transparent 34px
- );
+    position:absolute;
+    inset:0;
+    z-index:4;
+    pointer-events:none;
+    display:none;
+
+    background:
+    repeating-linear-gradient(
+        105deg,
+        transparent 0,
+        transparent 16px,
+        rgba(210,235,255,.18) 17px,
+        rgba(210,235,255,.18) 18px,
+        transparent 19px,
+        transparent 34px
+    );
 }
 
 .airport4 .rain{
- display:block;
- animation:rainMove .7s linear infinite;
+    display:block;
+    animation:rainMove .7s linear infinite;
 }
 
 @keyframes rainMove{
- from{transform:translateY(-20px)}
- to{transform:translateY(20px)}
+
+    from{
+        transform:translateY(-20px);
+    }
+
+    to{
+        transform:translateY(20px);
+    }
+
 }
 
-/* GATE */
+
+/* =====================================================
+   GATE
+===================================================== */
 
 #gate{
- position:absolute;
- top:27%;
- left:50%;
- transform:translateX(-50%);
- background:#075985;
- color:white;
- border:3px solid white;
- border-radius:6px;
- padding:6px 15px;
- font-size:14px;
- font-weight:bold;
- z-index:5;
+    position:absolute;
+
+    top:27%;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:#075985;
+
+    color:white;
+
+    border:3px solid white;
+
+    border-radius:6px;
+
+    padding:6px 15px;
+
+    font-size:14px;
+    font-weight:bold;
+
+    z-index:5;
 }
 
-.airport2 #gate{background:#087f73}
-.airport3 #gate{background:#6737c5}
-.airport4 #gate{background:#9a4d09}
-.airport5 #gate{background:#08734f}
-.airport6 #gate{background:#c32843}
+.airport2 #gate{
+    background:#087f73;
+}
 
-/* CARRILES */
+.airport3 #gate{
+    background:#6737c5;
+}
+
+.airport4 #gate{
+    background:#9a4d09;
+}
+
+.airport5 #gate{
+    background:#08734f;
+}
+
+.airport6 #gate{
+    background:#c32843;
+}
+
+
+/* =====================================================
+   CARRILES
+===================================================== */
 
 #runArea{
- position:absolute;
- top:40%;
- left:0;
- right:0;
- bottom:0;
+    position:absolute;
+
+    top:40%;
+
+    left:0;
+    right:0;
+    bottom:0;
 }
 
 .lane{
- position:absolute;
- top:0;
- bottom:0;
- width:3px;
- background:repeating-linear-gradient(
-  to bottom,
-  rgba(230,235,240,.8) 0,
-  rgba(230,235,240,.8) 45px,
-  transparent 45px,
-  transparent 90px
- );
+    position:absolute;
+
+    top:0;
+    bottom:0;
+
+    width:3px;
+
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        rgba(230,235,240,.8) 0,
+        rgba(230,235,240,.8) 45px,
+        transparent 45px,
+        transparent 90px
+    );
 }
 
-.lane1{left:33.333%}
-.lane2{left:66.666%}
+.lane1{
+    left:33.333%;
+}
 
-/* HUD */
+.lane2{
+    left:66.666%;
+}
+
+
+/* =====================================================
+   HUD
+===================================================== */
 
 #hud{
- position:absolute;
- top:18px;
- left:18px;
- right:18px;
- display:flex;
- justify-content:space-between;
- z-index:20;
- color:white;
- font-size:17px;
- font-weight:bold;
+    position:absolute;
+
+    top:18px;
+    left:18px;
+    right:18px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    z-index:20;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
 }
 
 .hudBox{
- background:rgba(0,0,0,.45);
- padding:9px 13px;
- border-radius:12px;
+    background:rgba(0,0,0,.45);
+
+    padding:9px 13px;
+
+    border-radius:12px;
 }
 
 #level{
- position:absolute;
- top:68px;
- left:50%;
- transform:translateX(-50%);
- z-index:20;
- color:#ffe36b;
- background:rgba(0,0,0,.45);
- padding:5px 11px;
- border-radius:10px;
- font-size:12px;
- font-weight:bold;
+    position:absolute;
+
+    top:68px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:20;
+
+    color:#ffe36b;
+
+    background:rgba(0,0,0,.45);
+
+    padding:5px 11px;
+
+    border-radius:10px;
+
+    font-size:12px;
+
+    font-weight:bold;
 }
 
 #shield{
- position:absolute;
- top:105px;
- left:50%;
- transform:translateX(-50%);
- z-index:20;
- padding:6px 12px;
- border-radius:12px;
- background:rgba(0,0,0,.45);
- color:#b8d8e8;
- font-size:13px;
- font-weight:bold;
- opacity:.75;
+    position:absolute;
+
+    top:105px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:20;
+
+    padding:6px 12px;
+
+    border-radius:12px;
+
+    background:rgba(0,0,0,.45);
+
+    color:#b8d8e8;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    opacity:.75;
 }
 
 #shield.active{
- opacity:1;
- color:white;
- background:rgba(20,130,220,.8);
- box-shadow:0 0 18px rgba(80,190,255,.9);
+    opacity:1;
+
+    color:white;
+
+    background:rgba(20,130,220,.8);
+
+    box-shadow:
+    0 0 18px rgba(80,190,255,.9);
 }
 
-/* PERSONAJE */
+
+/* =====================================================
+   PERSONAJE
+===================================================== */
 
 #player{
- position:absolute;
- width:62px;
- height:82px;
- bottom:92px;
- z-index:10;
- transition:left .07s ease;
+    position:absolute;
+
+    width:62px;
+    height:82px;
+
+    bottom:92px;
+
+    z-index:10;
+
+    transition:left .07s ease;
 }
 
 .head{
- position:absolute;
- width:42px;
- height:42px;
- left:10px;
- top:0;
- background:#f2b58c;
- border-radius:45%;
- border:3px solid #542f26;
+    position:absolute;
+
+    width:42px;
+    height:42px;
+
+    left:10px;
+    top:0;
+
+    background:#f2b58c;
+
+    border-radius:45%;
+
+    border:3px solid #542f26;
 }
 
 .hair{
- position:absolute;
- width:42px;
- height:18px;
- left:10px;
- top:0;
- background:#34251e;
- border-radius:50% 50% 25% 25%;
- z-index:2;
+    position:absolute;
+
+    width:42px;
+    height:18px;
+
+    left:10px;
+    top:0;
+
+    background:#34251e;
+
+    border-radius:50% 50% 25% 25%;
+
+    z-index:2;
 }
 
 .eye{
- position:absolute;
- width:5px;
- height:7px;
- background:#202020;
- border-radius:50%;
- top:19px;
- z-index:3;
+    position:absolute;
+
+    width:5px;
+    height:7px;
+
+    background:#202020;
+
+    border-radius:50%;
+
+    top:19px;
+
+    z-index:3;
 }
 
-.eye.left{left:20px}
-.eye.right{right:20px}
+.eye.left{
+    left:20px;
+}
+
+.eye.right{
+    right:20px;
+}
 
 .body{
- position:absolute;
- width:48px;
- height:43px;
- left:7px;
- top:37px;
- background:#3478d4;
- border-radius:12px 12px 8px 8px;
- border:3px solid #1c4175;
+    position:absolute;
+
+    width:48px;
+    height:43px;
+
+    left:7px;
+    top:37px;
+
+    background:#3478d4;
+
+    border-radius:12px 12px 8px 8px;
+
+    border:3px solid #1c4175;
 }
 
 .backpack{
- position:absolute;
- width:15px;
- height:30px;
- left:0;
- top:44px;
- background:#e85c4a;
- border-radius:6px;
+    position:absolute;
+
+    width:15px;
+    height:30px;
+
+    left:0;
+    top:44px;
+
+    background:#e85c4a;
+
+    border-radius:6px;
 }
 
 .leg{
- position:absolute;
- width:12px;
- height:25px;
- background:#202c3b;
- top:75px;
- border-radius:5px;
+    position:absolute;
+
+    width:12px;
+    height:25px;
+
+    background:#202c3b;
+
+    top:75px;
+
+    border-radius:5px;
 }
 
-.leg.left{left:15px}
-.leg.right{right:15px}
+.leg.left{
+    left:15px;
+}
+
+.leg.right{
+    right:15px;
+}
 
 .running .leg.left{
- animation:run1 .18s infinite alternate;
+    animation:run1 .18s infinite alternate;
 }
 
 .running .leg.right{
- animation:run2 .18s infinite alternate;
+    animation:run2 .18s infinite alternate;
 }
 
 @keyframes run1{
- from{transform:rotate(20deg)}
- to{transform:rotate(-20deg)}
+
+    from{
+        transform:rotate(20deg);
+    }
+
+    to{
+        transform:rotate(-20deg);
+    }
+
 }
 
 @keyframes run2{
- from{transform:rotate(-20deg)}
- to{transform:rotate(20deg)}
+
+    from{
+        transform:rotate(-20deg);
+    }
+
+    to{
+        transform:rotate(20deg);
+    }
+
 }
 
-/* ESCUDO */
+
+/* =====================================================
+   ESCUDO
+===================================================== */
 
 #player.shielded:after{
- content:"";
- position:absolute;
- width:82px;
- height:102px;
- left:-10px;
- top:-10px;
- border:4px solid #6ddcff;
- border-radius:45%;
- background:rgba(80,190,255,.12);
- box-shadow:0 0 20px rgba(80,190,255,.8);
- z-index:-1;
- animation:shieldPulse 1s infinite alternate;
+
+    content:"";
+
+    position:absolute;
+
+    width:82px;
+    height:102px;
+
+    left:-10px;
+    top:-10px;
+
+    border:4px solid #6ddcff;
+
+    border-radius:45%;
+
+    background:rgba(80,190,255,.12);
+
+    box-shadow:
+    0 0 20px rgba(80,190,255,.8);
+
+    z-index:-1;
+
+    animation:
+    shieldPulse 1s infinite alternate;
 }
 
 @keyframes shieldPulse{
- from{transform:scale(.97)}
- to{transform:scale(1.04)}
+
+    from{
+        transform:scale(.97);
+    }
+
+    to{
+        transform:scale(1.04);
+    }
+
 }
 
-/* MALETAS */
+
+/* =====================================================
+   MALETAS
+===================================================== */
 
 .suitcase{
- position:absolute;
- width:42px;
- height:52px;
- background:#ffbd32;
- border:4px solid #8c6414;
- border-radius:8px;
- z-index:8;
+
+    position:absolute;
+
+    width:42px;
+    height:52px;
+
+    background:#ffbd32;
+
+    border:4px solid #8c6414;
+
+    border-radius:8px;
+
+    z-index:8;
 }
 
 .suitcase:before{
- content:"";
- position:absolute;
- width:15px;
- height:8px;
- left:10px;
- top:-11px;
- border:4px solid #8c6414;
- border-bottom:none;
- border-radius:8px 8px 0 0;
+
+    content:"";
+
+    position:absolute;
+
+    width:15px;
+    height:8px;
+
+    left:10px;
+    top:-11px;
+
+    border:4px solid #8c6414;
+
+    border-bottom:none;
+
+    border-radius:8px 8px 0 0;
 }
 
-/* MONEDAS */
+
+/* =====================================================
+   MONEDAS
+===================================================== */
 
 .coin{
- position:absolute;
- width:31px;
- height:31px;
- border-radius:50%;
- background:#ffd83d;
- border:4px solid #b88708;
- z-index:9;
- display:flex;
- justify-content:center;
- align-items:center;
- color:#8c6414;
- font-weight:bold;
- box-shadow:0 0 10px rgba(255,215,50,.7);
- animation:coinPulse .7s infinite alternate;
+
+    position:absolute;
+
+    width:31px;
+    height:31px;
+
+    border-radius:50%;
+
+    background:#ffd83d;
+
+    border:4px solid #b88708;
+
+    z-index:9;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    color:#8c6414;
+
+    font-weight:bold;
+
+    box-shadow:
+    0 0 10px rgba(255,215,50,.7);
+
+    animation:
+    coinPulse .7s infinite alternate;
 }
 
 @keyframes coinPulse{
- from{transform:scale(1)}
- to{transform:scale(1.1)}
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.1);
+    }
+
 }
 
-.ticket{
- position:absolute;
- width:42px;
- height:28px;
- background:#f5f5f5;
- border:3px solid #2772a8;
- border-radius:5px;
- z-index:9;
- display:flex;
- justify-content:center;
- align-items:center;
-}
 
-/* MENSAJES */
+/* =====================================================
+   MENSAJES
+===================================================== */
 
 .airportMessage{
- position:absolute;
- top:42%;
- left:50%;
- transform:translate(-50%,-50%) scale(.8);
- z-index:60;
- color:white;
- font-size:25px;
- font-weight:900;
- text-align:center;
- white-space:nowrap;
- text-shadow:0 3px 5px rgba(0,0,0,.8);
- animation:airportMessage 2.2s forwards;
- pointer-events:none;
+
+    position:absolute;
+
+    top:42%;
+    left:50%;
+
+    transform:
+    translate(-50%,-50%)
+    scale(.8);
+
+    z-index:60;
+
+    color:white;
+
+    font-size:25px;
+
+    font-weight:900;
+
+    text-align:center;
+
+    white-space:nowrap;
+
+    text-shadow:
+    0 3px 5px rgba(0,0,0,.8);
+
+    animation:
+    airportMessage 2.2s forwards;
+
+    pointer-events:none;
 }
 
 @keyframes airportMessage{
- 0%{
-  opacity:0;
-  transform:translate(-50%,-50%) scale(.7);
- }
- 20%{
-  opacity:1;
-  transform:translate(-50%,-50%) scale(1.05);
- }
- 75%{opacity:1}
- 100%{
-  opacity:0;
-  transform:translate(-50%,-65%) scale(1);
- }
+
+    0%{
+        opacity:0;
+
+        transform:
+        translate(-50%,-50%)
+        scale(.7);
+    }
+
+    20%{
+        opacity:1;
+
+        transform:
+        translate(-50%,-50%)
+        scale(1.05);
+    }
+
+    75%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+
+        transform:
+        translate(-50%,-65%)
+        scale(1);
+    }
+
 }
 
 .reward{
- position:absolute;
- left:50%;
- top:45%;
- transform:translate(-50%,-50%);
- z-index:40;
- color:#ffe25a;
- font-size:25px;
- font-weight:900;
- text-shadow:0 3px 0 #6d5310;
- animation:reward .8s forwards;
- pointer-events:none;
+
+    position:absolute;
+
+    left:50%;
+    top:45%;
+
+    transform:
+    translate(-50%,-50%);
+
+    z-index:40;
+
+    color:#ffe25a;
+
+    font-size:25px;
+
+    font-weight:900;
+
+    text-shadow:
+    0 3px 0 #6d5310;
+
+    animation:
+    reward .8s forwards;
+
+    pointer-events:none;
 }
 
 @keyframes reward{
- 0%{
-  opacity:0;
-  transform:translate(-50%,-20%) scale(.5);
- }
- 25%{
-  opacity:1;
-  transform:translate(-50%,-50%) scale(1.15);
- }
- 100%{
-  opacity:0;
-  transform:translate(-50%,-90%) scale(1);
- }
+
+    0%{
+        opacity:0;
+
+        transform:
+        translate(-50%,-20%)
+        scale(.5);
+    }
+
+    25%{
+        opacity:1;
+
+        transform:
+        translate(-50%,-50%)
+        scale(1.15);
+    }
+
+    100%{
+        opacity:0;
+
+        transform:
+        translate(-50%,-90%)
+        scale(1);
+    }
+
 }
 
-/* CONTROLES */
+
+/* =====================================================
+   CONTROLES
+===================================================== */
 
 #controls{
- position:absolute;
- bottom:25px;
- left:0;
- right:0;
- display:flex;
- justify-content:space-around;
- padding:0 45px;
- z-index:30;
+
+    position:absolute;
+
+    bottom:25px;
+
+    left:0;
+    right:0;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    padding:0 45px;
+
+    z-index:30;
 }
 
 .control{
- width:72px;
- height:72px;
- border:none;
- border-radius:50%;
- background:rgba(255,255,255,.20);
- color:white;
- font-size:30px;
- font-weight:bold;
- border:2px solid rgba(255,255,255,.45);
+
+    width:72px;
+    height:72px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.20);
+
+    color:white;
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    border:
+    2px solid rgba(255,255,255,.45);
 }
 
 .control:active{
- background:rgba(255,255,255,.42);
- transform:scale(.95);
+
+    background:
+    rgba(255,255,255,.42);
+
+    transform:scale(.95);
 }
 
-/* GAME OVER */
+
+/* =====================================================
+   GAME OVER
+===================================================== */
 
 #gameOver{
- position:absolute;
- inset:0;
- display:none;
- align-items:center;
- justify-content:center;
- flex-direction:column;
- background:rgba(4,10,20,.92);
- color:white;
- z-index:100;
- text-align:center;
+
+    position:absolute;
+
+    inset:0;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-direction:column;
+
+    background:
+    rgba(4,10,20,.92);
+
+    color:white;
+
+    z-index:100;
+
+    text-align:center;
 }
 
 #gameOver h2{
- font-size:40px;
- color:#ff6464;
- margin-bottom:12px;
+
+    font-size:40px;
+
+    color:#ff6464;
+
+    margin-bottom:12px;
 }
 
 #finalScore{
- font-size:21px;
- margin-bottom:8px;
+
+    font-size:21px;
+
+    margin-bottom:8px;
 }
 
 #finalCoins{
- font-size:19px;
- color:#ffd83d;
- margin-bottom:25px;
+
+    font-size:19px;
+
+    color:#ffd83d;
+
+    margin-bottom:25px;
 }
 
 .continueButton{
- border:none;
- background:#27c96f;
- color:white;
- font-size:18px;
- font-weight:bold;
- padding:15px 25px;
- border-radius:14px;
- box-shadow:0 5px 0 #168448;
- margin-bottom:18px;
+
+    border:none;
+
+    background:#27c96f;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    padding:15px 25px;
+
+    border-radius:14px;
+
+    box-shadow:
+    0 5px 0 #168448;
+
+    margin-bottom:18px;
 }
 
 .continueButton.disabled{
- background:#53606b;
- box-shadow:0 4px 0 #39434b;
+
+    background:#53606b;
+
+    box-shadow:
+    0 4px 0 #39434b;
 }
 
 .restart{
- border:none;
- background:#ffd34f;
- color:#382800;
- font-size:19px;
- font-weight:bold;
- padding:14px 30px;
- border-radius:15px;
+
+    border:none;
+
+    background:#ffd34f;
+
+    color:#382800;
+
+    font-size:19px;
+
+    font-weight:bold;
+
+    padding:14px 30px;
+
+    border-radius:15px;
 }
 
-/* ANUNCIO */
+
+/* =====================================================
+   ANUNCIO
+===================================================== */
 
 #adOverlay{
- position:absolute;
- inset:0;
- z-index:200;
- display:none;
- align-items:center;
- justify-content:center;
- flex-direction:column;
- background:rgba(5,8,13,.96);
- color:white;
- text-align:center;
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:200;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-direction:column;
+
+    background:
+    rgba(5,8,13,.96);
+
+    color:white;
+
+    text-align:center;
 }
 
 .adLabel{
- position:absolute;
- top:15px;
- right:15px;
- color:#9ca3af;
- font-size:11px;
+
+    position:absolute;
+
+    top:15px;
+    right:15px;
+
+    color:#9ca3af;
+
+    font-size:11px;
 }
 
 .adBox{
- width:80%;
- max-width:330px;
- min-height:300px;
- border-radius:18px;
- background:linear-gradient(135deg,#182b42,#243b55);
- border:2px solid #42556b;
- display:flex;
- flex-direction:column;
- align-items:center;
- justify-content:center;
- padding:25px;
- box-shadow:0 15px 50px rgba(0,0,0,.5);
+
+    width:80%;
+
+    max-width:330px;
+
+    min-height:300px;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #182b42,
+        #243b55
+    );
+
+    border:
+    2px solid #42556b;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:25px;
+
+    box-shadow:
+    0 15px 50px rgba(0,0,0,.5);
 }
 
 .adIcon{
- font-size:65px;
- margin-bottom:18px;
+
+    font-size:65px;
+
+    margin-bottom:18px;
 }
 
 .adTitle{
- font-size:25px;
- font-weight:900;
- margin-bottom:10px;
+
+    font-size:25px;
+
+    font-weight:900;
+
+    margin-bottom:10px;
 }
 
 .adText{
- color:#b8c5d3;
- font-size:14px;
- line-height:1.4;
+
+    color:#b8c5d3;
+
+    font-size:14px;
+
+    line-height:1.4;
 }
 
 #adCountdown{
- margin-top:25px;
- width:65px;
- height:65px;
- border-radius:50%;
- background:#ffd34f;
- color:#302600;
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:25px;
- font-weight:900;
+
+    margin-top:25px;
+
+    width:65px;
+    height:65px;
+
+    border-radius:50%;
+
+    background:#ffd34f;
+
+    color:#302600;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:25px;
+
+    font-weight:900;
 }
 
 #adContinueText{
- margin-top:18px;
- color:#9ca3af;
- font-size:13px;
+
+    margin-top:18px;
+
+    color:#9ca3af;
+
+    font-size:13px;
 }
 
-/* CONTINUAR */
+
+/* =====================================================
+   CONTINUAR
+===================================================== */
 
 #continueScreen{
- position:absolute;
- inset:0;
- z-index:190;
- display:none;
- align-items:center;
- justify-content:center;
- flex-direction:column;
- background:rgba(4,10,20,.88);
- color:white;
- text-align:center;
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:190;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-direction:column;
+
+    background:
+    rgba(4,10,20,.88);
+
+    color:white;
+
+    text-align:center;
 }
 
 .continueTitle{
- font-size:34px;
- font-weight:900;
- color:#6ddcff;
- margin-bottom:10px;
+
+    font-size:34px;
+
+    font-weight:900;
+
+    color:#6ddcff;
+
+    margin-bottom:10px;
 }
 
 .continueSub{
- color:#cbd5e1;
- font-size:15px;
- margin-bottom:25px;
+
+    color:#cbd5e1;
+
+    font-size:15px;
+
+    margin-bottom:25px;
 }
 
 .continueNow{
- border:none;
- background:#27c96f;
- color:white;
- font-size:21px;
- font-weight:bold;
- padding:15px 35px;
- border-radius:15px;
+
+    border:none;
+
+    background:#27c96f;
+
+    color:white;
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    padding:15px 35px;
+
+    border-radius:15px;
 }
+
+
+/* =====================================================
+   AVISO NIVEL 6+
+===================================================== */
+
+.challengeMessage{
+
+    position:absolute;
+
+    top:34%;
+
+    left:50%;
+
+    transform:
+    translate(-50%,-50%);
+
+    z-index:70;
+
+    color:#ffcf45;
+
+    background:rgba(100,20,20,.78);
+
+    border:2px solid #ffcf45;
+
+    border-radius:12px;
+
+    padding:8px 14px;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    white-space:nowrap;
+
+    animation:
+    challengeAnimation 2s forwards;
+
+    pointer-events:none;
+}
+
+@keyframes challengeAnimation{
+
+    0%{
+        opacity:0;
+        transform:
+        translate(-50%,-40%)
+        scale(.8);
+    }
+
+    20%{
+        opacity:1;
+        transform:
+        translate(-50%,-50%)
+        scale(1);
+    }
+
+    70%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+        transform:
+        translate(-50%,-60%)
+        scale(1);
+    }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
 <div id="game">
 
+
+<!-- =====================================================
+     MENU
+===================================================== -->
+
 <div id="menu">
 
- <div class="logo">AIRPORT RUSH</div>
+    <div class="logo">
+        AIRPORT RUSH
+    </div>
 
- <div class="subtitle">
-  RUN • DODGE • ESCAPE
- </div>
+    <div class="subtitle">
+        RUN • DODGE • ESCAPE
+    </div>
 
- <button class="play-button" onclick="startGame()">
-  ✈ JUGAR
- </button>
+    <button
+        class="play-button"
+        onclick="startGame()">
 
- <div class="instructions">
-  Esquiva las maletas y recoge monedas.<br>
-  Consigue 25 monedas para activar un escudo.
- </div>
+        ✈ JUGAR
+
+    </button>
+
+    <div class="instructions">
+
+        Esquiva las maletas y recoge monedas.<br>
+
+        Consigue 25 monedas para activar un escudo.
+
+    </div>
 
 </div>
 
 
+<!-- =====================================================
+     JUEGO
+===================================================== -->
+
 <div id="gameScreen">
 
- <div id="hud">
 
-  <div class="hudBox">
-   🏆 <span id="score">0</span>
-  </div>
+    <div id="hud">
 
-  <div class="hudBox">
-   🪙 <span id="coins">0</span>/25
-  </div>
+        <div class="hudBox">
 
- </div>
+            🏆
+            <span id="score">
+                0
+            </span>
 
- <div id="level">
-  NIVEL 1 • x1.0
- </div>
-
- <div id="shield">
-  🛡️ 25 MONEDAS = ESCUDO
- </div>
+        </div>
 
 
- <div id="airport" class="airport1">
+        <div class="hudBox">
 
-  <div class="window w1"></div>
-  <div class="window w2"></div>
-  <div class="window w3"></div>
-  <div class="window w4"></div>
+            🪙
+            <span id="coins">
+                0
+            </span>/25
 
-  <div class="rain"></div>
+        </div>
 
-  <div class="palm palm1">🌴</div>
-  <div class="palm palm2">🌴</div>
-
-  <div id="outsideGround"></div>
-
-  <div id="runway">
-   <div class="runwayLine r1"></div>
-   <div class="runwayLine r2"></div>
-   <div class="runwayLine r3"></div>
-   <div class="runwayLine r4"></div>
-  </div>
-
-  <div id="tower"></div>
-
-  <div class="plane plane1">✈️</div>
-  <div class="plane plane2">✈️</div>
-
-  <div id="gate">
-   GATE 12
-  </div>
-
-
-  <div id="runArea">
-
-   <div class="lane lane1"></div>
-   <div class="lane lane2"></div>
-
-
-   <div id="player">
-
-    <div class="hair"></div>
-
-    <div class="head">
-     <div class="eye left"></div>
-     <div class="eye right"></div>
     </div>
 
-    <div class="backpack"></div>
 
-    <div class="body"></div>
-
-    <div class="leg left"></div>
-    <div class="leg right"></div>
-
-   </div>
-
-  </div>
+    <div id="level">
+        NIVEL 1 • x1.0
+    </div>
 
 
-  <div id="controls">
+    <div id="shield">
 
-   <button class="control" id="leftButton">
-    ◀
-   </button>
+        🛡️ 25 MONEDAS = ESCUDO
 
-   <button class="control" id="rightButton">
-    ▶
-   </button>
-
-  </div>
-
- </div>
+    </div>
 
 
- <!-- GAME OVER -->
+    <!-- =================================================
+         AEROPUERTO
+    ================================================= -->
 
- <div id="gameOver">
-
-  <h2>💥 ¡HAS CHOCADO!</h2>
-
-  <div id="finalScore">
-   Puntuación: 0
-  </div>
-
-  <div id="finalCoins">
-   🪙 Monedas: 0
-  </div>
-
-  <button
-   class="continueButton"
-   id="watchAdButton"
-   onclick="watchAd()">
-
-   📺 VER ANUNCIO Y CONTINUAR
-
-  </button>
-
-  <button
-   class="restart"
-   onclick="restartGame()">
-
-   🔄 EMPEZAR DE NUEVO
-
-  </button>
-
- </div>
+    <div
+        id="airport"
+        class="airport1">
 
 
- <!-- ANUNCIO -->
-
- <div id="adOverlay">
-
-  <div class="adLabel">
-   ANUNCIO SIMULADO
-  </div>
-
-  <div class="adBox">
-
-   <div class="adIcon">✈️</div>
-
-   <div class="adTitle">
-    AIRPORT RUSH
-   </div>
-
-   <div class="adText">
-    ¡Prepárate para continuar tu carrera!
-   </div>
-
-   <div id="adCountdown">
-    5
-   </div>
-
-   <div id="adContinueText">
-    El anuncio termina en...
-   </div>
-
-  </div>
-
- </div>
+        <div class="window w1"></div>
+        <div class="window w2"></div>
+        <div class="window w3"></div>
+        <div class="window w4"></div>
 
 
- <!-- CONTINUAR -->
+        <div class="rain"></div>
 
- <div id="continueScreen">
 
-  <div class="continueTitle">
-   🚀 ¡CONTINUAMOS!
-  </div>
+        <div class="palm palm1">
+            🌴
+        </div>
 
-  <div class="continueSub">
-   Mismo nivel · mismo aeropuerto
-  </div>
+        <div class="palm palm2">
+            🌴
+        </div>
 
-  <button
-   class="continueNow"
-   onclick="continueGame()">
 
-   ▶ CONTINUAR
+        <div id="outsideGround"></div>
 
-  </button>
 
- </div>
+        <div id="runway">
+
+            <div class="runwayLine r1"></div>
+            <div class="runwayLine r2"></div>
+            <div class="runwayLine r3"></div>
+            <div class="runwayLine r4"></div>
+
+        </div>
+
+
+        <div id="tower"></div>
+
+
+        <div class="plane plane1">
+            ✈️
+        </div>
+
+        <div class="plane plane2">
+            ✈️
+        </div>
+
+
+        <div id="gate">
+            GATE 12
+        </div>
+
+
+        <!-- =================================================
+             ZONA DE JUEGO
+        ================================================= -->
+
+        <div id="runArea">
+
+
+            <div class="lane lane1"></div>
+
+            <div class="lane lane2"></div>
+
+
+            <!-- PERSONAJE -->
+
+            <div id="player">
+
+                <div class="hair"></div>
+
+
+                <div class="head">
+
+                    <div class="eye left"></div>
+
+                    <div class="eye right"></div>
+
+                </div>
+
+
+                <div class="backpack"></div>
+
+                <div class="body"></div>
+
+
+                <div class="leg left"></div>
+
+                <div class="leg right"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONTROLES -->
+
+        <div id="controls">
+
+            <button
+                class="control"
+                id="leftButton">
+
+                ◀
+
+            </button>
+
+
+            <button
+                class="control"
+                id="rightButton">
+
+                ▶
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         GAME OVER
+    ================================================= -->
+
+    <div id="gameOver">
+
+        <h2>
+            💥 ¡HAS CHOCADO!
+        </h2>
+
+
+        <div id="finalScore">
+
+            Puntuación: 0
+
+        </div>
+
+
+        <div id="finalCoins">
+
+            🪙 Monedas: 0
+
+        </div>
+
+
+        <button
+            class="continueButton"
+            id="watchAdButton"
+            onclick="watchAd()">
+
+            📺 VER ANUNCIO Y CONTINUAR
+
+        </button>
+
+
+        <button
+            class="restart"
+            onclick="restartGame()">
+
+            🔄 EMPEZAR DE NUEVO
+
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         ANUNCIO SIMULADO
+    ================================================= -->
+
+    <div id="adOverlay">
+
+        <div class="adLabel">
+            ANUNCIO SIMULADO
+        </div>
+
+
+        <div class="adBox">
+
+            <div class="adIcon">
+                ✈️
+            </div>
+
+
+            <div class="adTitle">
+                AIRPORT RUSH
+            </div>
+
+
+            <div class="adText">
+
+                ¡Prepárate para continuar
+                tu carrera!
+
+            </div>
+
+
+            <div id="adCountdown">
+                5
+            </div>
+
+
+            <div id="adContinueText">
+
+                El anuncio termina en...
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CONTINUAR
+    ================================================= -->
+
+    <div id="continueScreen">
+
+        <div class="continueTitle">
+
+            🚀 ¡CONTINUAMOS!
+
+        </div>
+
+
+        <div class="continueSub">
+
+            Mismo nivel · mismo aeropuerto
+
+        </div>
+
+
+        <button
+            class="continueNow"
+            onclick="continueGame()">
+
+            ▶ CONTINUAR
+
+        </button>
+
+    </div>
 
 </div>
 
@@ -1084,7 +1801,7 @@ html,body{
 <script>
 
 /* =====================================================
-   VARIABLES
+   VARIABLES PRINCIPALES
 ===================================================== */
 
 let player;
@@ -1095,137 +1812,284 @@ let playerLane=1;
 
 let score=0;
 
+
+/*
+   coins = monedas disponibles
+   para conseguir el próximo escudo.
+*/
+
 let coins=0;
 
 let level=1;
 
 let gameTime=0;
 
-let obstacleSpeed=2.6;
 
-let spawnDelay=1350;
+/*
+   Dificultad inicial.
+*/
+
+let obstacleSpeed=2.5;
+
+let spawnDelay=1400;
+
+
+/*
+   Nivel 6 activa la segunda
+   fase de dificultad.
+*/
+
+let hardMode=false;
+
+
+/*
+   Objetos en pantalla.
+*/
 
 let obstacles=[];
+
+
+/*
+   Control de patrones.
+*/
 
 let lastLane=-1;
 
 let previousLane=-1;
 
+
+/*
+   Monedas.
+*/
+
 let rewardActive=false;
 
 let rewardObject=null;
 
+
+/*
+   Escudo.
+*/
+
 let shieldActive=false;
+
+
+/*
+   Continuación.
+*/
 
 let continueUsed=false;
 
+
+/*
+   Récord.
+*/
+
 let highScore=
- Number(localStorage.getItem("airport_high_score")||0);
+Number(
+    localStorage.getItem(
+        "airport_high_score"
+    ) || 0
+);
+
+
+/*
+   Temporizadores.
+*/
 
 let spawnTimer=null;
+
 let difficultyTimer=null;
+
 let scoreTimer=null;
+
 let gameTimeTimer=null;
+
 let coinTimer=null;
+
 let adTimer=null;
 
 
 /* =====================================================
-   INICIO
+   CARGA
 ===================================================== */
 
-window.addEventListener("load",()=>{
+window.addEventListener(
+    "load",
+    function(){
 
- player=document.getElementById("player");
+        player=
+        document.getElementById(
+            "player"
+        );
 
-});
+    }
+);
 
 
 /* =====================================================
-   START GAME
+   START
 ===================================================== */
 
 function startGame(){
 
- clearAllTimers();
+    clearAllTimers();
 
- removeObjects();
+    removeObjects();
 
- document.getElementById("menu").style.display="none";
- document.getElementById("gameScreen").style.display="block";
- document.getElementById("gameOver").style.display="none";
- document.getElementById("adOverlay").style.display="none";
- document.getElementById("continueScreen").style.display="none";
 
- score=0;
- coins=0;
- level=1;
- gameTime=0;
+    document
+    .getElementById("menu")
+    .style.display="none";
 
- playerLane=1;
 
- obstacleSpeed=2.6;
- spawnDelay=1350;
+    document
+    .getElementById("gameScreen")
+    .style.display="block";
 
- obstacles=[];
 
- lastLane=-1;
- previousLane=-1;
+    document
+    .getElementById("gameOver")
+    .style.display="none";
 
- rewardActive=false;
- rewardObject=null;
 
- shieldActive=false;
- continueUsed=false;
+    document
+    .getElementById("adOverlay")
+    .style.display="none";
 
- updateHUD();
- updateLevel();
- updateShield();
 
- changeAirport();
+    document
+    .getElementById("continueScreen")
+    .style.display="none";
 
- positionPlayer();
 
- player.classList.add("running");
- player.classList.remove("shielded");
+    score=0;
 
- updateContinueButton();
+    coins=0;
 
- gameRunning=true;
+    level=1;
 
- spawnTimer=setTimeout(spawnObstacle,1100);
+    gameTime=0;
 
- startScore();
- startDifficulty();
- startCoins();
 
- gameTimeTimer=setInterval(()=>{
+    playerLane=1;
 
-  if(gameRunning){
-   gameTime++;
-  }
 
- },1000);
+    obstacleSpeed=2.5;
+
+    spawnDelay=1400;
+
+
+    hardMode=false;
+
+
+    obstacles=[];
+
+
+    lastLane=-1;
+
+    previousLane=-1;
+
+
+    rewardActive=false;
+
+    rewardObject=null;
+
+
+    shieldActive=false;
+
+    continueUsed=false;
+
+
+    updateHUD();
+
+    updateLevel();
+
+    updateShield();
+
+
+    changeAirport();
+
+
+    positionPlayer();
+
+
+    player.classList.add(
+        "running"
+    );
+
+
+    player.classList.remove(
+        "shielded"
+    );
+
+
+    updateContinueButton();
+
+
+    gameRunning=true;
+
+
+    /*
+       Primera maleta después de
+       un pequeño margen.
+    */
+
+    spawnTimer=
+    setTimeout(
+        spawnObstacle,
+        1200
+    );
+
+
+    startScore();
+
+    startDifficulty();
+
+    startCoins();
+
+
+    gameTimeTimer=
+    setInterval(
+        function(){
+
+            if(gameRunning){
+
+                gameTime++;
+
+            }
+
+        },
+        1000
+    );
 
 }
 
 
 /* =====================================================
-   POSICIÓN
+   POSICIÓN DEL PERSONAJE
 ===================================================== */
 
 function positionPlayer(){
 
- const area=document.getElementById("runArea");
+    const area=
+    document.getElementById(
+        "runArea"
+    );
 
- const laneWidth=area.clientWidth/3;
 
- const x=
-  laneWidth*playerLane+
-  laneWidth/2-
-  31;
+    const laneWidth=
+    area.clientWidth/3;
 
- player.style.left=x+"px";
+
+    const x=
+    laneWidth*playerLane+
+    laneWidth/2-
+    31;
+
+
+    player.style.left=
+    x+"px";
 
 }
 
@@ -1236,30 +2100,32 @@ function positionPlayer(){
 
 function moveLeft(){
 
- if(!gameRunning)return;
+    if(!gameRunning)return;
 
- if(playerLane>0){
 
-  playerLane--;
+    if(playerLane>0){
 
-  positionPlayer();
+        playerLane--;
 
- }
+        positionPlayer();
+
+    }
 
 }
 
 
 function moveRight(){
 
- if(!gameRunning)return;
+    if(!gameRunning)return;
 
- if(playerLane<2){
 
-  playerLane++;
+    if(playerLane<2){
 
-  positionPlayer();
+        playerLane++;
 
- }
+        positionPlayer();
+
+    }
 
 }
 
@@ -1268,232 +2134,522 @@ function moveRight(){
    CONTROLES
 ===================================================== */
 
-document.addEventListener("keydown",e=>{
+document.addEventListener(
+    "keydown",
+    function(e){
 
- if(e.key==="ArrowLeft"){
-  moveLeft();
- }
+        if(e.key==="ArrowLeft"){
 
- if(e.key==="ArrowRight"){
-  moveRight();
- }
+            moveLeft();
 
-});
+        }
 
 
-document.getElementById("leftButton")
-.addEventListener("touchstart",e=>{
+        if(e.key==="ArrowRight"){
 
- e.preventDefault();
- moveLeft();
+            moveRight();
 
-});
+        }
+
+    }
+);
 
 
-document.getElementById("rightButton")
-.addEventListener("touchstart",e=>{
+document
+.getElementById("leftButton")
+.addEventListener(
+    "touchstart",
+    function(e){
 
- e.preventDefault();
- moveRight();
+        e.preventDefault();
 
-});
+        moveLeft();
+
+    }
+);
+
+
+document
+.getElementById("rightButton")
+.addEventListener(
+    "touchstart",
+    function(e){
+
+        e.preventDefault();
+
+        moveRight();
+
+    }
+);
 
 
 /* =====================================================
-   ELECCIÓN DE CARRIL DE MALETA
+   ELEGIR CARRILES
 ===================================================== */
 
-function chooseObstacleLane(){
+/*
+   Devuelve carriles donde actualmente
+   no existe una maleta demasiado cerca.
 
- /*
-   Buscamos carriles que NO tengan
-   una maleta demasiado cerca.
+   Esto es lo que garantiza que nunca
+   bloqueemos los tres carriles.
+*/
 
-   Así podemos tener varias maletas
-   en pantalla sin bloquear los 3
-   carriles al mismo tiempo.
- */
+function getAvailableLanes(){
 
- let possible=[];
-
- for(let lane=0;lane<3;lane++){
-
-  let blocked=false;
-
-  for(const ob of obstacles){
-
-   if(ob.lane!==lane)continue;
-
-   /*
-     Si hay una maleta dentro de esta
-     zona, no añadimos otra detrás.
-   */
-
-   if(
-    ob.y>-180 &&
-    ob.y<330
-   ){
-
-    blocked=true;
-    break;
-
-   }
-
-  }
-
-  if(!blocked){
-   possible.push(lane);
-  }
-
- }
+    let available=[];
 
 
- /*
-   Si podemos evitar repetir los
-   dos últimos carriles, lo hacemos.
- */
+    for(
+        let lane=0;
+        lane<3;
+        lane++
+    ){
 
- let preferred=
-  possible.filter(
-   lane=>
-   lane!==lastLane &&
-   lane!==previousLane
-  );
+        let blocked=false;
 
 
- if(preferred.length===0){
+        for(
+            const obstacle of obstacles
+        ){
 
-  preferred=
-   possible.filter(
-    lane=>lane!==lastLane
-   );
+            if(
+                obstacle.lane!==lane
+            ){
 
- }
+                continue;
 
-
- if(preferred.length===0){
-
-  preferred=possible;
-
- }
+            }
 
 
- if(preferred.length===0){
+            /*
+               Distancia suficiente para que
+               no aparezcan maletas pegadas.
+            */
 
-  return -1;
+            if(
+                obstacle.y>-180 &&
+                obstacle.y<300
+            ){
 
- }
+                blocked=true;
 
+                break;
 
- const lane=
-  preferred[
-   Math.floor(
-    Math.random()*preferred.length
-   )
-  ];
+            }
 
-
- previousLane=lastLane;
- lastLane=lane;
+        }
 
 
- return lane;
+        if(!blocked){
+
+            available.push(
+                lane
+            );
+
+        }
+
+    }
+
+
+    return available;
 
 }
 
 
 /* =====================================================
-   CREAR MALETA
+   ELEGIR CARRIL INDIVIDUAL
+===================================================== */
+
+function chooseSingleLane(
+    available
+){
+
+    if(
+        available.length===0
+    ){
+
+        return -1;
+
+    }
+
+
+    /*
+       Intentamos evitar los dos últimos
+       carriles utilizados.
+    */
+
+    let preferred=
+    available.filter(
+        lane=>
+        lane!==lastLane &&
+        lane!==previousLane
+    );
+
+
+    if(
+        preferred.length===0
+    ){
+
+        preferred=
+        available.filter(
+            lane=>
+            lane!==lastLane
+        );
+
+    }
+
+
+    if(
+        preferred.length===0
+    ){
+
+        preferred=
+        available;
+
+    }
+
+
+    const lane=
+    preferred[
+        Math.floor(
+            Math.random()*
+            preferred.length
+        )
+    ];
+
+
+    previousLane=lastLane;
+
+    lastLane=lane;
+
+
+    return lane;
+
+}
+
+
+/* =====================================================
+   GENERADOR DE PATRONES
+===================================================== */
+
+/*
+   Antes del nivel 6:
+       1 maleta.
+
+   Nivel 6+:
+       a veces 2 maletas.
+
+   IMPORTANTE:
+       siempre dejamos un carril libre.
+*/
+
+function createObstaclePattern(){
+
+    const available=
+    getAvailableLanes();
+
+
+    if(
+        available.length===0
+    ){
+
+        return [];
+
+    }
+
+
+    /*
+       Antes del nivel 6,
+       siempre una maleta.
+    */
+
+    if(!hardMode){
+
+        const lane=
+        chooseSingleLane(
+            available
+        );
+
+
+        return lane===-1
+        ?[]
+        :[lane];
+
+    }
+
+
+    /*
+       Nivel 6+.
+
+       Probabilidad de dos maletas:
+       aumenta progresivamente.
+    */
+
+    const doubleChance=
+    Math.min(
+        0.65,
+        0.25+
+        (level-6)*0.06
+    );
+
+
+    const shouldDouble=
+    Math.random()<
+    doubleChance;
+
+
+    /*
+       Si no hacemos doble,
+       una maleta.
+    */
+
+    if(
+        !shouldDouble ||
+        available.length<2
+    ){
+
+        const lane=
+        chooseSingleLane(
+            available
+        );
+
+
+        return lane===-1
+        ?[]
+        :[lane];
+
+    }
+
+
+    /*
+       Elegimos dos carriles.
+
+       Nunca los tres.
+    */
+
+    let candidates=
+    [...available];
+
+
+    /*
+       Mezclamos.
+    */
+
+    candidates.sort(
+        ()=>Math.random()-.5
+    );
+
+
+    let pair=
+    candidates.slice(
+        0,
+        2
+    );
+
+
+    /*
+       Evitamos que ambas sean exactamente
+       el mismo patrón repetido.
+    */
+
+    if(
+        pair.includes(lastLane) &&
+        pair.includes(previousLane)
+    ){
+
+        const alternative=
+        candidates.find(
+            lane=>
+            lane!==lastLane &&
+            lane!==previousLane
+        );
+
+
+        if(
+            alternative!==undefined
+        ){
+
+            pair[1]=alternative;
+
+        }
+
+    }
+
+
+    /*
+       Actualizamos historial
+       usando uno de los carriles.
+    */
+
+    previousLane=lastLane;
+
+    lastLane=
+    pair[
+        Math.floor(
+            Math.random()*
+            pair.length
+        )
+    ];
+
+
+    return pair;
+
+}
+
+
+/* =====================================================
+   CREAR MALETAS
 ===================================================== */
 
 function spawnObstacle(){
 
- if(!gameRunning)return;
+    if(!gameRunning){
+
+        return;
+
+    }
 
 
- const lane=
-  chooseObstacleLane();
+    const lanes=
+    createObstaclePattern();
 
 
- if(lane===-1){
+    if(
+        lanes.length===0
+    ){
 
-  scheduleObstacle();
+        scheduleObstacle();
 
-  return;
+        return;
 
- }
-
-
- const area=
-  document.getElementById("runArea");
+    }
 
 
- const laneWidth=
-  area.clientWidth/3;
+    lanes.forEach(
+        lane=>
+        createSuitcase(
+            lane
+        )
+    );
 
 
- const suitcase=
-  document.createElement("div");
-
-
- suitcase.className="suitcase";
-
-
- suitcase.style.left=
-  (
-   laneWidth*lane+
-   laneWidth/2-
-   21
-  )+"px";
-
-
- let y=-100;
-
- suitcase.style.top=y+"px";
-
- area.appendChild(suitcase);
-
-
- const object={
-  element:suitcase,
-  lane:lane,
-  y:y
- };
-
-
- obstacles.push(object);
-
-
- animateObstacle(object);
-
-
- scheduleObstacle();
+    scheduleObstacle();
 
 }
 
 
 /* =====================================================
-   PROGRAMAR MALETA
+   CREAR UNA MALETA
+===================================================== */
+
+function createSuitcase(
+    lane
+){
+
+    const area=
+    document.getElementById(
+        "runArea"
+    );
+
+
+    const laneWidth=
+    area.clientWidth/3;
+
+
+    const suitcase=
+    document.createElement(
+        "div"
+    );
+
+
+    suitcase.className=
+    "suitcase";
+
+
+    suitcase.style.left=
+    (
+        laneWidth*lane+
+        laneWidth/2-
+        21
+    )+"px";
+
+
+    /*
+       Todas salen de arriba.
+    */
+
+    let y=-105;
+
+
+    suitcase.style.top=
+    y+"px";
+
+
+    area.appendChild(
+        suitcase
+    );
+
+
+    const object={
+
+        element:suitcase,
+
+        lane:lane,
+
+        y:y
+
+    };
+
+
+    obstacles.push(
+        object
+    );
+
+
+    animateObstacle(
+        object
+    );
+
+}
+
+
+/* =====================================================
+   PROGRAMAR SIGUIENTE APARICIÓN
 ===================================================== */
 
 function scheduleObstacle(){
 
- if(!gameRunning)return;
+    if(!gameRunning){
 
- const random=
-  Math.random()*350-175;
+        return;
 
- const delay=
-  Math.max(
-   650,
-   spawnDelay+random
-  );
+    }
 
- spawnTimer=
-  setTimeout(
-   spawnObstacle,
-   delay
-  );
+
+    /*
+       Pequeña variación aleatoria.
+
+       Evita que parezca un metrónomo.
+    */
+
+    const variation=
+    Math.random()*260-130;
+
+
+    const delay=
+    Math.max(
+        520,
+        spawnDelay+
+        variation
+    );
+
+
+    spawnTimer=
+    setTimeout(
+        spawnObstacle,
+        delay
+    );
 
 }
 
@@ -1502,64 +2658,106 @@ function scheduleObstacle(){
    ANIMAR MALETA
 ===================================================== */
 
-function animateObstacle(ob){
+function animateObstacle(
+    obstacle
+){
 
- if(!gameRunning){
+    if(!gameRunning){
 
-  removeObstacle(ob);
-  return;
+        removeObstacle(
+            obstacle
+        );
 
- }
+        return;
 
-
- ob.y+=obstacleSpeed;
-
- ob.element.style.top=
-  ob.y+"px";
-
-
- const playerRect=
-  player.getBoundingClientRect();
-
- const obstacleRect=
-  ob.element.getBoundingClientRect();
+    }
 
 
- if(
-  playerRect.left<obstacleRect.right &&
-  playerRect.right>obstacleRect.left &&
-  playerRect.top<obstacleRect.bottom &&
-  playerRect.bottom>obstacleRect.top
- ){
-
-  if(shieldActive){
-
-   useShield();
-   removeObstacle(ob);
-   return;
-
-  }
-
-  endGame();
-  return;
-
- }
+    obstacle.y+=
+    obstacleSpeed;
 
 
- if(
-  ob.y<
-  document.getElementById("runArea").clientHeight+100
- ){
+    obstacle.element.style.top=
+    obstacle.y+"px";
 
-  requestAnimationFrame(
-   ()=>animateObstacle(ob)
-  );
 
- }else{
+    const playerRect=
+    player.getBoundingClientRect();
 
-  removeObstacle(ob);
 
- }
+    const obstacleRect=
+    obstacle.element
+    .getBoundingClientRect();
+
+
+    /*
+       COLISIÓN
+    */
+
+    if(
+        playerRect.left<
+        obstacleRect.right &&
+
+        playerRect.right>
+        obstacleRect.left &&
+
+        playerRect.top<
+        obstacleRect.bottom &&
+
+        playerRect.bottom>
+        obstacleRect.top
+    ){
+
+        /*
+           Si hay escudo,
+           se rompe.
+        */
+
+        if(shieldActive){
+
+            useShield();
+
+            removeObstacle(
+                obstacle
+            );
+
+            return;
+
+        }
+
+
+        endGame();
+
+        return;
+
+    }
+
+
+    if(
+        obstacle.y<
+        document
+        .getElementById("runArea")
+        .clientHeight+
+        120
+    ){
+
+        requestAnimationFrame(
+            function(){
+
+                animateObstacle(
+                    obstacle
+                );
+
+            }
+        );
+
+    }else{
+
+        removeObstacle(
+            obstacle
+        );
+
+    }
 
 }
 
@@ -1568,25 +2766,34 @@ function animateObstacle(ob){
    ELIMINAR MALETA
 ===================================================== */
 
-function removeObstacle(ob){
+function removeObstacle(
+    obstacle
+){
 
- const index=
-  obstacles.indexOf(ob);
+    const index=
+    obstacles.indexOf(
+        obstacle
+    );
 
- if(index!==-1){
 
-  obstacles.splice(index,1);
+    if(index!==-1){
 
- }
+        obstacles.splice(
+            index,
+            1
+        );
 
- if(
-  ob.element &&
-  ob.element.parentNode
- ){
+    }
 
-  ob.element.remove();
 
- }
+    if(
+        obstacle.element &&
+        obstacle.element.parentNode
+    ){
+
+        obstacle.element.remove();
+
+    }
 
 }
 
@@ -1597,40 +2804,150 @@ function removeObstacle(ob){
 
 function startDifficulty(){
 
- difficultyTimer=
-  setInterval(()=>{
+    difficultyTimer=
+    setInterval(
+        function(){
 
-   if(!gameRunning)return;
+            if(!gameRunning){
 
-   level++;
+                return;
 
-   /*
-     Incrementos pequeños.
-   */
+            }
 
-   obstacleSpeed=
-    Math.min(
-     5.5,
-     2.6+
-     (level-1)*0.18
+
+            level++;
+
+
+            /*
+               FASE 1
+               NIVELES 1-5
+            */
+
+            if(level<=5){
+
+                obstacleSpeed=
+                2.5+
+                (level-1)*0.28;
+
+
+                spawnDelay=
+                1400-
+                (level-1)*75;
+
+            }
+
+
+            /*
+               FASE 2
+               NIVEL 6+
+            */
+
+            if(level>=6){
+
+                hardMode=true;
+
+
+                /*
+                   Aumentamos la velocidad,
+                   pero sin saltos absurdos.
+                */
+
+                obstacleSpeed=
+                Math.min(
+                    6.4,
+                    3.62+
+                    (level-6)*0.32
+                );
+
+
+                /*
+                   Reducimos el tiempo entre
+                   oleadas progresivamente.
+                */
+
+                spawnDelay=
+                Math.max(
+                    540,
+                    1100-
+                    (level-6)*55
+                );
+
+
+                /*
+                   Mensaje especial al entrar
+                   en modo desafío.
+                */
+
+                if(level===6){
+
+                    showChallengeMessage(
+                        "🔥 MODO DESAFÍO ACTIVADO"
+                    );
+
+                }
+
+            }
+
+
+            changeAirport();
+
+            updateLevel();
+
+
+            /*
+               Bonus de puntuación.
+            */
+
+            score+=100;
+
+            updateHUD();
+
+        },
+        25000
     );
 
-   spawnDelay=
-    Math.max(
-     720,
-     1350-
-     (level-1)*45
+}
+
+
+/* =====================================================
+   MENSAJE NIVEL 6+
+===================================================== */
+
+function showChallengeMessage(
+    text
+){
+
+    const message=
+    document.createElement(
+        "div"
     );
 
-   changeAirport();
 
-   updateLevel();
+    message.className=
+    "challengeMessage";
 
-   score+=100;
 
-   updateHUD();
+    message.textContent=
+    text;
 
-  },25000);
+
+    document
+    .getElementById(
+        "gameScreen"
+    )
+    .appendChild(
+        message
+    );
+
+
+    setTimeout(
+        function(){
+
+            message.remove();
+
+        },
+        2000
+    );
 
 }
 
@@ -1641,16 +2958,25 @@ function startDifficulty(){
 
 function startScore(){
 
- scoreTimer=
-  setInterval(()=>{
+    scoreTimer=
+    setInterval(
+        function(){
 
-   if(!gameRunning)return;
+            if(!gameRunning){
 
-   score++;
+                return;
 
-   updateHUD();
+            }
 
-  },1000);
+
+            score++;
+
+
+            updateHUD();
+
+        },
+        1000
+    );
 
 }
 
@@ -1661,25 +2987,23 @@ function startScore(){
 
 function startCoins(){
 
- /*
-   Moneda cada 2-3 segundos.
-   Independiente de las maletas.
- */
+    coinTimer=
+    setInterval(
+        function(){
 
- coinTimer=
-  setInterval(()=>{
+            if(
+                gameRunning &&
+                !rewardActive &&
+                gameTime>=4
+            ){
 
-   if(
-    gameRunning &&
-    !rewardActive &&
-    gameTime>=4
-   ){
+                spawnCoin();
 
-    spawnCoin();
+            }
 
-   }
-
-  },2300);
+        },
+        2200
+    );
 
 }
 
@@ -1690,78 +3014,50 @@ function startCoins(){
 
 function chooseCoinLane(){
 
- const area=
-  document.getElementById("runArea");
+    let available=
+    getAvailableLanes();
 
 
- /*
-   Buscamos un carril donde no haya
-   una maleta cerca.
- */
+    if(
+        available.length===0
+    ){
 
- let possible=[];
+        return -1;
 
-
- for(let lane=0;lane<3;lane++){
-
-  let danger=false;
-
-  for(const ob of obstacles){
-
-   if(ob.lane!==lane)continue;
-
-   if(
-    ob.y>-120 &&
-    ob.y<400
-   ){
-
-    danger=true;
-    break;
-
-   }
-
-  }
-
-  if(!danger){
-
-   possible.push(lane);
-
-  }
-
- }
+    }
 
 
- if(possible.length===0){
+    /*
+       Preferimos un carril diferente
+       al actual del jugador.
 
-  return -1;
+       Esto hace que la moneda incentive
+       a moverse.
+    */
 
- }
-
-
- /*
-   Preferimos un carril diferente
-   al del jugador para incentivar
-   movimiento.
- */
-
- let preferred=
-  possible.filter(
-   lane=>lane!==playerLane
-  );
+    let preferred=
+    available.filter(
+        lane=>
+        lane!==playerLane
+    );
 
 
- if(preferred.length===0){
+    if(
+        preferred.length===0
+    ){
 
-  preferred=possible;
+        preferred=
+        available;
 
- }
+    }
 
 
- return preferred[
-  Math.floor(
-   Math.random()*preferred.length
-  )
- ];
+    return preferred[
+        Math.floor(
+            Math.random()*
+            preferred.length
+        )
+    ];
 
 }
 
@@ -1772,108 +3068,143 @@ function chooseCoinLane(){
 
 function spawnCoin(){
 
- if(rewardActive)return;
+    if(rewardActive){
+
+        return;
+
+    }
 
 
- const lane=
-  chooseCoinLane();
+    const lane=
+    chooseCoinLane();
 
 
- if(lane===-1)return;
+    if(lane===-1){
+
+        return;
+
+    }
 
 
- const area=
-  document.getElementById("runArea");
+    const area=
+    document.getElementById(
+        "runArea"
+    );
 
 
- const laneWidth=
-  area.clientWidth/3;
+    const laneWidth=
+    area.clientWidth/3;
 
 
- const coin=
-  document.createElement("div");
+    const coin=
+    document.createElement(
+        "div"
+    );
 
 
- coin.className="coin";
-
- coin.textContent="€";
-
-
- coin.style.left=
-  (
-   laneWidth*lane+
-   laneWidth/2-
-   15
-  )+"px";
+    coin.className=
+    "coin";
 
 
- let y=-60;
-
- coin.style.top=y+"px";
-
- area.appendChild(coin);
+    coin.textContent=
+    "€";
 
 
- rewardActive=true;
- rewardObject=coin;
+    coin.style.left=
+    (
+        laneWidth*lane+
+        laneWidth/2-
+        15
+    )+"px";
 
 
- function animateCoin(){
-
-  if(!gameRunning){
-
-   finishCoin();
-   return;
-
-  }
+    let y=-60;
 
 
-  y+=obstacleSpeed*.75;
-
-  coin.style.top=y+"px";
-
-
-  const p=
-   player.getBoundingClientRect();
-
-  const c=
-   coin.getBoundingClientRect();
+    coin.style.top=
+    y+"px";
 
 
-  if(
-   p.left<c.right &&
-   p.right>c.left &&
-   p.top<c.bottom &&
-   p.bottom>c.top
-  ){
-
-   collectCoin();
-   return;
-
-  }
+    area.appendChild(
+        coin
+    );
 
 
-  if(
-   y<
-   area.clientHeight+80
-  ){
+    rewardActive=true;
 
-   requestAnimationFrame(
-    animateCoin
-   );
-
-  }else{
-
-   finishCoin();
-
-  }
-
- }
+    rewardObject=coin;
 
 
- requestAnimationFrame(
-  animateCoin
- );
+    function animateCoin(){
+
+        if(!gameRunning){
+
+            finishCoin();
+
+            return;
+
+        }
+
+
+        y+=
+        obstacleSpeed*
+        .75;
+
+
+        coin.style.top=
+        y+"px";
+
+
+        const playerRect=
+        player.getBoundingClientRect();
+
+
+        const coinRect=
+        coin.getBoundingClientRect();
+
+
+        if(
+            playerRect.left<
+            coinRect.right &&
+
+            playerRect.right>
+            coinRect.left &&
+
+            playerRect.top<
+            coinRect.bottom &&
+
+            playerRect.bottom>
+            coinRect.top
+        ){
+
+            collectCoin();
+
+            return;
+
+        }
+
+
+        if(
+            y<
+            area.clientHeight+100
+        ){
+
+            requestAnimationFrame(
+                animateCoin
+            );
+
+        }else{
+
+            finishCoin();
+
+        }
+
+    }
+
+
+    requestAnimationFrame(
+        animateCoin
+    );
 
 }
 
@@ -1884,66 +3215,106 @@ function spawnCoin(){
 
 function collectCoin(){
 
- if(!rewardObject)return;
+    if(!rewardObject){
+
+        return;
+
+    }
 
 
- coins++;
-
- score+=75;
-
-
- const coin=
-  rewardObject;
+    const coin=
+    rewardObject;
 
 
- rewardObject=null;
- rewardActive=false;
+    rewardObject=null;
+
+    rewardActive=false;
 
 
- coin.remove();
+    coin.remove();
 
 
- showReward("🪙 +1");
+    /*
+       IMPORTANTE:
+
+       SI HAY ESCUDO,
+       la moneda NO CUENTA.
+
+       No se acumula para el próximo
+       escudo.
+    */
+
+    if(shieldActive){
+
+        score+=50;
+
+        showReward(
+            "🪙 +1"
+        );
 
 
- /*
-   ESCUDO CADA 25
- */
+        updateHUD();
 
- if(
-  coins>=25 &&
-  !shieldActive
- ){
+        return;
 
-  coins-=25;
-
-  activateShield();
-
- }
+    }
 
 
- updateHUD();
+    /*
+       Sin escudo:
+       la moneda sí cuenta.
+    */
+
+    coins++;
+
+    score+=75;
+
+
+    showReward(
+        "🪙 +1"
+    );
+
+
+    /*
+       25 MONEDAS.
+    */
+
+    if(
+        coins>=25 &&
+        !shieldActive
+    ){
+
+        coins=0;
+
+        activateShield();
+
+    }
+
+
+    updateHUD();
 
 }
 
 
 /* =====================================================
-   FINAL MONEDA
+   FINAL DE MONEDA
 ===================================================== */
 
 function finishCoin(){
 
- if(
-  rewardObject &&
-  rewardObject.parentNode
- ){
+    if(
+        rewardObject &&
+        rewardObject.parentNode
+    ){
 
-  rewardObject.remove();
+        rewardObject.remove();
 
- }
+    }
 
- rewardObject=null;
- rewardActive=false;
+
+    rewardObject=null;
+
+    rewardActive=false;
 
 }
 
@@ -1954,51 +3325,96 @@ function finishCoin(){
 
 function activateShield(){
 
- shieldActive=true;
+    shieldActive=true;
 
- player.classList.add("shielded");
 
- updateShield();
+    player.classList.add(
+        "shielded"
+    );
 
- showReward("🛡️ ¡ESCUDO!");
+
+    updateShield();
+
+
+    showReward(
+        "🛡️ ¡ESCUDO!"
+    );
 
 }
 
+
+/* =====================================================
+   ROMPER ESCUDO
+===================================================== */
 
 function useShield(){
 
- shieldActive=false;
+    /*
+       Quitamos el escudo.
 
- player.classList.remove("shielded");
+       Y MUY IMPORTANTE:
 
- updateShield();
+       el contador vuelve a 0.
 
- showReward("💥 ESCUDO ROTO");
+       No arrastramos monedas anteriores.
+    */
+
+    shieldActive=false;
+
+    coins=0;
+
+
+    player.classList.remove(
+        "shielded"
+    );
+
+
+    updateShield();
+
+    updateHUD();
+
+
+    showReward(
+        "💥 ¡ESCUDO ROTO!"
+    );
 
 }
 
 
+/* =====================================================
+   HUD ESCUDO
+===================================================== */
+
 function updateShield(){
 
- const shield=
-  document.getElementById("shield");
+    const shield=
+    document.getElementById(
+        "shield"
+    );
 
 
- if(shieldActive){
+    if(shieldActive){
 
-  shield.textContent=
-   "🛡️ ESCUDO ACTIVO";
+        shield.textContent=
+        "🛡️ ESCUDO ACTIVO";
 
-  shield.classList.add("active");
 
- }else{
+        shield.classList.add(
+            "active"
+        );
 
-  shield.textContent=
-   "🛡️ 25 MONEDAS = ESCUDO";
+    }else{
 
-  shield.classList.remove("active");
+        shield.textContent=
+        "🛡️ "+
+        coins+
+        "/25";
 
- }
+        shield.classList.remove(
+            "active"
+        );
+
+    }
 
 }
 
@@ -2009,115 +3425,172 @@ function updateShield(){
 
 function changeAirport(){
 
- const airport=
-  document.getElementById("airport");
+    const airport=
+    document.getElementById(
+        "airport"
+    );
 
 
- airport.className="airport1";
+    airport.classList.remove(
+        "airport1",
+        "airport2",
+        "airport3",
+        "airport4",
+        "airport5",
+        "airport6"
+    );
 
 
- let airportNumber=
-  Math.floor((level-1)/2)+1;
+    let airportNumber=
+    Math.floor(
+        (level-1)/2
+    )+1;
 
 
- airportNumber=
-  Math.min(6,airportNumber);
+    airportNumber=
+    Math.min(
+        6,
+        airportNumber
+    );
 
 
- airport.classList.add(
-  "airport"+airportNumber
- );
+    airport.classList.add(
+        "airport"+
+        airportNumber
+    );
 
 
- const gates=[
-  "GATE 12",
-  "GATE 24",
-  "GATE 37",
-  "GATE 48",
-  "GATE 61",
-  "GATE 99"
- ];
+    const gates=[
+        "GATE 12",
+        "GATE 24",
+        "GATE 37",
+        "GATE 48",
+        "GATE 61",
+        "GATE 99"
+    ];
 
 
- const names=[
-  "☀️ DAY TERMINAL",
-  "🏢 MODERN TERMINAL",
-  "🌙 NIGHT TERMINAL",
-  "🌧️ STORM AIRPORT",
-  "🌴 TROPICAL AIRPORT",
-  "🏙️ MEGA TERMINAL"
- ];
+    const names=[
+        "☀️ DAY TERMINAL",
+        "🏢 MODERN TERMINAL",
+        "🌙 NIGHT AIRPORT",
+        "🌧️ STORM AIRPORT",
+        "🌴 TROPICAL AIRPORT",
+        "🏙️ MEGA TERMINAL"
+    ];
 
 
- document.getElementById("gate")
- .textContent=
-  gates[airportNumber-1];
+    document
+    .getElementById("gate")
+    .textContent=
+    gates[
+        airportNumber-1
+    ];
 
 
- if(
-  level>1 &&
-  level%2===1
- ){
+    /*
+       Avisamos solamente al cambiar
+       de aeropuerto.
+    */
 
-  showAirportMessage(
-   names[airportNumber-1]
-  );
+    if(
+        level>1 &&
+        level%2===1
+    ){
 
- }
+        showAirportMessage(
+            names[
+                airportNumber-1
+            ]
+        );
 
-}
-
-
-/* =====================================================
-   MENSAJE
-===================================================== */
-
-function showAirportMessage(text){
-
- const message=
-  document.createElement("div");
-
-
- message.className="airportMessage";
-
- message.textContent=text;
-
-
- document.getElementById("gameScreen")
- .appendChild(message);
-
-
- setTimeout(
-  ()=>message.remove(),
-  2200
- );
+    }
 
 }
 
 
 /* =====================================================
-   RECOMPENSA TEXTO
+   MENSAJE AEROPUERTO
 ===================================================== */
 
-function showReward(text){
+function showAirportMessage(
+    text
+){
 
- const reward=
-  document.createElement("div");
-
-
- reward.className="reward";
-
- reward.textContent=text;
-
-
- document.getElementById("gameScreen")
- .appendChild(reward);
+    const message=
+    document.createElement(
+        "div"
+    );
 
 
- setTimeout(
-  ()=>reward.remove(),
-  800
- );
+    message.className=
+    "airportMessage";
+
+
+    message.textContent=
+    text;
+
+
+    document
+    .getElementById(
+        "gameScreen"
+    )
+    .appendChild(
+        message
+    );
+
+
+    setTimeout(
+        function(){
+
+            message.remove();
+
+        },
+        2200
+    );
+
+}
+
+
+/* =====================================================
+   RECOMPENSA VISUAL
+===================================================== */
+
+function showReward(
+    text
+){
+
+    const reward=
+    document.createElement(
+        "div"
+    );
+
+
+    reward.className=
+    "reward";
+
+
+    reward.textContent=
+    text;
+
+
+    document
+    .getElementById(
+        "gameScreen"
+    )
+    .appendChild(
+        reward
+    );
+
+
+    setTimeout(
+        function(){
+
+            reward.remove();
+
+        },
+        800
+    );
 
 }
 
@@ -2128,23 +3601,32 @@ function showReward(text){
 
 function updateHUD(){
 
- document.getElementById("score")
- .textContent=score;
+    document
+    .getElementById("score")
+    .textContent=
+    score;
 
- document.getElementById("coins")
- .textContent=coins;
+
+    document
+    .getElementById("coins")
+    .textContent=
+    coins;
 
 }
 
 
 function updateLevel(){
 
- document.getElementById("level")
- .textContent=
-  "NIVEL "+
-  level+
-  " • x"+
-  (obstacleSpeed/2.6).toFixed(1);
+    document
+    .getElementById("level")
+    .textContent=
+    "NIVEL "+
+    level+
+    " • x"+
+    (
+        obstacleSpeed/
+        2.5
+    ).toFixed(1);
 
 }
 
@@ -2155,88 +3637,139 @@ function updateLevel(){
 
 function endGame(){
 
- if(!gameRunning)return;
+    if(!gameRunning){
+
+        return;
+
+    }
 
 
- gameRunning=false;
+    gameRunning=false;
 
 
- clearTimeout(spawnTimer);
-
- clearInterval(difficultyTimer);
- clearInterval(scoreTimer);
- clearInterval(gameTimeTimer);
- clearInterval(coinTimer);
+    clearTimeout(
+        spawnTimer
+    );
 
 
- player.classList.remove("running");
- player.classList.remove("shielded");
+    clearInterval(
+        difficultyTimer
+    );
 
 
- if(score>highScore){
-
-  highScore=score;
-
-  localStorage.setItem(
-   "airport_high_score",
-   highScore
-  );
-
- }
+    clearInterval(
+        scoreTimer
+    );
 
 
- document.getElementById("finalScore")
- .textContent=
-  "Puntuación: "+
-  score+
-  " • Récord: "+
-  highScore;
+    clearInterval(
+        gameTimeTimer
+    );
 
 
- document.getElementById("finalCoins")
- .textContent=
-  "🪙 Monedas: "+
-  coins;
+    clearInterval(
+        coinTimer
+    );
 
 
- updateContinueButton();
+    player.classList.remove(
+        "running"
+    );
 
 
- document.getElementById("gameOver")
- .style.display="flex";
+    player.classList.remove(
+        "shielded"
+    );
+
+
+    if(
+        score>highScore
+    ){
+
+        highScore=score;
+
+
+        localStorage.setItem(
+            "airport_high_score",
+            highScore
+        );
+
+    }
+
+
+    document
+    .getElementById(
+        "finalScore"
+    )
+    .textContent=
+    "Puntuación: "+
+    score+
+    " • Récord: "+
+    highScore;
+
+
+    document
+    .getElementById(
+        "finalCoins"
+    )
+    .textContent=
+    "🪙 Monedas: "+
+    coins;
+
+
+    updateContinueButton();
+
+
+    document
+    .getElementById(
+        "gameOver"
+    )
+    .style.display=
+    "flex";
 
 }
 
 
 /* =====================================================
-   CONTINUACIÓN
+   BOTÓN CONTINUAR
 ===================================================== */
 
 function updateContinueButton(){
 
- const button=
-  document.getElementById("watchAdButton");
+    const button=
+    document
+    .getElementById(
+        "watchAdButton"
+    );
 
 
- if(continueUsed){
+    if(continueUsed){
 
-  button.textContent=
-   "📺 CONTINUACIÓN USADA";
+        button.textContent=
+        "📺 CONTINUACIÓN USADA";
 
-  button.classList.add("disabled");
 
-  button.disabled=true;
+        button.classList.add(
+            "disabled"
+        );
 
- }else{
 
-  button.textContent=
-   "📺 VER ANUNCIO Y CONTINUAR";
+        button.disabled=true;
 
-  button.classList.remove("disabled");
+    }else{
 
-  button.disabled=false;
+        button.textContent=
+        "📺 VER ANUNCIO Y CONTINUAR";
 
- }
+
+        button.classList.remove(
+            "disabled"
+        );
+
+
+        button.disabled=false;
+
+    }
 
 }
 
@@ -2247,147 +3780,236 @@ function updateContinueButton(){
 
 function watchAd(){
 
- if(continueUsed)return;
+    if(continueUsed){
+
+        return;
+
+    }
 
 
- continueUsed=true;
-
- updateContinueButton();
+    continueUsed=true;
 
 
- document.getElementById("gameOver")
- .style.display="none";
+    updateContinueButton();
 
 
- document.getElementById("adOverlay")
- .style.display="flex";
+    document
+    .getElementById(
+        "gameOver"
+    )
+    .style.display=
+    "none";
 
 
- let seconds=5;
+    document
+    .getElementById(
+        "adOverlay"
+    )
+    .style.display=
+    "flex";
 
 
- document.getElementById("adCountdown")
- .textContent=seconds;
+    let seconds=5;
 
 
- clearInterval(adTimer);
+    document
+    .getElementById(
+        "adCountdown"
+    )
+    .textContent=
+    seconds;
 
 
- adTimer=
-  setInterval(()=>{
-
-   seconds--;
-
-   document.getElementById("adCountdown")
-   .textContent=seconds;
+    clearInterval(
+        adTimer
+    );
 
 
-   if(seconds<=0){
+    adTimer=
+    setInterval(
+        function(){
 
-    clearInterval(adTimer);
+            seconds--;
 
-    document.getElementById("adOverlay")
-    .style.display="none";
 
-    document.getElementById("continueScreen")
-    .style.display="flex";
+            document
+            .getElementById(
+                "adCountdown"
+            )
+            .textContent=
+            seconds;
 
-   }
 
-  },1000);
+            if(seconds<=0){
+
+                clearInterval(
+                    adTimer
+                );
+
+
+                document
+                .getElementById(
+                    "adOverlay"
+                )
+                .style.display=
+                "none";
+
+
+                document
+                .getElementById(
+                    "continueScreen"
+                )
+                .style.display=
+                "flex";
+
+            }
+
+        },
+        1000
+    );
 
 }
 
 
 /* =====================================================
-   CONTINUAR
+   CONTINUAR PARTIDA
 ===================================================== */
 
 function continueGame(){
 
- document.getElementById("continueScreen")
- .style.display="none";
+    document
+    .getElementById(
+        "continueScreen"
+    )
+    .style.display=
+    "none";
 
 
- /*
-   Limpiamos solamente las maletas
-   y monedas que estaban en pantalla.
- */
+    /*
+       Limpiamos las maletas.
+    */
 
- document.querySelectorAll(".suitcase")
- .forEach(el=>el.remove());
-
- document.querySelectorAll(".coin")
- .forEach(el=>el.remove());
-
-
- obstacles=[];
-
- rewardActive=false;
- rewardObject=null;
+    document
+    .querySelectorAll(
+        ".suitcase"
+    )
+    .forEach(
+        element=>
+        element.remove()
+    );
 
 
- /*
-   NO TOCAMOS:
+    /*
+       Limpiamos monedas.
+    */
 
-   score
-   coins
-   level
-   aeropuerto
-   dificultad
- */
-
-
- playerLane=1;
-
- positionPlayer();
+    document
+    .querySelectorAll(
+        ".coin"
+    )
+    .forEach(
+        element=>
+        element.remove()
+    );
 
 
- /*
-   Reiniciamos los temporizadores
-   porque se pararon al morir.
- */
-
- clearTimeout(spawnTimer);
-
- clearInterval(difficultyTimer);
- clearInterval(scoreTimer);
- clearInterval(gameTimeTimer);
- clearInterval(coinTimer);
+    obstacles=[];
 
 
- gameRunning=true;
+    rewardActive=false;
 
- player.classList.add("running");
-
-
- /*
-   2.5 segundos para respirar.
- */
-
- spawnTimer=
-  setTimeout(
-   spawnObstacle,
-   2500
-  );
+    rewardObject=null;
 
 
- startScore();
- startDifficulty();
- startCoins();
+    /*
+       NO modificamos:
+
+       score
+       level
+       aeropuerto
+       dificultad
+    */
 
 
- gameTimeTimer=
-  setInterval(()=>{
-
-   if(gameRunning){
-    gameTime++;
-   }
-
-  },1000);
+    playerLane=1;
 
 
- showReward("🚀 ¡CONTINUAMOS!");
+    positionPlayer();
+
+
+    /*
+       Reiniciamos los temporizadores.
+    */
+
+    clearTimeout(
+        spawnTimer
+    );
+
+
+    clearInterval(
+        difficultyTimer
+    );
+
+
+    clearInterval(
+        scoreTimer
+    );
+
+
+    clearInterval(
+        gameTimeTimer
+    );
+
+
+    clearInterval(
+        coinTimer
+    );
+
+
+    gameRunning=true;
+
+
+    player.classList.add(
+        "running"
+    );
+
+
+    /*
+       Margen de seguridad.
+    */
+
+    spawnTimer=
+    setTimeout(
+        spawnObstacle,
+        2600
+    );
+
+
+    startScore();
+
+    startDifficulty();
+
+    startCoins();
+
+
+    gameTimeTimer=
+    setInterval(
+        function(){
+
+            if(gameRunning){
+
+                gameTime++;
+
+            }
+
+        },
+        1000
+    );
+
+
+    showReward(
+        "🚀 ¡CONTINUAMOS!"
+    );
 
 }
 
@@ -2398,54 +4020,100 @@ function continueGame(){
 
 function restartGame(){
 
- clearAllTimers();
+    clearAllTimers();
 
- removeObjects();
-
- document.getElementById("gameOver")
- .style.display="none";
-
- document.getElementById("adOverlay")
- .style.display="none";
-
- document.getElementById("continueScreen")
- .style.display="none";
+    removeObjects();
 
 
- startGame();
+    document
+    .getElementById(
+        "gameOver"
+    )
+    .style.display=
+    "none";
+
+
+    document
+    .getElementById(
+        "adOverlay"
+    )
+    .style.display=
+    "none";
+
+
+    document
+    .getElementById(
+        "continueScreen"
+    )
+    .style.display=
+    "none";
+
+
+    startGame();
 
 }
 
 
 /* =====================================================
-   LIMPIAR
+   LIMPIAR TEMPORIZADORES
 ===================================================== */
 
 function clearAllTimers(){
 
- clearTimeout(spawnTimer);
+    clearTimeout(
+        spawnTimer
+    );
 
- clearInterval(difficultyTimer);
- clearInterval(scoreTimer);
- clearInterval(gameTimeTimer);
- clearInterval(coinTimer);
- clearInterval(adTimer);
+
+    clearInterval(
+        difficultyTimer
+    );
+
+
+    clearInterval(
+        scoreTimer
+    );
+
+
+    clearInterval(
+        gameTimeTimer
+    );
+
+
+    clearInterval(
+        coinTimer
+    );
+
+
+    clearInterval(
+        adTimer
+    );
 
 }
 
 
+/* =====================================================
+   LIMPIAR OBJETOS
+===================================================== */
+
 function removeObjects(){
 
- document.querySelectorAll(
-  ".suitcase,.coin,.ticket,.reward,.airportMessage"
- ).forEach(
-  el=>el.remove()
- );
+    document
+    .querySelectorAll(
+        ".suitcase,.coin,.reward,.airportMessage,.challengeMessage"
+    )
+    .forEach(
+        element=>
+        element.remove()
+    );
 
- obstacles=[];
 
- rewardActive=false;
- rewardObject=null;
+    obstacles=[];
+
+
+    rewardActive=false;
+
+    rewardObject=null;
 
 }
 
@@ -2455,14 +4123,16 @@ function removeObjects(){
 ===================================================== */
 
 window.addEventListener(
- "resize",
- ()=>{
+    "resize",
+    function(){
 
-  if(gameRunning){
-   positionPlayer();
-  }
+        if(gameRunning){
 
- }
+            positionPlayer();
+
+        }
+
+    }
 );
 
 </script>
