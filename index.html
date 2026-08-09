@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>Airport Rush</title>
 
 <style>
+
+/* =====================================================
+   BASE
+===================================================== */
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -30,7 +39,10 @@ html,body{
     overflow:hidden;
 }
 
-/* ================= MENU ================= */
+
+/* =====================================================
+   MENU
+===================================================== */
 
 #menu{
     position:absolute;
@@ -93,7 +105,10 @@ html,body{
     line-height:1.5;
 }
 
-/* ================= GAME ================= */
+
+/* =====================================================
+   GAME
+===================================================== */
 
 #gameScreen{
     position:absolute;
@@ -101,7 +116,10 @@ html,body{
     display:none;
 }
 
-/* ================= AIRPORT ================= */
+
+/* =====================================================
+   AEROPUERTO
+===================================================== */
 
 #airport{
     position:absolute;
@@ -116,12 +134,10 @@ html,body{
         filter .8s ease;
 }
 
-/*
-=========================================================
-AEROPUERTO 1
-DÍA / AZUL
-=========================================================
-*/
+
+/* =====================================================
+   AEROPUERTO 1
+===================================================== */
 
 .airport1{
     background:
@@ -135,12 +151,10 @@ DÍA / AZUL
     );
 }
 
-/*
-=========================================================
-AEROPUERTO 2
-MODERNO / TURQUESA
-=========================================================
-*/
+
+/* =====================================================
+   AEROPUERTO 2
+===================================================== */
 
 .airport2{
     background:
@@ -154,12 +168,10 @@ MODERNO / TURQUESA
     );
 }
 
-/*
-=========================================================
-AEROPUERTO 3
-NOCHE
-=========================================================
-*/
+
+/* =====================================================
+   AEROPUERTO 3
+===================================================== */
 
 .airport3{
     background:
@@ -173,12 +185,10 @@ NOCHE
     );
 }
 
-/*
-=========================================================
-AEROPUERTO 4
-TORMENTA
-=========================================================
-*/
+
+/* =====================================================
+   AEROPUERTO 4
+===================================================== */
 
 .airport4{
     background:
@@ -192,12 +202,10 @@ TORMENTA
     );
 }
 
-/*
-=========================================================
-AEROPUERTO 5
-TROPICAL
-=========================================================
-*/
+
+/* =====================================================
+   AEROPUERTO 5
+===================================================== */
 
 .airport5{
     background:
@@ -211,12 +219,10 @@ TROPICAL
     );
 }
 
-/*
-=========================================================
-AEROPUERTO 6
-MEGA TERMINAL / FUTURISTA
-=========================================================
-*/
+
+/* =====================================================
+   AEROPUERTO 6
+===================================================== */
 
 .airport6{
     background:
@@ -230,7 +236,10 @@ MEGA TERMINAL / FUTURISTA
     );
 }
 
-/* ================= ELEMENTOS EXTERIORES ================= */
+
+/* =====================================================
+   CIELO Y CRISTALES
+===================================================== */
 
 #sky{
     position:absolute;
@@ -255,21 +264,20 @@ MEGA TERMINAL / FUTURISTA
 .w3{left:60%}
 .w4{left:80%}
 
-/* Luces nocturnas */
-
 .airport3 .window,
 .airport6 .window{
     background:rgba(150,210,255,.35);
     box-shadow:0 0 15px rgba(100,190,255,.35);
 }
 
-/* Luces de tormenta */
-
 .airport4 .window{
     background:rgba(220,235,240,.35);
 }
 
-/* ================= PISTA ================= */
+
+/* =====================================================
+   PISTA
+===================================================== */
 
 #outsideGround{
     position:absolute;
@@ -311,7 +319,10 @@ MEGA TERMINAL / FUTURISTA
 .r3{left:51%}
 .r4{left:74%}
 
-/* ================= DECORACIÓN ================= */
+
+/* =====================================================
+   TORRE
+===================================================== */
 
 #tower{
     position:absolute;
@@ -344,8 +355,6 @@ MEGA TERMINAL / FUTURISTA
     background:#303943;
 }
 
-/* Torre cambia de aspecto */
-
 .airport3 #tower{
     background:#30395a;
 }
@@ -358,7 +367,10 @@ MEGA TERMINAL / FUTURISTA
     background:#59678a;
 }
 
-/* ================= PALMERAS ================= */
+
+/* =====================================================
+   PALMERAS
+===================================================== */
 
 .palm{
     position:absolute;
@@ -382,7 +394,10 @@ MEGA TERMINAL / FUTURISTA
     font-size:38px;
 }
 
-/* ================= AVIONES ================= */
+
+/* =====================================================
+   AVIONES
+===================================================== */
 
 .plane{
     position:absolute;
@@ -420,7 +435,10 @@ MEGA TERMINAL / FUTURISTA
     to{transform:translateX(-650px);}
 }
 
-/* ================= LLUVIA ================= */
+
+/* =====================================================
+   LLUVIA
+===================================================== */
 
 .rain{
     position:absolute;
@@ -455,7 +473,10 @@ MEGA TERMINAL / FUTURISTA
     }
 }
 
-/* ================= GATE ================= */
+
+/* =====================================================
+   GATE
+===================================================== */
 
 #gate{
     position:absolute;
@@ -497,7 +518,10 @@ MEGA TERMINAL / FUTURISTA
     background:#c32843;
 }
 
-/* ================= CARRILES ================= */
+
+/* =====================================================
+   CARRILES
+===================================================== */
 
 #runArea{
     position:absolute;
@@ -505,7 +529,6 @@ MEGA TERMINAL / FUTURISTA
     left:0;
     right:0;
     bottom:0;
-
     background:transparent;
 }
 
@@ -528,7 +551,10 @@ MEGA TERMINAL / FUTURISTA
 .lane1{left:33.333%}
 .lane2{left:66.666%}
 
-/* ================= HUD ================= */
+
+/* =====================================================
+   HUD
+===================================================== */
 
 #hud{
     position:absolute;
@@ -572,7 +598,6 @@ MEGA TERMINAL / FUTURISTA
 
 #shield{
     position:absolute;
-
     top:105px;
     left:50%;
     transform:translateX(-50%);
@@ -603,7 +628,10 @@ MEGA TERMINAL / FUTURISTA
     0 0 18px rgba(80,190,255,.9);
 }
 
-/* ================= PERSONAJE ================= */
+
+/* =====================================================
+   PERSONAJE
+===================================================== */
 
 #player{
     position:absolute;
@@ -731,7 +759,10 @@ MEGA TERMINAL / FUTURISTA
     to{transform:rotate(20deg);}
 }
 
-/* ================= ESCUDO ================= */
+
+/* =====================================================
+   ESCUDO
+===================================================== */
 
 #player.shielded:after{
     content:"";
@@ -763,7 +794,10 @@ MEGA TERMINAL / FUTURISTA
     to{transform:scale(1.04);}
 }
 
-/* ================= MALETAS ================= */
+
+/* =====================================================
+   MALETAS
+===================================================== */
 
 .suitcase{
     position:absolute;
@@ -798,7 +832,10 @@ MEGA TERMINAL / FUTURISTA
     border-radius:8px 8px 0 0;
 }
 
-/* ================= MONEDAS ================= */
+
+/* =====================================================
+   MONEDAS
+===================================================== */
 
 .coin{
     position:absolute;
@@ -852,7 +889,10 @@ MEGA TERMINAL / FUTURISTA
     align-items:center;
 }
 
-/* ================= MENSAJE ================= */
+
+/* =====================================================
+   MENSAJES
+===================================================== */
 
 .airportMessage{
     position:absolute;
@@ -912,8 +952,6 @@ MEGA TERMINAL / FUTURISTA
     }
 }
 
-/* ================= REWARD ================= */
-
 .reward{
     position:absolute;
 
@@ -966,7 +1004,10 @@ MEGA TERMINAL / FUTURISTA
     }
 }
 
-/* ================= CONTROLES ================= */
+
+/* =====================================================
+   CONTROLES
+===================================================== */
 
 #controls{
     position:absolute;
@@ -1002,8 +1043,7 @@ MEGA TERMINAL / FUTURISTA
     font-weight:bold;
 
     border:
-    2px solid
-    rgba(255,255,255,.45);
+    2px solid rgba(255,255,255,.45);
 }
 
 .control:active{
@@ -1013,7 +1053,10 @@ MEGA TERMINAL / FUTURISTA
     transform:scale(.95);
 }
 
-/* ================= GAME OVER ================= */
+
+/* =====================================================
+   GAME OVER
+===================================================== */
 
 #gameOver{
     position:absolute;
@@ -1027,7 +1070,7 @@ MEGA TERMINAL / FUTURISTA
     flex-direction:column;
 
     background:
-    rgba(4,10,20,.86);
+    rgba(4,10,20,.92);
 
     color:white;
 
@@ -1037,20 +1080,50 @@ MEGA TERMINAL / FUTURISTA
 }
 
 #gameOver h2{
-    font-size:43px;
+    font-size:40px;
     color:#ff6464;
-    margin-bottom:15px;
+    margin-bottom:12px;
 }
 
 #finalScore{
-    font-size:22px;
-    margin-bottom:10px;
+    font-size:21px;
+    margin-bottom:8px;
 }
 
 #finalCoins{
-    font-size:20px;
+    font-size:19px;
     color:#ffd83d;
-    margin-bottom:30px;
+    margin-bottom:25px;
+}
+
+.continueButton{
+    border:none;
+
+    background:#27c96f;
+
+    color:white;
+
+    font-size:18px;
+    font-weight:bold;
+
+    padding:15px 25px;
+
+    border-radius:14px;
+
+    box-shadow:
+    0 5px 0 #168448;
+
+    margin-bottom:18px;
+}
+
+.continueButton:active{
+    transform:translateY(4px);
+    box-shadow:0 1px 0 #168448;
+}
+
+.continueButton.disabled{
+    background:#53606b;
+    box-shadow:0 4px 0 #39434b;
 }
 
 .restart{
@@ -1059,6 +1132,179 @@ MEGA TERMINAL / FUTURISTA
     background:#ffd34f;
 
     color:#382800;
+
+    font-size:19px;
+    font-weight:bold;
+
+    padding:14px 30px;
+
+    border-radius:15px;
+}
+
+
+/* =====================================================
+   ANUNCIO SIMULADO
+===================================================== */
+
+#adOverlay{
+    position:absolute;
+
+    inset:0;
+
+    z-index:200;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    flex-direction:column;
+
+    background:
+    rgba(5,8,13,.96);
+
+    color:white;
+
+    text-align:center;
+}
+
+.adLabel{
+    position:absolute;
+
+    top:15px;
+    right:15px;
+
+    color:#9ca3af;
+
+    font-size:11px;
+}
+
+.adBox{
+    width:80%;
+    max-width:330px;
+
+    min-height:300px;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #182b42,
+        #243b55
+    );
+
+    border:
+    2px solid #42556b;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:25px;
+
+    box-shadow:
+    0 15px 50px rgba(0,0,0,.5);
+}
+
+.adIcon{
+    font-size:65px;
+    margin-bottom:18px;
+}
+
+.adTitle{
+    font-size:25px;
+    font-weight:900;
+    margin-bottom:10px;
+}
+
+.adText{
+    color:#b8c5d3;
+    font-size:14px;
+    line-height:1.4;
+}
+
+#adCountdown{
+    margin-top:25px;
+
+    width:65px;
+    height:65px;
+
+    border-radius:50%;
+
+    background:#ffd34f;
+
+    color:#302600;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:25px;
+    font-weight:900;
+}
+
+#adContinueText{
+    margin-top:18px;
+
+    color:#9ca3af;
+
+    font-size:13px;
+}
+
+
+/* =====================================================
+   CONTINUAR
+===================================================== */
+
+#continueScreen{
+    position:absolute;
+
+    inset:0;
+
+    z-index:190;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    flex-direction:column;
+
+    background:
+    rgba(4,10,20,.88);
+
+    color:white;
+
+    text-align:center;
+}
+
+.continueTitle{
+    font-size:34px;
+    font-weight:900;
+
+    color:#6ddcff;
+
+    margin-bottom:10px;
+}
+
+.continueSub{
+    color:#cbd5e1;
+
+    font-size:15px;
+
+    margin-bottom:25px;
+}
+
+.continueNow{
+    border:none;
+
+    background:#27c96f;
+
+    color:white;
 
     font-size:21px;
     font-weight:bold;
@@ -1069,13 +1315,18 @@ MEGA TERMINAL / FUTURISTA
 }
 
 </style>
+
 </head>
+
 
 <body>
 
 <div id="game">
 
-<!-- ================= MENU ================= -->
+
+<!-- =====================================================
+     MENU
+===================================================== -->
 
 <div id="menu">
 
@@ -1102,9 +1353,14 @@ MEGA TERMINAL / FUTURISTA
 </div>
 
 
-<!-- ================= JUEGO ================= -->
+<!-- =====================================================
+     JUEGO
+===================================================== -->
 
 <div id="gameScreen">
+
+
+    <!-- HUD -->
 
     <div id="hud">
 
@@ -1128,6 +1384,8 @@ MEGA TERMINAL / FUTURISTA
         🛡️ 25 MONEDAS = ESCUDO
     </div>
 
+
+    <!-- AEROPUERTO -->
 
     <div
         id="airport"
@@ -1234,12 +1492,14 @@ MEGA TERMINAL / FUTURISTA
     </div>
 
 
-    <!-- GAME OVER -->
+    <!-- =================================================
+         GAME OVER
+    ================================================= -->
 
     <div id="gameOver">
 
         <h2>
-            ¡TARJETA ROJA!
+            💥 ¡HAS CHOCADO!
         </h2>
 
         <div id="finalScore">
@@ -1251,13 +1511,83 @@ MEGA TERMINAL / FUTURISTA
         </div>
 
         <button
+            class="continueButton"
+            id="watchAdButton"
+            onclick="watchAd()"
+        >
+            📺 VER ANUNCIO Y CONTINUAR
+        </button>
+
+        <button
             class="restart"
             onclick="restartGame()"
         >
-            VOLVER A JUGAR
+            🔄 EMPEZAR DE NUEVO
         </button>
 
     </div>
+
+
+    <!-- =================================================
+         ANUNCIO SIMULADO
+    ================================================= -->
+
+    <div id="adOverlay">
+
+        <div class="adLabel">
+            ANUNCIO SIMULADO
+        </div>
+
+        <div class="adBox">
+
+            <div class="adIcon">
+                ✈️
+            </div>
+
+            <div class="adTitle">
+                AIRPORT RUSH
+            </div>
+
+            <div class="adText">
+                ¡Prepárate para continuar tu carrera!
+            </div>
+
+            <div id="adCountdown">
+                5
+            </div>
+
+            <div id="adContinueText">
+                El anuncio termina en...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CONTINUAR
+    ================================================= -->
+
+    <div id="continueScreen">
+
+        <div class="continueTitle">
+            🚀 ¡CONTINUAMOS!
+        </div>
+
+        <div class="continueSub">
+            Sigues en el mismo aeropuerto y nivel.
+        </div>
+
+        <button
+            class="continueNow"
+            onclick="continueGame()"
+        >
+            ▶ CONTINUAR
+        </button>
+
+    </div>
+
 
 </div>
 
@@ -1309,10 +1639,6 @@ let gameTime=0;
 
 let shieldActive=false;
 
-/*
-   AHORA SON 25 MONEDAS
-*/
-
 const coinsForShield=25;
 
 
@@ -1323,6 +1649,19 @@ const coinsForShield=25;
 let rewardActive=false;
 
 let rewardLane=-1;
+
+
+/* =====================================================
+   CONTINUAR CON ANUNCIO
+===================================================== */
+
+/*
+   Solo una vez por partida.
+*/
+
+let continueUsed=false;
+
+let adTimer=null;
 
 
 /* =====================================================
@@ -1355,7 +1694,7 @@ window.addEventListener(
 
 
 /* =====================================================
-   COMENZAR
+   START
 ===================================================== */
 
 function startGame(){
@@ -1370,6 +1709,14 @@ function startGame(){
 
     document
     .getElementById("gameOver")
+    .style.display="none";
+
+    document
+    .getElementById("adOverlay")
+    .style.display="none";
+
+    document
+    .getElementById("continueScreen")
     .style.display="none";
 
 
@@ -1406,6 +1753,8 @@ function startGame(){
 
     rewardLane=-1;
 
+    continueUsed=false;
+
 
     clearTimeout(spawnTimer);
 
@@ -1416,6 +1765,8 @@ function startGame(){
     clearInterval(gameTimeTimer);
 
     clearInterval(collectibleTimer);
+
+    clearInterval(adTimer);
 
 
     updateHUD();
@@ -1429,9 +1780,6 @@ function startGame(){
     positionPlayer();
 
 
-    gameRunning=true;
-
-
     player.classList.add(
         "running"
     );
@@ -1439,6 +1787,12 @@ function startGame(){
     player.classList.remove(
         "shielded"
     );
+
+
+    updateContinueButton();
+
+
+    gameRunning=true;
 
 
     spawnTimer=
@@ -1493,6 +1847,7 @@ function positionPlayer(){
 
     player.style.left=
     x+"px";
+
 }
 
 
@@ -1513,6 +1868,7 @@ function moveLeft(){
     }
 
 }
+
 
 function moveRight(){
 
@@ -1566,6 +1922,7 @@ document
     }
 );
 
+
 document
 .getElementById("rightButton")
 .addEventListener(
@@ -1593,11 +1950,6 @@ function getSafeLanes(){
         lane<3;
         lane++
     ){
-
-        /*
-           El carril de la moneda
-           queda reservado.
-        */
 
         if(
             rewardActive &&
@@ -1647,7 +1999,9 @@ function getSafeLanes(){
 
     }
 
+
     return safe;
+
 }
 
 
@@ -1660,6 +2014,7 @@ function chooseLane(){
     const safe=
     getSafeLanes();
 
+
     if(
         safe.length===0
     ){
@@ -1667,6 +2022,7 @@ function chooseLane(){
         return -1;
 
     }
+
 
     return safe[
         Math.floor(
@@ -1679,12 +2035,13 @@ function chooseLane(){
 
 
 /* =====================================================
-   PROGRAMAR MALETA
+   SIGUIENTE MALETA
 ===================================================== */
 
 function scheduleNextObstacle(){
 
     if(!gameRunning)return;
+
 
     const delay=
     Math.floor(
@@ -1695,6 +2052,7 @@ function scheduleNextObstacle(){
             minSpawnDelay
         )
     );
+
 
     spawnTimer=
     setTimeout(
@@ -1737,6 +2095,7 @@ function spawnObstacle(){
     document.createElement(
         "div"
     );
+
 
     obstacle.className=
     "suitcase";
@@ -1795,6 +2154,7 @@ function spawnObstacle(){
 
         data.y=y;
 
+
         obstacle.style.top=
         y+"px";
 
@@ -1812,10 +2172,6 @@ function spawnObstacle(){
             p.top<o.bottom &&
             p.bottom>o.top
         ){
-
-            /*
-               ESCUDO
-            */
 
             if(shieldActive){
 
@@ -1872,6 +2228,7 @@ function removeObstacle(data){
     const index=
     obstacles.indexOf(data);
 
+
     if(index!==-1){
 
         obstacles.splice(
@@ -1904,10 +2261,6 @@ function startDifficulty(){
         difficultyTimer
     );
 
-
-    /*
-       CADA 25 SEGUNDOS
-    */
 
     difficultyTimer=
     setInterval(
@@ -1961,7 +2314,7 @@ function startDifficulty(){
 
 
 /* =====================================================
-   CAMBIO DE AEROPUERTO
+   CAMBIO AEROPUERTO
 ===================================================== */
 
 function changeAirport(){
@@ -1981,26 +2334,6 @@ function changeAirport(){
         "airport6"
     );
 
-
-    /*
-       NIVEL 1-2
-       AEROPUERTO 1
-
-       NIVEL 3-4
-       AEROPUERTO 2
-
-       NIVEL 5-6
-       AEROPUERTO 3
-
-       NIVEL 7-8
-       AEROPUERTO 4
-
-       NIVEL 9-10
-       AEROPUERTO 5
-
-       NIVEL 11+
-       AEROPUERTO 6
-    */
 
     let airportNumber=
     Math.floor(
@@ -2053,16 +2386,9 @@ function changeAirport(){
     ];
 
 
-    /*
-       Solo mostramos el mensaje
-       cuando realmente cambia.
-    */
-
     if(
         level>1 &&
-        (
-            level%2===1
-        )
+        level%2===1
     ){
 
         showAirportMessage(
@@ -2077,7 +2403,7 @@ function changeAirport(){
 
 
 /* =====================================================
-   MENSAJE DE AEROPUERTO
+   MENSAJE AEROPUERTO
 ===================================================== */
 
 function showAirportMessage(text){
@@ -2177,13 +2503,12 @@ function startCollectibles(){
 
 
 /* =====================================================
-   CREAR RECOMPENSA
+   CREAR MONEDA
 ===================================================== */
 
 function spawnCollectible(){
 
     if(!gameRunning)return;
-
 
     if(gameTime<5)return;
 
@@ -2222,11 +2547,6 @@ function spawnCollectible(){
 
     rewardLane=lane;
 
-
-    /*
-       Billete especial:
-       15%.
-    */
 
     const ticket=
     Math.random()<0.15;
@@ -2414,8 +2734,7 @@ function collectItem(
 
 
     /*
-       25 MONEDAS
-       = ESCUDO
+       25 MONEDAS = ESCUDO
     */
 
     if(
@@ -2436,7 +2755,7 @@ function collectItem(
 
 
 /* =====================================================
-   ACTIVAR ESCUDO
+   ESCUDO
 ===================================================== */
 
 function activateShield(){
@@ -2455,10 +2774,6 @@ function activateShield(){
 
 }
 
-
-/* =====================================================
-   USAR ESCUDO
-===================================================== */
 
 function useShield(){
 
@@ -2479,10 +2794,6 @@ function useShield(){
 
 }
 
-
-/* =====================================================
-   HUD ESCUDO
-===================================================== */
 
 function updateShield(){
 
@@ -2516,7 +2827,7 @@ function updateShield(){
 
 
 /* =====================================================
-   TEXTO RECOMPENSA
+   REWARD TEXT
 ===================================================== */
 
 function showReward(text){
@@ -2573,10 +2884,6 @@ function updateHUD(){
 }
 
 
-/* =====================================================
-   NIVEL
-===================================================== */
-
 function updateLevel(){
 
     document
@@ -2624,6 +2931,7 @@ function endGame(){
         "running"
     );
 
+
     player.classList.remove(
         "shielded"
     );
@@ -2661,6 +2969,9 @@ function endGame(){
     coins;
 
 
+    updateContinueButton();
+
+
     document
     .getElementById(
         "gameOver"
@@ -2672,19 +2983,272 @@ function endGame(){
 
 
 /* =====================================================
-   REINICIAR
+   BOTÓN DE ANUNCIO
 ===================================================== */
 
-function restartGame(){
+function updateContinueButton(){
+
+    const button=
+    document.getElementById(
+        "watchAdButton"
+    );
+
+
+    if(continueUsed){
+
+        button.textContent=
+        "📺 CONTINUACIÓN USADA";
+
+        button.classList.add(
+            "disabled"
+        );
+
+        button.disabled=true;
+
+    }else{
+
+        button.textContent=
+        "📺 VER ANUNCIO Y CONTINUAR";
+
+        button.classList.remove(
+            "disabled"
+        );
+
+        button.disabled=false;
+
+    }
+
+}
+
+
+/* =====================================================
+   VER ANUNCIO
+===================================================== */
+
+function watchAd(){
+
+    if(continueUsed)return;
+
+
+    continueUsed=true;
+
+
+    updateContinueButton();
+
+
+    document
+    .getElementById(
+        "gameOver"
+    )
+    .style.display=
+    "none";
+
+
+    /*
+       Mostrar anuncio simulado.
+    */
+
+    document
+    .getElementById(
+        "adOverlay"
+    )
+    .style.display=
+    "flex";
+
+
+    let seconds=5;
+
+
+    document
+    .getElementById(
+        "adCountdown"
+    )
+    .textContent=
+    seconds;
+
+
+    clearInterval(adTimer);
+
+
+    adTimer=
+    setInterval(
+        function(){
+
+            seconds--;
+
+
+            document
+            .getElementById(
+                "adCountdown"
+            )
+            .textContent=
+            seconds;
+
+
+            if(seconds<=0){
+
+                clearInterval(
+                    adTimer
+                );
+
+
+                document
+                .getElementById(
+                    "adOverlay"
+                )
+                .style.display=
+                "none";
+
+
+                document
+                .getElementById(
+                    "continueScreen"
+                )
+                .style.display=
+                "flex";
+
+            }
+
+        },
+        1000
+    );
+
+}
+
+
+/* =====================================================
+   CONTINUAR PARTIDA
+===================================================== */
+
+function continueGame(){
+
+    document
+    .getElementById(
+        "continueScreen"
+    )
+    .style.display=
+    "none";
+
+
+    /*
+       IMPORTANTE:
+
+       NO reiniciamos:
+
+       score
+       monedas
+       nivel
+       aeropuerto
+       dificultad
+       tiempo
+    */
+
+    /*
+       Limpiar obstáculos
+       que estuvieran en pantalla.
+    */
 
     document
     .querySelectorAll(
-        ".suitcase,.coin,.ticket,.reward,.airportMessage"
+        ".suitcase"
     )
     .forEach(
         el=>el.remove()
     );
 
+
+    obstacles=[];
+
+
+    /*
+       Limpiar recompensa
+       si había alguna.
+    */
+
+    document
+    .querySelectorAll(
+        ".coin,.ticket"
+    )
+    .forEach(
+        el=>el.remove()
+    );
+
+
+    rewardActive=false;
+
+    rewardLane=-1;
+
+
+    /*
+       Volvemos a poner
+       al jugador en el centro.
+    */
+
+    playerLane=1;
+
+    positionPlayer();
+
+
+    /*
+       Unos segundos de
+       protección para que
+       pueda reaccionar.
+    */
+
+    gameRunning=true;
+
+
+    player.classList.add(
+        "running"
+    );
+
+
+    /*
+       Recuperamos el escudo
+       si lo tenía antes
+       del golpe.
+
+       En esta versión,
+       si murió sin escudo,
+       continúa sin escudo.
+    */
+
+    updateShield();
+
+
+    /*
+       Primera maleta después
+       de 2.5 segundos.
+    */
+
+    clearTimeout(
+        spawnTimer
+    );
+
+
+    spawnTimer=
+    setTimeout(
+        spawnObstacle,
+        2500
+    );
+
+
+    /*
+       Mostrar mensaje.
+    */
+
+    showReward(
+        "🚀 ¡CONTINUAMOS!"
+    );
+
+}
+
+
+/* =====================================================
+   REINICIAR
+===================================================== */
+
+function restartGame(){
 
     clearTimeout(spawnTimer);
 
@@ -2696,6 +3260,17 @@ function restartGame(){
 
     clearInterval(collectibleTimer);
 
+    clearInterval(adTimer);
+
+
+    document
+    .querySelectorAll(
+        ".suitcase,.coin,.ticket,.reward,.airportMessage"
+    )
+    .forEach(
+        el=>el.remove()
+    );
+
 
     obstacles=[];
 
@@ -2704,6 +3279,30 @@ function restartGame(){
     rewardLane=-1;
 
     shieldActive=false;
+
+
+    document
+    .getElementById(
+        "gameOver"
+    )
+    .style.display=
+    "none";
+
+
+    document
+    .getElementById(
+        "adOverlay"
+    )
+    .style.display=
+    "none";
+
+
+    document
+    .getElementById(
+        "continueScreen"
+    )
+    .style.display=
+    "none";
 
 
     startGame();
