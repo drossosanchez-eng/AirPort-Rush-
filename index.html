@@ -473,13 +473,15 @@ background:rgba(0,0,0,.45);
 color:#b8d8e8;
 font-size:13px;
 font-weight:bold;
-opacity:.75;
+opacity:.85;
+text-align:center;
+min-width:145px;
 }
 
 #shield.active{
 opacity:1;
 color:white;
-background:rgba(20,130,220,.8);
+background:rgba(20,130,220,.85);
 box-shadow:
 0 0 18px rgba(80,190,255,.9);
 }
@@ -1061,7 +1063,7 @@ NIVEL 1 • x1.0
 
 
 <div id="shield">
-🛡️ 0/25
+🪙 0/25
 </div>
 
 
@@ -1258,24 +1260,24 @@ let gameTime=0;
 /*
 VELOCIDAD ACTUALIZADA
 
-Nivel 1 = 4.2
-Nivel 2 = 4.6
-Nivel 3 = 5.0
-Nivel 4 = 5.4
-Nivel 5 = 5.8
+Nivel 1 = 4.6
+Nivel 2 = 5.0
+Nivel 3 = 5.4
+Nivel 4 = 5.8
+Nivel 5 = 6.2
 
-Nivel 6 = 6.5
-Nivel 7 = 7.0
-Nivel 8 = 7.5
-Nivel 9 = 8.0
-Nivel 10 = 8.5
-Nivel 11 = 9.0
-Nivel 12+ = 9.2 máximo
+Nivel 6 = 7.0
+Nivel 7 = 7.5
+Nivel 8 = 8.0
+Nivel 9 = 8.5
+Nivel 10 = 9.0
+Nivel 11 = 9.5
+Nivel 12+ = 10.0 máximo
 */
 
-let obstacleSpeed=4.2;
+let obstacleSpeed=4.6;
 
-let spawnDelay=1150;
+let spawnDelay=1100;
 
 
 /* MODO DESAFÍO */
@@ -1290,9 +1292,6 @@ let obstacles=[];
 
 /*
 Historial de patrones.
-
-Evita repetir las últimas
-3 combinaciones.
 */
 
 let recentChallengePatterns=[];
@@ -1408,9 +1407,9 @@ playerLane=1;
 VELOCIDAD INICIAL
 */
 
-obstacleSpeed=4.2;
+obstacleSpeed=4.6;
 
-spawnDelay=1150;
+spawnDelay=1100;
 
 
 /*
@@ -1465,7 +1464,7 @@ Primer obstáculo.
 spawnTimer=
 setTimeout(
 spawnObstacle,
-800
+750
 );
 
 
@@ -1825,10 +1824,6 @@ recentChallengePatterns.length-1
 }
 
 
-/*
-Seguridad.
-*/
-
 if(
 freshPatterns.length===0
 ){
@@ -1853,7 +1848,7 @@ freshPatterns.length
 
 
 /*
-Guardamos el patrón.
+Guardamos patrón.
 */
 
 const selectedKey=
@@ -1872,10 +1867,6 @@ selectedKey
 );
 
 
-/*
-Solo conservamos las últimas 3.
-*/
-
 if(
 recentChallengePatterns.length>3
 ){
@@ -1886,7 +1877,7 @@ recentChallengePatterns.shift();
 
 
 /*
-Barajamos el resultado.
+Barajamos el orden.
 */
 
 return selected.sort(
@@ -2028,12 +2019,12 @@ if(!gameRunning)return;
 
 
 const variation=
-Math.random()*140-70;
+Math.random()*120-60;
 
 
 const delay=
 Math.max(
-300,
+280,
 spawnDelay+
 variation
 );
@@ -2201,31 +2192,20 @@ level++;
 
 /*
 NIVELES 1-5
-
-4.2
-4.6
-5.0
-5.4
-5.8
 */
 
 if(level<=5){
 
 obstacleSpeed=
-4.2+
+4.6+
 (level-1)*0.4;
 
 
-/*
-También reducimos ligeramente
-el tiempo entre maletas.
-*/
-
 spawnDelay=
 Math.max(
-650,
-1150-
-(level-1)*85
+600,
+1100-
+(level-1)*80
 );
 
 }
@@ -2233,14 +2213,6 @@ Math.max(
 
 /*
 MODO DESAFÍO
-
-6.5
-7.0
-7.5
-8.0
-8.5
-9.0
-9.2 máximo
 */
 
 if(level>=6){
@@ -2250,17 +2222,17 @@ hardMode=true;
 
 obstacleSpeed=
 Math.min(
-9.2,
-6.5+
+10,
+7.0+
 (level-6)*0.5
 );
 
 
 spawnDelay=
 Math.max(
-300,
-880-
-(level-6)*65
+280,
+850-
+(level-6)*60
 );
 
 
@@ -2566,9 +2538,9 @@ coin.remove();
 
 
 /*
-Mientras el escudo está activo,
-las monedas no acumulan
-el siguiente escudo.
+Si ya tenemos escudo,
+la moneda da puntos pero NO
+avanza el contador.
 */
 
 if(shieldActive){
@@ -2580,6 +2552,8 @@ showReward(
 );
 
 updateHUD();
+
+updateShield();
 
 return;
 
@@ -2613,6 +2587,8 @@ activateShield();
 
 
 updateHUD();
+
+updateShield();
 
 }
 
@@ -2669,12 +2645,6 @@ function useShield(){
 
 shieldActive=false;
 
-
-/*
-Al romperse el escudo
-volvemos a contar desde 0.
-*/
-
 coins=0;
 
 player.classList.remove(
@@ -2706,8 +2676,9 @@ document.getElementById(
 
 if(shieldActive){
 
-shield.textContent=
-"🛡️ ESCUDO ACTIVO";
+shield.innerHTML=
+"🛡️ ESCUDO ACTIVO<br>"+
+"<small>🪙 Siguiente: 0/25</small>";
 
 shield.classList.add(
 "active"
@@ -2715,8 +2686,8 @@ shield.classList.add(
 
 }else{
 
-shield.textContent=
-"🛡️ "+
+shield.innerHTML=
+"🪙 "+
 coins+
 "/25";
 
@@ -2929,7 +2900,7 @@ level+
 " • x"+
 (
 obstacleSpeed/
-4.2
+4.6
 ).toFixed(1);
 
 }
@@ -3234,7 +3205,7 @@ player.classList.add(
 spawnTimer=
 setTimeout(
 spawnObstacle,
-1600
+1400
 );
 
 
@@ -3259,6 +3230,8 @@ gameTime++;
 1000
 );
 
+
+updateShield();
 
 showReward(
 "🚀 ¡CONTINUAMOS!"
