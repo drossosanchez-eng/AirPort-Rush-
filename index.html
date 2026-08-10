@@ -31,30 +31,19 @@ position:relative;
 overflow:hidden;
 }
 
-
-/* =========================
-MENU
-========================= */
+/* ================= MENU ================= */
 
 #menu{
 position:absolute;
 inset:0;
 z-index:100;
-
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
-
 text-align:center;
 color:white;
-
-background:linear-gradient(
-to bottom,
-#0d2745,
-#175477,
-#263b4b
-);
+background:linear-gradient(to bottom,#0d2745,#175477,#263b4b);
 }
 
 .logo{
@@ -96,10 +85,7 @@ font-size:14px;
 line-height:1.5;
 }
 
-
-/* =========================
-GAME
-========================= */
+/* ================= GAME ================= */
 
 #gameScreen{
 position:absolute;
@@ -107,19 +93,14 @@ inset:0;
 display:none;
 }
 
-
-/* =========================
-AEROPUERTO
-========================= */
+/* ================= AEROPUERTO ================= */
 
 #airport{
 position:absolute;
 inset:0 7% 0 7%;
 overflow:hidden;
-
 border-left:5px solid #202832;
 border-right:5px solid #202832;
-
 transition:background .8s ease;
 }
 
@@ -249,10 +230,7 @@ background:#eee;
 .r3{left:51%}
 .r4{left:74%}
 
-
-/* =========================
-TORRE
-========================= */
+/* ================= TORRE ================= */
 
 #tower{
 position:absolute;
@@ -297,10 +275,7 @@ background:#4f7957;
 background:#59678a;
 }
 
-
-/* =========================
-PALMERAS
-========================= */
+/* ================= PALMERAS ================= */
 
 .palm{
 position:absolute;
@@ -324,10 +299,7 @@ top:21%;
 font-size:38px;
 }
 
-
-/* =========================
-AVIONES
-========================= */
+/* ================= AVIONES ================= */
 
 .plane{
 position:absolute;
@@ -357,33 +329,16 @@ filter:drop-shadow(
 }
 
 @keyframes fly1{
-
-from{
-transform:translateX(0);
-}
-
-to{
-transform:translateX(650px);
-}
-
+from{transform:translateX(0)}
+to{transform:translateX(650px)}
 }
 
 @keyframes fly2{
-
-from{
-transform:translateX(0);
+from{transform:translateX(0)}
+to{transform:translateX(-650px)}
 }
 
-to{
-transform:translateX(-650px);
-}
-
-}
-
-
-/* =========================
-LLUVIA
-========================= */
+/* ================= LLUVIA ================= */
 
 .rain{
 position:absolute;
@@ -410,70 +365,34 @@ animation:rainMove .7s linear infinite;
 }
 
 @keyframes rainMove{
-
-from{
-transform:translateY(-20px);
+from{transform:translateY(-20px)}
+to{transform:translateY(20px)}
 }
 
-to{
-transform:translateY(20px);
-}
-
-}
-
-
-/* =========================
-GATE
-========================= */
+/* ================= GATE ================= */
 
 #gate{
 position:absolute;
-
 top:27%;
 left:50%;
-
 transform:translateX(-50%);
-
 background:#075985;
-
 color:white;
-
 border:3px solid white;
-
 border-radius:6px;
-
 padding:6px 15px;
-
 font-size:14px;
 font-weight:bold;
-
 z-index:5;
 }
 
-.airport2 #gate{
-background:#087f73;
-}
+.airport2 #gate{background:#087f73}
+.airport3 #gate{background:#6737c5}
+.airport4 #gate{background:#9a4d09}
+.airport5 #gate{background:#08734f}
+.airport6 #gate{background:#c32843}
 
-.airport3 #gate{
-background:#6737c5;
-}
-
-.airport4 #gate{
-background:#9a4d09;
-}
-
-.airport5 #gate{
-background:#08734f;
-}
-
-.airport6 #gate{
-background:#c32843;
-}
-
-
-/* =========================
-CARRILES
-========================= */
+/* ================= CARRILES ================= */
 
 #runArea{
 position:absolute;
@@ -507,223 +426,142 @@ left:33.333%;
 left:66.666%;
 }
 
-
-/* =========================
-HUD
-========================= */
+/* ================= HUD ================= */
 
 #hud{
 position:absolute;
-
 top:18px;
 left:18px;
 right:18px;
-
 display:flex;
-
 justify-content:space-between;
-
 z-index:20;
-
 color:white;
-
 font-size:17px;
-
 font-weight:bold;
 }
 
 .hudBox{
 background:rgba(0,0,0,.45);
-
 padding:9px 13px;
-
 border-radius:12px;
 }
 
 #level{
 position:absolute;
-
 top:68px;
-
 left:50%;
-
 transform:translateX(-50%);
-
 z-index:20;
-
 color:#ffe36b;
-
 background:rgba(0,0,0,.45);
-
 padding:5px 11px;
-
 border-radius:10px;
-
 font-size:12px;
-
 font-weight:bold;
 }
 
 #shield{
 position:absolute;
-
 top:105px;
-
 left:50%;
-
 transform:translateX(-50%);
-
 z-index:20;
-
 padding:6px 12px;
-
 border-radius:12px;
-
 background:rgba(0,0,0,.45);
-
 color:#b8d8e8;
-
 font-size:13px;
-
 font-weight:bold;
-
 opacity:.75;
 }
 
 #shield.active{
 opacity:1;
-
 color:white;
-
 background:rgba(20,130,220,.8);
-
 box-shadow:
 0 0 18px rgba(80,190,255,.9);
 }
 
-
-/* =========================
-PERSONAJE
-========================= */
+/* ================= PERSONAJE ================= */
 
 #player{
 position:absolute;
-
 width:62px;
 height:82px;
-
 bottom:92px;
-
 z-index:10;
-
 transition:left .07s ease;
 }
 
 .head{
 position:absolute;
-
 width:42px;
 height:42px;
-
 left:10px;
 top:0;
-
 background:#f2b58c;
-
 border-radius:45%;
-
 border:3px solid #542f26;
 }
 
 .hair{
 position:absolute;
-
 width:42px;
 height:18px;
-
 left:10px;
 top:0;
-
 background:#34251e;
-
 border-radius:50% 50% 25% 25%;
-
 z-index:2;
 }
 
 .eye{
 position:absolute;
-
 width:5px;
 height:7px;
-
 background:#202020;
-
 border-radius:50%;
-
 top:19px;
-
 z-index:3;
 }
 
-.eye.left{
-left:20px;
-}
-
-.eye.right{
-right:20px;
-}
+.eye.left{left:20px}
+.eye.right{right:20px}
 
 .body{
 position:absolute;
-
 width:48px;
 height:43px;
-
 left:7px;
 top:37px;
-
 background:#3478d4;
-
 border-radius:12px 12px 8px 8px;
-
 border:3px solid #1c4175;
 }
 
 .backpack{
 position:absolute;
-
 width:15px;
 height:30px;
-
 left:0;
 top:44px;
-
 background:#e85c4a;
-
 border-radius:6px;
 }
 
 .leg{
 position:absolute;
-
 width:12px;
 height:25px;
-
 background:#202c3b;
-
 top:75px;
-
 border-radius:5px;
 }
 
-.leg.left{
-left:15px;
-}
-
-.leg.right{
-right:15px;
-}
+.leg.left{left:15px}
+.leg.right{right:15px}
 
 .running .leg.left{
 animation:run1 .18s infinite alternate;
@@ -734,706 +572,429 @@ animation:run2 .18s infinite alternate;
 }
 
 @keyframes run1{
-
-from{
-transform:rotate(20deg);
-}
-
-to{
-transform:rotate(-20deg);
-}
-
+from{transform:rotate(20deg)}
+to{transform:rotate(-20deg)}
 }
 
 @keyframes run2{
-
-from{
-transform:rotate(-20deg);
+from{transform:rotate(-20deg)}
+to{transform:rotate(20deg)}
 }
 
-to{
-transform:rotate(20deg);
-}
-
-}
-
-
-/* =========================
-ESCUDO
-========================= */
+/* ================= ESCUDO ================= */
 
 #player.shielded:after{
-
 content:"";
-
 position:absolute;
-
 width:82px;
 height:102px;
-
 left:-10px;
 top:-10px;
-
 border:4px solid #6ddcff;
-
 border-radius:45%;
-
 background:rgba(80,190,255,.12);
-
 box-shadow:
 0 0 20px rgba(80,190,255,.8);
-
 z-index:-1;
-
 animation:
 shieldPulse 1s infinite alternate;
 }
 
 @keyframes shieldPulse{
-
-from{
-transform:scale(.97);
+from{transform:scale(.97)}
+to{transform:scale(1.04)}
 }
 
-to{
-transform:scale(1.04);
-}
-
-}
-
-
-/* =========================
-MALETAS
-========================= */
+/* ================= MALETAS ================= */
 
 .suitcase{
-
 position:absolute;
-
 width:42px;
 height:52px;
-
 background:#ffbd32;
-
 border:4px solid #8c6414;
-
 border-radius:8px;
-
 z-index:8;
 }
 
 .suitcase:before{
-
 content:"";
-
 position:absolute;
-
 width:15px;
 height:8px;
-
 left:10px;
 top:-11px;
-
 border:4px solid #8c6414;
-
 border-bottom:none;
-
 border-radius:8px 8px 0 0;
 }
 
-
-/* =========================
-MONEDAS
-========================= */
+/* ================= MONEDAS ================= */
 
 .coin{
-
 position:absolute;
-
 width:31px;
 height:31px;
-
 border-radius:50%;
-
 background:#ffd83d;
-
 border:4px solid #b88708;
-
 z-index:9;
-
 display:flex;
-
 justify-content:center;
 align-items:center;
-
 color:#8c6414;
-
 font-weight:bold;
-
 box-shadow:
 0 0 10px rgba(255,215,50,.7);
-
 animation:
 coinPulse .7s infinite alternate;
 }
 
 @keyframes coinPulse{
-
-from{
-transform:scale(1);
+from{transform:scale(1)}
+to{transform:scale(1.1)}
 }
 
-to{
-transform:scale(1.1);
-}
-
-}
-
-
-/* =========================
-MENSAJES
-========================= */
+/* ================= MENSAJES ================= */
 
 .airportMessage{
-
 position:absolute;
-
 top:42%;
 left:50%;
-
 transform:
 translate(-50%,-50%)
 scale(.8);
-
 z-index:60;
-
 color:white;
-
 font-size:25px;
-
 font-weight:900;
-
 text-align:center;
-
 white-space:nowrap;
-
 text-shadow:
 0 3px 5px rgba(0,0,0,.8);
-
 animation:
 airportMessage 2.2s forwards;
-
 pointer-events:none;
 }
 
 @keyframes airportMessage{
-
 0%{
 opacity:0;
-
 transform:
 translate(-50%,-50%)
 scale(.7);
 }
-
 20%{
 opacity:1;
-
 transform:
 translate(-50%,-50%)
 scale(1.05);
 }
-
-75%{
-opacity:1;
-}
-
+75%{opacity:1}
 100%{
 opacity:0;
-
 transform:
 translate(-50%,-65%)
 scale(1);
 }
-
 }
 
 .reward{
-
 position:absolute;
-
 left:50%;
 top:45%;
-
 transform:
 translate(-50%,-50%);
-
 z-index:40;
-
 color:#ffe25a;
-
 font-size:25px;
-
 font-weight:900;
-
 text-shadow:
 0 3px 0 #6d5310;
-
 animation:
 reward .8s forwards;
-
 pointer-events:none;
 }
 
 @keyframes reward{
-
 0%{
 opacity:0;
-
 transform:
 translate(-50%,-20%)
 scale(.5);
 }
-
 25%{
 opacity:1;
-
 transform:
 translate(-50%,-50%)
 scale(1.15);
 }
-
 100%{
 opacity:0;
-
 transform:
 translate(-50%,-90%)
 scale(1);
 }
-
 }
 
-
-/* =========================
-MODO DESAFÍO
-========================= */
+/* ================= DESAFÍO ================= */
 
 .challengeMessage{
-
 position:absolute;
-
 top:34%;
-
 left:50%;
-
 transform:
 translate(-50%,-50%);
-
 z-index:70;
-
 color:#ffcf45;
-
 background:rgba(100,20,20,.85);
-
 border:2px solid #ffcf45;
-
 border-radius:12px;
-
 padding:10px 17px;
-
 font-size:15px;
-
 font-weight:bold;
-
 white-space:nowrap;
-
 animation:
 challengeAnimation 2.5s forwards;
-
 pointer-events:none;
 }
 
 @keyframes challengeAnimation{
-
 0%{
 opacity:0;
-
 transform:
 translate(-50%,-40%)
 scale(.75);
 }
-
 20%{
 opacity:1;
-
 transform:
 translate(-50%,-50%)
 scale(1.05);
 }
-
-70%{
-opacity:1;
-}
-
+70%{opacity:1}
 100%{
 opacity:0;
-
 transform:
 translate(-50%,-60%)
 scale(1);
 }
-
 }
 
-
-/* =========================
-CONTROLES
-========================= */
+/* ================= CONTROLES ================= */
 
 #controls{
-
 position:absolute;
-
 bottom:25px;
-
 left:0;
 right:0;
-
 display:flex;
-
 justify-content:space-around;
-
 padding:0 45px;
-
 z-index:30;
 }
 
 .control{
-
 width:72px;
 height:72px;
-
 border:none;
-
 border-radius:50%;
-
 background:
 rgba(255,255,255,.20);
-
 color:white;
-
 font-size:30px;
-
 font-weight:bold;
-
 border:
 2px solid rgba(255,255,255,.45);
 }
 
 .control:active{
-
 background:
 rgba(255,255,255,.42);
-
 transform:scale(.95);
 }
 
-
-/* =========================
-GAME OVER
-========================= */
+/* ================= GAME OVER ================= */
 
 #gameOver{
-
 position:absolute;
-
 inset:0;
-
 display:none;
-
 align-items:center;
-
 justify-content:center;
-
 flex-direction:column;
-
 background:
 rgba(4,10,20,.92);
-
 color:white;
-
 z-index:100;
-
 text-align:center;
 }
 
 #gameOver h2{
-
 font-size:40px;
-
 color:#ff6464;
-
 margin-bottom:12px;
 }
 
 #finalScore{
-
 font-size:21px;
-
 margin-bottom:8px;
 }
 
 #finalCoins{
-
 font-size:19px;
-
 color:#ffd83d;
-
 margin-bottom:25px;
 }
 
 .continueButton{
-
 border:none;
-
 background:#27c96f;
-
 color:white;
-
 font-size:18px;
-
 font-weight:bold;
-
 padding:15px 25px;
-
 border-radius:14px;
-
 box-shadow:
 0 5px 0 #168448;
-
 margin-bottom:18px;
 }
 
 .continueButton.disabled{
-
 background:#53606b;
-
 box-shadow:
 0 4px 0 #39434b;
 }
 
 .restart{
-
 border:none;
-
 background:#ffd34f;
-
 color:#382800;
-
 font-size:19px;
-
 font-weight:bold;
-
 padding:14px 30px;
-
 border-radius:15px;
 }
 
-
-/* =========================
-ANUNCIO
-========================= */
+/* ================= ANUNCIO ================= */
 
 #adOverlay{
-
 position:absolute;
-
 inset:0;
-
 z-index:200;
-
 display:none;
-
 align-items:center;
-
 justify-content:center;
-
 flex-direction:column;
-
 background:
 rgba(5,8,13,.96);
-
 color:white;
-
 text-align:center;
 }
 
 .adLabel{
-
 position:absolute;
-
 top:15px;
 right:15px;
-
 color:#9ca3af;
-
 font-size:11px;
 }
 
 .adBox{
-
 width:80%;
-
 max-width:330px;
-
 min-height:300px;
-
 border-radius:18px;
-
 background:
 linear-gradient(
 135deg,
 #182b42,
 #243b55
 );
-
 border:
 2px solid #42556b;
-
 display:flex;
-
 flex-direction:column;
-
 align-items:center;
-
 justify-content:center;
-
 padding:25px;
-
 box-shadow:
 0 15px 50px rgba(0,0,0,.5);
 }
 
 .adIcon{
-
 font-size:65px;
-
 margin-bottom:18px;
 }
 
 .adTitle{
-
 font-size:25px;
-
 font-weight:900;
-
 margin-bottom:10px;
 }
 
 .adText{
-
 color:#b8c5d3;
-
 font-size:14px;
-
 line-height:1.4;
 }
 
 #adCountdown{
-
 margin-top:25px;
-
 width:65px;
 height:65px;
-
 border-radius:50%;
-
 background:#ffd34f;
-
 color:#302600;
-
 display:flex;
-
 align-items:center;
 justify-content:center;
-
 font-size:25px;
-
 font-weight:900;
 }
 
 #adContinueText{
-
 margin-top:18px;
-
 color:#9ca3af;
-
 font-size:13px;
 }
 
-
-/* =========================
-CONTINUAR
-========================= */
+/* ================= CONTINUAR ================= */
 
 #continueScreen{
-
 position:absolute;
-
 inset:0;
-
 z-index:190;
-
 display:none;
-
 align-items:center;
-
 justify-content:center;
-
 flex-direction:column;
-
 background:
 rgba(4,10,20,.88);
-
 color:white;
-
 text-align:center;
 }
 
 .continueTitle{
-
 font-size:34px;
-
 font-weight:900;
-
 color:#6ddcff;
-
 margin-bottom:10px;
 }
 
 .continueSub{
-
 color:#cbd5e1;
-
 font-size:15px;
-
 margin-bottom:25px;
 }
 
 .continueNow{
-
 border:none;
-
 background:#27c96f;
-
 color:white;
-
 font-size:21px;
-
 font-weight:bold;
-
 padding:15px 35px;
-
 border-radius:15px;
 }
 
@@ -1691,7 +1252,7 @@ let gameTime=0;
 
 
 /*
-NUEVA CURVA DE VELOCIDAD
+VELOCIDAD
 
 Nivel 1 = 3.6
 Nivel 2 = 4.0
@@ -1710,7 +1271,7 @@ Máximo = 8.5
 
 let obstacleSpeed=3.6;
 
-let spawnDelay=1250;
+let spawnDelay=1150;
 
 
 /*
@@ -1840,7 +1401,6 @@ level=1;
 
 gameTime=0;
 
-
 playerLane=1;
 
 
@@ -1850,19 +1410,22 @@ Velocidad inicial.
 
 obstacleSpeed=3.6;
 
-spawnDelay=1250;
 
+/*
+Ahora las maletas aparecen
+algo más frecuentemente desde
+el principio.
+*/
+
+spawnDelay=1150;
 
 hardMode=false;
 
-
 obstacles=[];
-
 
 rewardActive=false;
 
 rewardObject=null;
-
 
 shieldActive=false;
 
@@ -1891,7 +1454,6 @@ player.classList.remove(
 
 updateContinueButton();
 
-
 gameRunning=true;
 
 
@@ -1902,7 +1464,7 @@ Primer obstáculo.
 spawnTimer=
 setTimeout(
 spawnObstacle,
-950
+850
 );
 
 
@@ -1941,16 +1503,13 @@ document.getElementById(
 "runArea"
 );
 
-
 const laneWidth=
 area.clientWidth/3;
-
 
 const x=
 laneWidth*playerLane+
 laneWidth/2-
 31;
-
 
 player.style.left=
 x+"px";
@@ -2123,10 +1682,12 @@ return [];
 
 
 /*
-En niveles normales solo
-una maleta.
+En niveles normales
+una sola maleta.
 
-Esto mantiene el aprendizaje.
+La presión aumenta por
+la frecuencia, no por
+bloquear varios carriles.
 */
 
 const lane=
@@ -2163,31 +1724,16 @@ return [];
 
 
 /*
-IMPORTANTE:
-
-Ya NO usamos lastLane
-ni previousLane.
-
-Cada oleada se genera
-independientemente.
-
-Esto elimina las secuencias
-predecibles.
-*/
-
-
-/*
 Probabilidad de dos maletas.
 
-Nivel 6 empieza en 70%.
-
-Sube gradualmente.
+Nivel 6 empieza fuerte
+y aumenta progresivamente.
 */
 
 const doubleChance=
 Math.min(
-0.92,
-0.70+
+0.94,
+0.72+
 (level-6)*0.035
 );
 
@@ -2196,10 +1742,6 @@ const double=
 Math.random()<
 doubleChance;
 
-
-/*
-Una sola maleta.
-*/
 
 if(
 !double ||
@@ -2221,25 +1763,37 @@ available[randomIndex]
 
 
 /*
-Dos maletas.
+Elegimos dos carriles
+aleatoriamente.
 
-Elegimos dos posiciones
-completamente aleatorias
-de las disponibles.
-
-Por definición queda
-como mínimo un carril libre.
+Siempre queda al menos
+uno libre.
 */
 
-const shuffled=
-[...available].sort(
-()=>Math.random()-.5
+const firstIndex=
+Math.floor(
+Math.random()*
+available.length
 );
+
+let secondIndex=
+Math.floor(
+Math.random()*
+(available.length-1)
+);
+
+if(
+secondIndex>=firstIndex
+){
+
+secondIndex++;
+
+}
 
 
 return [
-shuffled[0],
-shuffled[1]
+available[firstIndex],
+available[secondIndex]
 ];
 
 }
@@ -2276,20 +1830,18 @@ createObstaclePattern();
 
 
 if(
-lanes.length===0
+lanes.length>0
 ){
 
-scheduleObstacle();
+lanes.forEach(
+function(lane){
 
-return;
+createSuitcase(lane);
 
 }
-
-
-lanes.forEach(
-lane=>
-createSuitcase(lane)
 );
+
+}
 
 
 scheduleObstacle();
@@ -2310,20 +1862,16 @@ document.getElementById(
 "runArea"
 );
 
-
 const laneWidth=
 area.clientWidth/3;
-
 
 const suitcase=
 document.createElement(
 "div"
 );
 
-
 suitcase.className=
 "suitcase";
-
 
 suitcase.style.left=
 (
@@ -2334,7 +1882,6 @@ laneWidth/2-
 
 
 let y=-105;
-
 
 suitcase.style.top=
 y+"px";
@@ -2378,20 +1925,20 @@ if(!gameRunning)return;
 
 
 /*
-Menos tiempo entre maletas.
+Frecuencia algo mayor.
 
-La variación sigue siendo aleatoria
-para que tampoco exista un ritmo
-mecánico.
+El mínimo evita que las oleadas
+sean físicamente imposibles
+de distinguir.
 */
 
 const variation=
-Math.random()*180-90;
+Math.random()*140-70;
 
 
 const delay=
 Math.max(
-350,
+300,
 spawnDelay+
 variation
 );
@@ -2565,6 +2112,8 @@ NIVELES 1-5
 4.4
 4.8
 5.2
+
+El intervalo también disminuye.
 */
 
 if(level<=5){
@@ -2574,13 +2123,12 @@ obstacleSpeed=
 (level-1)*0.4;
 
 
-/*
-Intervalo también baja.
-*/
-
 spawnDelay=
-1250-
-(level-1)*80;
+Math.max(
+650,
+1150-
+(level-1)*85
+);
 
 }
 
@@ -2593,6 +2141,8 @@ MODO DESAFÍO
 6.8
 7.3
 7.8
+
+Y continúa aumentando.
 */
 
 if(level>=6){
@@ -2610,15 +2160,11 @@ Math.min(
 
 spawnDelay=
 Math.max(
-350,
-950-
+300,
+880-
 (level-6)*65
 );
 
-
-/*
-Entrada al desafío.
-*/
 
 if(level===6){
 
@@ -2659,14 +2205,11 @@ document.createElement(
 "div"
 );
 
-
 message.className=
 "challengeMessage";
 
-
 message.textContent=
 text;
-
 
 document
 .getElementById(
@@ -2675,7 +2218,6 @@ document
 .appendChild(
 message
 );
-
 
 setTimeout(
 function(){
@@ -2700,7 +2242,6 @@ setInterval(
 function(){
 
 if(!gameRunning)return;
-
 
 score++;
 
@@ -2734,7 +2275,7 @@ spawnCoin();
 }
 
 },
-2100
+1900
 );
 
 }
@@ -2790,7 +2331,6 @@ document.getElementById(
 "runArea"
 );
 
-
 const laneWidth=
 area.clientWidth/3;
 
@@ -2800,10 +2340,8 @@ document.createElement(
 "div"
 );
 
-
 coin.className=
 "coin";
-
 
 coin.textContent=
 "€";
@@ -2818,7 +2356,6 @@ laneWidth/2-
 
 
 let y=-60;
-
 
 coin.style.top=
 y+"px";
@@ -2860,7 +2397,6 @@ y+"px";
 
 const playerRect=
 player.getBoundingClientRect();
-
 
 const coinRect=
 coin.getBoundingClientRect();
@@ -2925,18 +2461,16 @@ if(!rewardObject)return;
 const coin=
 rewardObject;
 
-
 rewardObject=null;
 
 rewardActive=false;
-
 
 coin.remove();
 
 
 /*
 Con escudo activo,
-las monedas no acumulan
+las monedas NO acumulan
 el siguiente escudo.
 */
 
@@ -2958,7 +2492,6 @@ return;
 coins++;
 
 score+=75;
-
 
 showReward(
 "🪙 +1"
@@ -3017,14 +2550,11 @@ function activateShield(){
 
 shieldActive=true;
 
-
 player.classList.add(
 "shielded"
 );
 
-
 updateShield();
-
 
 showReward(
 "🛡️ ¡ESCUDO!"
@@ -3045,21 +2575,18 @@ shieldActive=false;
 /*
 Al romperse el escudo:
 
-VOLVEMOS A 0/25.
+volvemos a 0/25.
 */
 
 coins=0;
-
 
 player.classList.remove(
 "shielded"
 );
 
-
 updateShield();
 
 updateHUD();
-
 
 showReward(
 "💥 ¡ESCUDO ROTO!"
@@ -3085,7 +2612,6 @@ if(shieldActive){
 shield.textContent=
 "🛡️ ESCUDO ACTIVO";
 
-
 shield.classList.add(
 "active"
 );
@@ -3096,7 +2622,6 @@ shield.textContent=
 "🛡️ "+
 coins+
 "/25";
-
 
 shield.classList.remove(
 "active"
@@ -3207,14 +2732,11 @@ document.createElement(
 "div"
 );
 
-
 message.className=
 "airportMessage";
 
-
 message.textContent=
 text;
-
 
 document
 .getElementById(
@@ -3223,7 +2745,6 @@ document
 .appendChild(
 message
 );
-
 
 setTimeout(
 function(){
@@ -3250,14 +2771,11 @@ document.createElement(
 "div"
 );
 
-
 reward.className=
 "reward";
 
-
 reward.textContent=
 text;
-
 
 document
 .getElementById(
@@ -3266,7 +2784,6 @@ document
 .appendChild(
 reward
 );
-
 
 setTimeout(
 function(){
@@ -3292,7 +2809,6 @@ document
 )
 .textContent=
 score;
-
 
 document
 .getElementById(
@@ -3370,7 +2886,6 @@ score>highScore
 
 highScore=score;
 
-
 localStorage.setItem(
 "airport_high_score",
 highScore
@@ -3430,11 +2945,9 @@ if(continueUsed){
 button.textContent=
 "📺 CONTINUACIÓN USADA";
 
-
 button.classList.add(
 "disabled"
 );
-
 
 button.disabled=true;
 
@@ -3443,11 +2956,9 @@ button.disabled=true;
 button.textContent=
 "📺 VER ANUNCIO Y CONTINUAR";
 
-
 button.classList.remove(
 "disabled"
 );
-
 
 button.disabled=false;
 
@@ -3466,7 +2977,6 @@ if(continueUsed)return;
 
 
 continueUsed=true;
-
 
 updateContinueButton();
 
@@ -3508,7 +3018,6 @@ setInterval(
 function(){
 
 seconds--;
-
 
 document
 .getElementById(
@@ -3585,7 +3094,6 @@ element.remove()
 
 obstacles=[];
 
-
 rewardActive=false;
 
 rewardObject=null;
@@ -3628,7 +3136,7 @@ player.classList.add(
 spawnTimer=
 setTimeout(
 spawnObstacle,
-2000
+1600
 );
 
 
@@ -3751,7 +3259,6 @@ element.remove()
 
 
 obstacles=[];
-
 
 rewardActive=false;
 
