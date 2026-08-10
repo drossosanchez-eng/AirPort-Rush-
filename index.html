@@ -690,7 +690,9 @@ transform:
 translate(-50%,-50%)
 scale(1.05);
 }
-75%{opacity:1}
+75%{
+opacity:1;
+}
 100%{
 opacity:0;
 transform:
@@ -772,7 +774,9 @@ transform:
 translate(-50%,-50%)
 scale(1.05);
 }
-70%{opacity:1}
+70%{
+opacity:1;
+}
 100%{
 opacity:0;
 transform:
@@ -1251,69 +1255,51 @@ let level=1;
 let gameTime=0;
 
 
-/*
-VELOCIDAD
-
-Nivel 1 = 3.6
-Nivel 2 = 4.0
-Nivel 3 = 4.4
-Nivel 4 = 4.8
-Nivel 5 = 5.2
-
-Nivel 6 = 5.8
-Nivel 7 = 6.3
-Nivel 8 = 6.8
-Nivel 9 = 7.3
-Nivel 10 = 7.8
-
-Máximo = 8.5
-*/
+/* VELOCIDAD */
 
 let obstacleSpeed=3.6;
 
 let spawnDelay=1150;
 
 
-/*
-Modo desafío.
-*/
+/* MODO DESAFÍO */
 
 let hardMode=false;
 
 
-/*
-Objetos.
-*/
+/* OBJETOS */
 
 let obstacles=[];
 
 
 /*
-Variables de recompensa.
+Historial de patrones del modo desafío.
+
+Guardamos las últimas 3 combinaciones
+para evitar que se repitan.
 */
+
+let recentChallengePatterns=[];
+
+
+/* RECOMPENSAS */
 
 let rewardActive=false;
 
 let rewardObject=null;
 
 
-/*
-Escudo.
-*/
+/* ESCUDO */
 
 let shieldActive=false;
 
 
-/*
-Continuación.
-*/
+/* CONTINUACIÓN */
 
 let continueUsed=false;
 
 
-/*
-Récord.
-*/
+/* RÉCORD */
 
 let highScore=
 Number(
@@ -1323,9 +1309,7 @@ localStorage.getItem(
 );
 
 
-/*
-Timers.
-*/
+/* TIMERS */
 
 let spawnTimer=null;
 
@@ -1404,22 +1388,26 @@ gameTime=0;
 playerLane=1;
 
 
-/*
-Velocidad inicial.
-*/
+/* VELOCIDAD INICIAL */
 
 obstacleSpeed=3.6;
 
-
-/*
-Ahora las maletas aparecen
-algo más frecuentemente desde
-el principio.
-*/
-
 spawnDelay=1150;
 
+
+/* DESAFÍO */
+
 hardMode=false;
+
+
+/*
+IMPORTANTE:
+reiniciamos el historial
+al empezar una partida.
+*/
+
+recentChallengePatterns=[];
+
 
 obstacles=[];
 
@@ -1457,9 +1445,7 @@ updateContinueButton();
 gameRunning=true;
 
 
-/*
-Primer obstáculo.
-*/
+/* PRIMER OBSTÁCULO */
 
 spawnTimer=
 setTimeout(
@@ -1681,15 +1667,6 @@ return [];
 }
 
 
-/*
-En niveles normales
-una sola maleta.
-
-La presión aumenta por
-la frecuencia, no por
-bloquear varios carriles.
-*/
-
 const lane=
 available[
 Math.floor(
@@ -1724,77 +1701,213 @@ return [];
 
 
 /*
-Probabilidad de dos maletas.
+Creamos TODOS los patrones
+posibles utilizando los carriles
+que actualmente están libres.
 
-Nivel 6 empieza fuerte
-y aumenta progresivamente.
+Con 3 carriles tenemos:
+
+Una maleta:
+0
+1
+2
+
+Dos maletas:
+0-1
+0-2
+1-2
+
+Nunca tres.
 */
 
-const doubleChance=
-Math.min(
-0.94,
-0.72+
-(level-6)*0.035
+let possiblePatterns=[];
+
+
+/* UNA MALETA */
+
+available.forEach(
+function(lane){
+
+possiblePatterns.push([
+lane
+]);
+
+}
 );
 
 
-const double=
-Math.random()<
-doubleChance;
-
+/* DOS MALETAS */
 
 if(
-!double ||
-available.length<2
+available.length>=2
 ){
 
-const randomIndex=
-Math.floor(
-Math.random()*
-available.length
-);
+for(
+let i=0;
+i<available.length;
+i++
+){
 
+for(
+let j=i+1;
+j<available.length;
+j++
+){
 
-return [
-available[randomIndex]
-];
+possiblePatterns.push([
+available[i],
+available[j]
+]);
+
+}
+
+}
 
 }
 
 
 /*
-Elegimos dos carriles
-aleatoriamente.
-
-Siempre queda al menos
-uno libre.
+Convertimos los patrones
+en identificadores.
 */
 
-const firstIndex=
-Math.floor(
-Math.random()*
-available.length
+let freshPatterns=
+possiblePatterns.filter(
+function(pattern){
+
+const key=
+pattern
+.slice()
+.sort(
+function(a,b){
+return a-b;
+}
+)
+.join("-");
+
+return !recentChallengePatterns.includes(
+key
 );
 
-let secondIndex=
-Math.floor(
-Math.random()*
-(available.length-1)
+}
 );
+
+
+/*
+Si hemos utilizado todos los
+patrones disponibles recientemente,
+permitimos repetir uno antiguo.
+
+Pero NUNCA repetimos exactamente
+el inmediatamente anterior.
+*/
 
 if(
-secondIndex>=firstIndex
+freshPatterns.length===0
 ){
 
-secondIndex++;
+freshPatterns=
+possiblePatterns.filter(
+function(pattern){
+
+const key=
+pattern
+.slice()
+.sort(
+function(a,b){
+return a-b;
+}
+)
+.join("-");
+
+return (
+recentChallengePatterns.length===0 ||
+key!==recentChallengePatterns[
+recentChallengePatterns.length-1
+]
+);
+
+}
+);
 
 }
 
 
-return [
-available[firstIndex],
-available[secondIndex]
+/*
+Por seguridad.
+*/
+
+if(
+freshPatterns.length===0
+){
+
+freshPatterns=
+possiblePatterns;
+
+}
+
+
+/*
+Elegimos aleatoriamente
+uno de los patrones disponibles.
+*/
+
+const selected=
+freshPatterns[
+Math.floor(
+Math.random()*
+freshPatterns.length
+)
 ];
+
+
+/*
+Guardamos el patrón utilizado.
+*/
+
+const selectedKey=
+selected
+.slice()
+.sort(
+function(a,b){
+return a-b;
+}
+)
+.join("-");
+
+
+recentChallengePatterns.push(
+selectedKey
+);
+
+
+/*
+Solo guardamos los últimos 3.
+*/
+
+if(
+recentChallengePatterns.length>3
+){
+
+recentChallengePatterns.shift();
+
+}
+
+
+/*
+Barajamos el orden interno.
+Esto no cambia los carriles,
+pero evita que el código produzca
+siempre el mismo orden visual.
+*/
+
+return selected.sort(
+function(){
+
+return Math.random()-.5;
+
+}
+);
 
 }
 
@@ -1873,6 +1986,7 @@ document.createElement(
 suitcase.className=
 "suitcase";
 
+
 suitcase.style.left=
 (
 laneWidth*lane+
@@ -1923,14 +2037,6 @@ function scheduleObstacle(){
 
 if(!gameRunning)return;
 
-
-/*
-Frecuencia algo mayor.
-
-El mínimo evita que las oleadas
-sean físicamente imposibles
-de distinguir.
-*/
 
 const variation=
 Math.random()*140-70;
@@ -2106,14 +2212,6 @@ level++;
 
 /*
 NIVELES 1-5
-
-3.6
-4.0
-4.4
-4.8
-5.2
-
-El intervalo también disminuye.
 */
 
 if(level<=5){
@@ -2135,14 +2233,6 @@ Math.max(
 
 /*
 MODO DESAFÍO
-
-5.8
-6.3
-6.8
-7.3
-7.8
-
-Y continúa aumentando.
 */
 
 if(level>=6){
@@ -2382,11 +2472,6 @@ return;
 }
 
 
-/*
-EXACTAMENTE LA MISMA VELOCIDAD
-QUE LAS MALETAS.
-*/
-
 y+=
 obstacleSpeed;
 
@@ -2468,12 +2553,6 @@ rewardActive=false;
 coin.remove();
 
 
-/*
-Con escudo activo,
-las monedas NO acumulan
-el siguiente escudo.
-*/
-
 if(shieldActive){
 
 score+=50;
@@ -2497,10 +2576,6 @@ showReward(
 "🪙 +1"
 );
 
-
-/*
-25 monedas = escudo.
-*/
 
 if(
 coins>=25 &&
@@ -2570,13 +2645,6 @@ ROMPER ESCUDO
 function useShield(){
 
 shieldActive=false;
-
-
-/*
-Al romperse el escudo:
-
-volvemos a 0/25.
-*/
 
 coins=0;
 
@@ -2885,6 +2953,7 @@ score>highScore
 ){
 
 highScore=score;
+
 
 localStorage.setItem(
 "airport_high_score",
