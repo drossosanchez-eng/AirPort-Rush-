@@ -1255,9 +1255,25 @@ let level=1;
 let gameTime=0;
 
 
-/* VELOCIDAD */
+/*
+VELOCIDAD ACTUALIZADA
 
-let obstacleSpeed=3.6;
+Nivel 1 = 4.2
+Nivel 2 = 4.6
+Nivel 3 = 5.0
+Nivel 4 = 5.4
+Nivel 5 = 5.8
+
+Nivel 6 = 6.5
+Nivel 7 = 7.0
+Nivel 8 = 7.5
+Nivel 9 = 8.0
+Nivel 10 = 8.5
+Nivel 11 = 9.0
+Nivel 12+ = 9.2 máximo
+*/
+
+let obstacleSpeed=4.2;
 
 let spawnDelay=1150;
 
@@ -1273,10 +1289,10 @@ let obstacles=[];
 
 
 /*
-Historial de patrones del modo desafío.
+Historial de patrones.
 
-Guardamos las últimas 3 combinaciones
-para evitar que se repitan.
+Evita repetir las últimas
+3 combinaciones.
 */
 
 let recentChallengePatterns=[];
@@ -1388,23 +1404,20 @@ gameTime=0;
 playerLane=1;
 
 
-/* VELOCIDAD INICIAL */
+/*
+VELOCIDAD INICIAL
+*/
 
-obstacleSpeed=3.6;
+obstacleSpeed=4.2;
 
 spawnDelay=1150;
 
 
-/* DESAFÍO */
+/*
+DESAFÍO
+*/
 
 hardMode=false;
-
-
-/*
-IMPORTANTE:
-reiniciamos el historial
-al empezar una partida.
-*/
 
 recentChallengePatterns=[];
 
@@ -1445,12 +1458,14 @@ updateContinueButton();
 gameRunning=true;
 
 
-/* PRIMER OBSTÁCULO */
+/*
+Primer obstáculo.
+*/
 
 spawnTimer=
 setTimeout(
 spawnObstacle,
-850
+800
 );
 
 
@@ -1700,26 +1715,6 @@ return [];
 }
 
 
-/*
-Creamos TODOS los patrones
-posibles utilizando los carriles
-que actualmente están libres.
-
-Con 3 carriles tenemos:
-
-Una maleta:
-0
-1
-2
-
-Dos maletas:
-0-1
-0-2
-1-2
-
-Nunca tres.
-*/
-
 let possiblePatterns=[];
 
 
@@ -1767,8 +1762,8 @@ available[j]
 
 
 /*
-Convertimos los patrones
-en identificadores.
+Eliminamos patrones usados
+recientemente.
 */
 
 let freshPatterns=
@@ -1794,12 +1789,9 @@ key
 
 
 /*
-Si hemos utilizado todos los
-patrones disponibles recientemente,
-permitimos repetir uno antiguo.
-
-Pero NUNCA repetimos exactamente
-el inmediatamente anterior.
+Si se han agotado las combinaciones,
+permitimos reutilizar alguna,
+pero nunca la última.
 */
 
 if(
@@ -1834,7 +1826,7 @@ recentChallengePatterns.length-1
 
 
 /*
-Por seguridad.
+Seguridad.
 */
 
 if(
@@ -1848,8 +1840,7 @@ possiblePatterns;
 
 
 /*
-Elegimos aleatoriamente
-uno de los patrones disponibles.
+Elección aleatoria.
 */
 
 const selected=
@@ -1862,7 +1853,7 @@ freshPatterns.length
 
 
 /*
-Guardamos el patrón utilizado.
+Guardamos el patrón.
 */
 
 const selectedKey=
@@ -1882,7 +1873,7 @@ selectedKey
 
 
 /*
-Solo guardamos los últimos 3.
+Solo conservamos las últimas 3.
 */
 
 if(
@@ -1895,10 +1886,7 @@ recentChallengePatterns.shift();
 
 
 /*
-Barajamos el orden interno.
-Esto no cambia los carriles,
-pero evita que el código produzca
-siempre el mismo orden visual.
+Barajamos el resultado.
 */
 
 return selected.sort(
@@ -1977,6 +1965,7 @@ document.getElementById(
 
 const laneWidth=
 area.clientWidth/3;
+
 
 const suitcase=
 document.createElement(
@@ -2212,14 +2201,25 @@ level++;
 
 /*
 NIVELES 1-5
+
+4.2
+4.6
+5.0
+5.4
+5.8
 */
 
 if(level<=5){
 
 obstacleSpeed=
-3.6+
+4.2+
 (level-1)*0.4;
 
+
+/*
+También reducimos ligeramente
+el tiempo entre maletas.
+*/
 
 spawnDelay=
 Math.max(
@@ -2233,6 +2233,14 @@ Math.max(
 
 /*
 MODO DESAFÍO
+
+6.5
+7.0
+7.5
+8.0
+8.5
+9.0
+9.2 máximo
 */
 
 if(level>=6){
@@ -2242,8 +2250,8 @@ hardMode=true;
 
 obstacleSpeed=
 Math.min(
-8.5,
-5.8+
+9.2,
+6.5+
 (level-6)*0.5
 );
 
@@ -2472,6 +2480,10 @@ return;
 }
 
 
+/*
+MISMA VELOCIDAD QUE LA MALETA.
+*/
+
 y+=
 obstacleSpeed;
 
@@ -2553,6 +2565,12 @@ rewardActive=false;
 coin.remove();
 
 
+/*
+Mientras el escudo está activo,
+las monedas no acumulan
+el siguiente escudo.
+*/
+
 if(shieldActive){
 
 score+=50;
@@ -2572,10 +2590,15 @@ coins++;
 
 score+=75;
 
+
 showReward(
 "🪙 +1"
 );
 
+
+/*
+25 monedas = escudo.
+*/
 
 if(
 coins>=25 &&
@@ -2645,6 +2668,12 @@ ROMPER ESCUDO
 function useShield(){
 
 shieldActive=false;
+
+
+/*
+Al romperse el escudo
+volvemos a contar desde 0.
+*/
 
 coins=0;
 
@@ -2900,7 +2929,7 @@ level+
 " • x"+
 (
 obstacleSpeed/
-3.6
+4.2
 ).toFixed(1);
 
 }
